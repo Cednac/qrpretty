@@ -8,6 +8,8 @@ const qrCode = new QRCodeStyling({
 });
 
 let selectedCornerType = "square"; // Default is sharp (square)
+let qrColor = "#000000"; // Default color is black
+let qrBackground = "#FFFFFF"; // Default background is white
 
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
@@ -18,6 +20,16 @@ document.getElementById('sharpOption').addEventListener('click', () => {
 document.getElementById('roundedOption').addEventListener('click', () => {
     selectedCornerType = "extra-rounded";
     selectOption('roundedOption');
+});
+
+// Add event listener for color selection
+document.getElementById('qrColor').addEventListener('input', (event) => {
+    qrColor = event.target.value;
+});
+
+// Add event listener for background color selection
+document.getElementById('qrBackground').addEventListener('input', (event) => {
+    qrBackground = event.target.value;
 });
 
 function selectOption(selectedId) {
@@ -38,8 +50,16 @@ logoMarginSlider.addEventListener('input', (event) => {
     logoMarginValue.textContent = logoMargin;
 });
 
+const downloadButton = document.getElementById('downloadQR');
+
 document.getElementById('generateQR').addEventListener('click', () => {
-    const text = document.getElementById('qrText').value;
+    const text = document.getElementById('qrText').value.trim();
+    
+    if (!text) {
+        alert('Please enter some text or URL before generating the QR code.');
+        return;
+    }
+
     const logoFile = document.getElementById('qrLogo').files[0];
 
     if (logoFile) {
@@ -49,10 +69,12 @@ document.getElementById('generateQR').addEventListener('click', () => {
             generateQRCode(text, currentLogo);
             document.getElementById('removeLogo').style.display = 'inline-block'; // Changed from 'inline' to 'inline-block'
             logoMarginContainer.style.display = 'block';
+            downloadButton.style.display = 'inline-block'; // Show download button
         };
         reader.readAsDataURL(logoFile);
     } else {
         generateQRCode(text, currentLogo);
+        downloadButton.style.display = 'inline-block'; // Show download button
     }
 });
 
@@ -72,16 +94,19 @@ function generateQRCode(text, logo) {
             errorCorrectionLevel: "H"
         },
         dotsOptions: {
-            color: "#000",
+            color: qrColor,
             type: selectedCornerType // Apply the selected type to both dots and corners
         },
         cornersSquareOptions: {
             type: selectedCornerType, // Sharp or rounded for corners
-            color: "#000"
+            color: qrColor
         },
         cornersDotOptions: {
             type: selectedCornerType, // Sharp or rounded for corner dots
-            color: "#000"
+            color: qrColor
+        },
+        backgroundOptions: {
+            color: qrBackground,
         },
         image: logo,
         imageOptions: {
@@ -91,10 +116,28 @@ function generateQRCode(text, logo) {
         }
     });
     qrCode.append(document.getElementById("qr-code"));
+    downloadButton.style.display = 'inline-block'; // Show download button
 }
 
 // Add this to update QR code when slider changes
 logoMarginSlider.addEventListener('change', () => {
+    const text = document.getElementById('qrText').value;
+    generateQRCode(text, currentLogo);
+});
+
+// Add this new event listener for the download button
+downloadButton.addEventListener('click', () => {
+    qrCode.download({ name: "qr-code", extension: "png" });
+});
+
+// Add this to update QR code when color changes
+document.getElementById('qrColor').addEventListener('change', () => {
+    const text = document.getElementById('qrText').value;
+    generateQRCode(text, currentLogo);
+});
+
+// Add this to update QR code when background color changes
+document.getElementById('qrBackground').addEventListener('change', () => {
     const text = document.getElementById('qrText').value;
     generateQRCode(text, currentLogo);
 });

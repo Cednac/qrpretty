@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>QR Code Generator</h1>
+    <p class="subtitle">Free QR code styling generator - No paywall, no limits!</p>
 
     <div class="controls">
         <label for="qrText">Text/URL:</label>
@@ -22,6 +23,17 @@
             <div id="roundedOption">
                 <img src="./images/qr_rounded.png" alt="Rounded Corners">
                 <p>Rounded</p>
+            </div>
+        </div>
+
+        <div class="color-selectors">
+            <div class="color-selector">
+                <label for="qrColor">QR Code Color:</label>
+                <input type="color" id="qrColor" value="#000000">
+            </div>
+            <div class="color-selector">
+                <label for="qrBackground">Background:</label>
+                <input type="color" id="qrBackground" value="#FFFFFF">
             </div>
         </div>
 
@@ -42,6 +54,7 @@
 
         <button id="generateQR">Generate QR Code</button>
         <div id="qr-code"></div>
+        <button id="downloadQR" style="display: none;">Download QR Code</button>
     </div>
 
 
