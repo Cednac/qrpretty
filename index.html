@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        #qr-code {
+            margin-top: 20px;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .picker {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .picker div {
+            cursor: pointer;
+            border: 2px solid transparent;
+            padding: 10px;
+            transition: border-color 0.3s;
+        }
+        .picker div img {
+            width: 50px;
+            height: 50px;
+        }
+        .selected {
+            border-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+
+    <div class="controls">
+        <label for="qrText">Text/URL:</label>
+        <input type="text" id="qrText" placeholder="Enter text or URL">
+
+        <label>Corner Style:</label>
+        <div class="picker" id="cornerPicker">
+            <div id="sharpOption" class="selected">
+                <img src="https://via.placeholder.com/50?text=Sharp" alt="Sharp Corners">
+                <p>Sharp</p>
+            </div>
+            <div id="roundedOption">
+                <img src="https://via.placeholder.com/50?text=Rounded" alt="Rounded Corners">
+                <p>Rounded</p>
+            </div>
+        </div>
+
+        <label for="qrLogo">Upload Logo (optional):</label>
+        <input type="file" id="qrLogo" accept="image/*">
+
+        <button id="generateQR">Generate QR Code</button>
+    </div>
+
+    <div id="qr-code"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script>
+        const qrCode = new QRCodeStyling({
+            width: 300,
+            height: 300,
+            imageOptions: {
+                crossOrigin: "anonymous",
+                margin: 10
+            }
+        });
+
+        let selectedCornerType = "square"; // Default is sharp (square)
+
+        // Add event listeners for corner selection
+        document.getElementById('sharpOption').addEventListener('click', () => {
+            selectedCornerType = "square";
+            selectOption('sharpOption');
+        });
+
+        document.getElementById('roundedOption').addEventListener('click', () => {
+            selectedCornerType = "extra-rounded";
+            selectOption('roundedOption');
+        });
+
+        function selectOption(selectedId) {
+            document.getElementById('sharpOption').classList.remove('selected');
+            document.getElementById('roundedOption').classList.remove('selected');
+            document.getElementById(selectedId).classList.add('selected');
+        }
+
+        document.getElementById('generateQR').addEventListener('click', () => {
+            const text = document.getElementById('qrText').value;
+            const logoFile = document.getElementById('qrLogo').files[0];
+
+            if (logoFile) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const logoBase64 = event.target.result;
+                    generateQRCode(text, logoBase64);
+                };
+                reader.readAsDataURL(logoFile);
+            } else {
+                generateQRCode(text, null);
+            }
+        });
+
+        function generateQRCode(text, logo) {
+            qrCode.update({
+                data: text,
+                qrOptions: {
+                    errorCorrectionLevel: "H"
+                },
+                dotsOptions: {
+                    color: "#000",
+                    type: selectedCornerType // Apply the selected type to both dots and corners
+                },
+                cornersSquareOptions: {
+                    type: selectedCornerType, // Sharp or rounded for corners
+                    color: "#000"
+                },
+                cornersDotOptions: {
+                    type: selectedCornerType, // Sharp or rounded for corner dots
+                    color: "#000"
+                },
+                image: logo,
+                imageOptions: {
+                    margin: 10,
+                    crossOrigin: "anonymous"
+                }
+            });
+            qrCode.append(document.getElementById("qr-code"));
+        }
+    </script>
+</body>
+</html>
