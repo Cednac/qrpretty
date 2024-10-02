@@ -38,8 +38,16 @@ logoMarginSlider.addEventListener('input', (event) => {
     logoMarginValue.textContent = logoMargin;
 });
 
+const downloadButton = document.getElementById('downloadQR');
+
 document.getElementById('generateQR').addEventListener('click', () => {
-    const text = document.getElementById('qrText').value;
+    const text = document.getElementById('qrText').value.trim();
+    
+    if (!text) {
+        alert('Please enter some text or URL before generating the QR code.');
+        return;
+    }
+
     const logoFile = document.getElementById('qrLogo').files[0];
 
     if (logoFile) {
@@ -49,10 +57,12 @@ document.getElementById('generateQR').addEventListener('click', () => {
             generateQRCode(text, currentLogo);
             document.getElementById('removeLogo').style.display = 'inline-block'; // Changed from 'inline' to 'inline-block'
             logoMarginContainer.style.display = 'block';
+            downloadButton.style.display = 'inline-block'; // Show download button
         };
         reader.readAsDataURL(logoFile);
     } else {
         generateQRCode(text, currentLogo);
+        downloadButton.style.display = 'inline-block'; // Show download button
     }
 });
 
@@ -91,10 +101,16 @@ function generateQRCode(text, logo) {
         }
     });
     qrCode.append(document.getElementById("qr-code"));
+    downloadButton.style.display = 'inline-block'; // Show download button
 }
 
 // Add this to update QR code when slider changes
 logoMarginSlider.addEventListener('change', () => {
     const text = document.getElementById('qrText').value;
     generateQRCode(text, currentLogo);
+});
+
+// Add this new event listener for the download button
+downloadButton.addEventListener('click', () => {
+    qrCode.download({ name: "qr-code", extension: "png" });
 });

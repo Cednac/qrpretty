@@ -57,6 +57,15 @@ h1 {
     animation: subtleTitleGlow 4s ease-in-out infinite;
 }
 
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-top: -20px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
 .controls, #qr-code {
     background: var(--card-background);
     border-radius: 15px;
