@@ -13,7 +13,7 @@
         <label for="qrText">Text/URL:</label>
         <input type="text" id="qrText" placeholder="Enter text or URL">
 
-        <label>Corner Style:</label>
+        <label>QR Code Style:</label>
         <div class="picker" id="cornerPicker">
             <div id="sharpOption" class="selected">
                 <img src="./images/qr_sharp.png" alt="Sharp Corners">
@@ -28,6 +28,11 @@
         <label for="qrLogo">Upload Logo (optional):</label>
         <input type="file" id="qrLogo" accept="image/*">
         <button id="removeLogo" style="display: none;">Remove Logo</button>
+
+        <div id="logoMarginContainer" style="display: none;">
+            <label for="logoMargin">Logo Margin: <span id="logoMarginValue">5</span></label>
+            <input type="range" id="logoMargin" min="0" max="20" value="5">
+        </div>
 
         <button id="generateQR">Generate QR Code</button>
     </div>
