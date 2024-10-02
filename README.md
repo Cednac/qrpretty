@@ -1,0 +1,2 @@
+# qrpretty
+QR Code generator
