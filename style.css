@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+#qr-code {
+    margin-top: 20px;
+}
+.controls {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+label {
+    display: block;
+    margin-top: 10px;
+}
+input, select {
+    padding: 5px;
+    margin-top: 5px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+button:hover {
+    background-color: #45a049;
+}
+.picker {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+.picker div {
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 10px;
+    transition: border-color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+.picker div img {
+    width: 50px;
+    height: 50px;
+}
+.selected {
+    border-color: #4CAF50;
+    background-color: #e6f3e6;
+}
