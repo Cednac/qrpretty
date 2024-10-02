@@ -25,13 +25,19 @@
             </div>
         </div>
 
-        <label for="qrLogo">Upload Logo (optional):</label>
-        <input type="file" id="qrLogo" accept="image/*">
-        <button id="removeLogo" style="display: none;">Remove Logo</button>
+        <div class="logo-upload-container">
+            <input type="file" id="qrLogo" accept="image/*">
+            <button id="removeLogo" style="display: none;">Remove Logo</button>
+        </div>
 
         <div id="logoMarginContainer" style="display: none;">
-            <label for="logoMargin">Logo Margin: <span id="logoMarginValue">5</span></label>
-            <input type="range" id="logoMargin" min="0" max="20" value="5">
+            <div class="slider-container">
+                <label for="logoMargin">Logo Margin:</label>
+                <div class="slider-wrapper">
+                    <input type="range" id="logoMargin" min="0" max="20" value="5">
+                    <span id="logoMarginValue">5</span>
+                </div>
+            </div>
         </div>
 
         <button id="generateQR">Generate QR Code</button>

@@ -47,7 +47,7 @@ document.getElementById('generateQR').addEventListener('click', () => {
         reader.onload = function (event) {
             currentLogo = event.target.result;
             generateQRCode(text, currentLogo);
-            document.getElementById('removeLogo').style.display = 'inline-block';
+            document.getElementById('removeLogo').style.display = 'inline-block'; // Changed from 'inline' to 'inline-block'
             logoMarginContainer.style.display = 'block';
         };
         reader.readAsDataURL(logoFile);

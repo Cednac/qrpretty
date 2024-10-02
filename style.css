@@ -72,6 +72,7 @@ input, select, input[type="file"]::file-selector-button {
 }
 
 input[type="file"] {
+    flex: 1;
     padding: 0;
     border: none;
     background-color: transparent;
@@ -209,8 +210,48 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 }
 
-#qr-code canvas {
-    border-radius: 15px;
-    padding: 20px;
-    background: white;
+#removeLogo {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.logo-upload-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#logoMarginContainer {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.slider-container label {
+    margin-top: 0;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.slider-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+input[type="range"] {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#logoMarginValue {
+    min-width: 20px;
+    text-align: right;
 }
