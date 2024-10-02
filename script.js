@@ -1,6 +1,6 @@
 const qrCode = new QRCodeStyling({
-    width: 300,
-    height: 300,
+    width: 280, // Increased from 250 to 280
+    height: 280, // Increased from 250 to 280
     imageOptions: {
         crossOrigin: "anonymous",
         margin: 10
@@ -26,6 +26,8 @@ function selectOption(selectedId) {
     document.getElementById(selectedId).classList.add('selected');
 }
 
+let currentLogo = null;
+
 document.getElementById('generateQR').addEventListener('click', () => {
     const text = document.getElementById('qrText').value;
     const logoFile = document.getElementById('qrLogo').files[0];
@@ -33,13 +35,22 @@ document.getElementById('generateQR').addEventListener('click', () => {
     if (logoFile) {
         const reader = new FileReader();
         reader.onload = function (event) {
-            const logoBase64 = event.target.result;
-            generateQRCode(text, logoBase64);
+            currentLogo = event.target.result;
+            generateQRCode(text, currentLogo);
+            document.getElementById('removeLogo').style.display = 'inline-block';
         };
         reader.readAsDataURL(logoFile);
     } else {
-        generateQRCode(text, null);
+        generateQRCode(text, currentLogo);
     }
+});
+
+document.getElementById('removeLogo').addEventListener('click', () => {
+    currentLogo = null;
+    document.getElementById('qrLogo').value = '';
+    document.getElementById('removeLogo').style.display = 'none';
+    const text = document.getElementById('qrText').value;
+    generateQRCode(text, null);
 });
 
 function generateQRCode(text, logo) {
