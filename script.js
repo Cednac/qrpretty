@@ -8,6 +8,7 @@ const qrCode = new QRCodeStyling({
 });
 
 let selectedCornerType = "square"; // Default is sharp (square)
+let qrColor = "#000000"; // Default color is black
 
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
@@ -18,6 +19,11 @@ document.getElementById('sharpOption').addEventListener('click', () => {
 document.getElementById('roundedOption').addEventListener('click', () => {
     selectedCornerType = "extra-rounded";
     selectOption('roundedOption');
+});
+
+// Add event listener for color selection
+document.getElementById('qrColor').addEventListener('input', (event) => {
+    qrColor = event.target.value;
 });
 
 function selectOption(selectedId) {
@@ -82,16 +88,16 @@ function generateQRCode(text, logo) {
             errorCorrectionLevel: "H"
         },
         dotsOptions: {
-            color: "#000",
+            color: qrColor,
             type: selectedCornerType // Apply the selected type to both dots and corners
         },
         cornersSquareOptions: {
             type: selectedCornerType, // Sharp or rounded for corners
-            color: "#000"
+            color: qrColor
         },
         cornersDotOptions: {
             type: selectedCornerType, // Sharp or rounded for corner dots
-            color: "#000"
+            color: qrColor
         },
         image: logo,
         imageOptions: {
@@ -113,4 +119,10 @@ logoMarginSlider.addEventListener('change', () => {
 // Add this new event listener for the download button
 downloadButton.addEventListener('click', () => {
     qrCode.download({ name: "qr-code", extension: "png" });
+});
+
+// Add this to update QR code when color changes
+document.getElementById('qrColor').addEventListener('change', () => {
+    const text = document.getElementById('qrText').value;
+    generateQRCode(text, currentLogo);
 });
