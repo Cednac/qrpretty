@@ -10,7 +10,7 @@ const qrCode = new QRCodeStyling({
 });
 
 let selectedDotsType = "square"; // Default is square dots
-let qrColor = "#000000"; // Default color is black
+let dotsColor = "#000000"; // Changed from qrColor to dotsColor
 let qrBackground = "#FFFFFF"; // Default background is white
 
 // Add event listeners for corner selection
@@ -52,7 +52,8 @@ document.getElementById('extra-roundedOption').addEventListener('click', () => {
 
 // Add event listener for color selection
 document.getElementById('qrColor').addEventListener('input', (event) => {
-    qrColor = event.target.value;
+    dotsColor = event.target.value;
+    updateQRCode();
 });
 
 // Add event listener for background color selection
@@ -114,7 +115,7 @@ function updateQRCode() {
         height: qrSize,
         data: text,
         dotsOptions: {
-            color: qrColor,
+            color: dotsColor, // Changed from qrColor to dotsColor
             type: selectedDotsType === 'classy-rounded' ? 'rounded' : selectedDotsType
         },
         cornersSquareOptions: {
@@ -155,7 +156,7 @@ function generateQRCode(text) {
     qrCode.update({
         data: text,
         dotsOptions: {
-            color: qrColor,
+            color: dotsColor, // Changed from qrColor to dotsColor
             type: selectedDotsType
         },
         backgroundOptions: {
