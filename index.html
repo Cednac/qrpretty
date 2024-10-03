@@ -112,6 +112,30 @@
             </div>
         </div>
 
+        <!-- Add this after the cornersSquare color selector -->
+        <div class="color-selector">
+            <label for="cornersDotColorType">Corners Dot Color:</label>
+            <select id="cornersDotColorType">
+                <option value="single">Single Color</option>
+                <option value="gradient">Gradient</option>
+            </select>
+            <div id="cornersDotSingleColor">
+                <input type="color" id="cornersDotColor" value="#000000">
+            </div>
+            <div id="cornersDotGradient" style="display: none;">
+                <select id="cornersDotGradientType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+                <div id="cornersDotLinearGradientRotation" style="display: none;">
+                    <label for="cornersDotGradientRotation">Rotation:</label>
+                    <input type="number" id="cornersDotGradientRotation" min="0" max="359" value="0">
+                </div>
+                <input type="color" id="cornersDotGradientStart" value="#000000">
+                <input type="color" id="cornersDotGradientEnd" value="#000000">
+            </div>
+        </div>
+
         <div id="qrSizeContainer">
             <div class="slider-container">
                 <label for="qrSize">QR Code Size:</label>

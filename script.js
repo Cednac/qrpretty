@@ -34,6 +34,14 @@ let cornersSquareGradientStart = '#000000';
 let cornersSquareGradientEnd = '#000000';
 let cornersSquareGradientRotation = 0;
 
+// Add these new variables at the top of your script
+let cornersDotColorType = 'single';
+let cornersDotColor = '#000000';
+let cornersDotGradientType = 'linear';
+let cornersDotGradientStart = '#000000';
+let cornersDotGradientEnd = '#000000';
+let cornersDotGradientRotation = 0;
+
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
     selectedDotsType = "square";
@@ -181,17 +189,32 @@ function updateQRCode() {
         };
     }
 
+    let cornersDotOptions = {
+        type: selectedDotsType === 'classy' ? 'dot' : 
+              selectedDotsType === 'classy-rounded' ? 'rounded' : 
+              selectedDotsType === 'dots' ? 'dot' : selectedDotsType
+    };
+
+    if (cornersDotColorType === 'single') {
+        cornersDotOptions.color = document.getElementById('cornersDotColor').value;
+    } else {
+        cornersDotOptions.gradient = {
+            type: cornersDotGradientType,
+            rotation: cornersDotGradientType === 'linear' ? parseInt(document.getElementById('cornersDotGradientRotation').value) : 0,
+            colorStops: [
+                { offset: 0, color: document.getElementById('cornersDotGradientStart').value },
+                { offset: 1, color: document.getElementById('cornersDotGradientEnd').value }
+            ]
+        };
+    }
+
     qrCode.update({
         width: qrSize,
         height: qrSize,
         data: text,
         dotsOptions: dotsOptions,
         cornersSquareOptions: cornersSquareOptions,
-        cornersDotOptions: {
-            type: selectedDotsType === 'classy' ? 'dot' : 
-                  selectedDotsType === 'classy-rounded' ? 'rounded' : 
-                  selectedDotsType === 'dots' ? 'dot' : selectedDotsType
-        },
+        cornersDotOptions: cornersDotOptions,
         backgroundOptions: backgroundOptions,
         imageOptions: {
             crossOrigin: "anonymous",
@@ -510,5 +533,28 @@ function updateCornersSquareColorType(event) {
 function updateCornersSquareGradientType(event) {
     cornersSquareGradientType = event.target.value;
     document.getElementById('cornersSquareLinearGradientRotation').style.display = cornersSquareGradientType === 'linear' ? 'block' : 'none';
+    updateQRCode();
+}
+
+// Add these new event listeners
+document.getElementById('cornersDotColorType').addEventListener('change', updateCornersDotColorType);
+document.getElementById('cornersDotColor').addEventListener('input', updateQRCode);
+document.getElementById('cornersDotGradientType').addEventListener('change', updateCornersDotGradientType);
+document.getElementById('cornersDotGradientStart').addEventListener('input', updateQRCode);
+document.getElementById('cornersDotGradientEnd').addEventListener('input', updateQRCode);
+document.getElementById('cornersDotGradientRotation').addEventListener('input', updateQRCode);
+
+// Add these new functions
+function updateCornersDotColorType(event) {
+    cornersDotColorType = event.target.value;
+    document.getElementById('cornersDotSingleColor').style.display = cornersDotColorType === 'single' ? 'block' : 'none';
+    document.getElementById('cornersDotGradient').style.display = cornersDotColorType === 'gradient' ? 'block' : 'none';
+    updateCornersDotGradientType({ target: { value: cornersDotGradientType } });
+    updateQRCode();
+}
+
+function updateCornersDotGradientType(event) {
+    cornersDotGradientType = event.target.value;
+    document.getElementById('cornersDotLinearGradientRotation').style.display = cornersDotGradientType === 'linear' ? 'block' : 'none';
     updateQRCode();
 }
