@@ -9,20 +9,20 @@ const qrCode = new QRCodeStyling({
     }
 });
 
-let selectedCornerType = "square"; // Default is sharp (square)
+let selectedDotsType = "square"; // Default is square dots
 let qrColor = "#000000"; // Default color is black
 let qrBackground = "#FFFFFF"; // Default background is white
 
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
-    selectedCornerType = "square";
+    selectedDotsType = "square";
     selectOption('sharpOption');
     updateQRCode(); // Add this line
 });
 
-document.getElementById('roundedOption').addEventListener('click', () => {
-    selectedCornerType = "extra-rounded";
-    selectOption('roundedOption');
+document.getElementById('extra-roundedOption').addEventListener('click', () => {
+    selectedDotsType = "extra-rounded";
+    selectOption('extra-roundedOption');
     updateQRCode(); // Add this line
 });
 
@@ -38,7 +38,7 @@ document.getElementById('qrBackground').addEventListener('input', (event) => {
 
 function selectOption(selectedId) {
     document.getElementById('sharpOption').classList.remove('selected');
-    document.getElementById('roundedOption').classList.remove('selected');
+    document.getElementById('extra-roundedOption').classList.remove('selected');
     document.getElementById(selectedId).classList.add('selected');
 }
 
@@ -87,7 +87,7 @@ function updateQRCode() {
         data: text,
         dotsOptions: {
             color: qrColor,
-            type: selectedCornerType
+            type: selectedDotsType
         },
         backgroundOptions: {
             color: qrBackground,
@@ -119,7 +119,7 @@ function generateQRCode(text) {
         data: text,
         dotsOptions: {
             color: qrColor,
-            type: selectedCornerType
+            type: selectedDotsType
         },
         backgroundOptions: {
             color: qrBackground,
