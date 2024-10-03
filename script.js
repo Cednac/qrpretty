@@ -72,14 +72,12 @@ function updateQRCode() {
     
     if (!text) {
         document.getElementById("qr-code").innerHTML = '';
-        downloadButton.style.display = 'none';
         logoMarginContainer.style.display = 'none';
         logoSizeContainer.style.display = 'none';
         return;
     }
 
     generateQRCode(text);
-    downloadButton.style.display = 'inline-block';
     logoMarginContainer.style.display = currentLogo ? 'block' : 'none';
     logoSizeContainer.style.display = currentLogo ? 'block' : 'none';
 }
@@ -290,3 +288,22 @@ function convertToTIFF(pngBlob) {
         img.src = URL.createObjectURL(pngBlob);
     });
 }
+
+// Add this at the beginning of your script
+const downloadOptions = document.getElementById('downloadOptions');
+const qrTextInput = document.getElementById('qrText');
+
+// Add this function to your script
+function updateDownloadOptions() {
+    if (qrTextInput.value.trim()) {
+        downloadOptions.style.display = 'flex';
+    } else {
+        downloadOptions.style.display = 'none';
+    }
+}
+
+// Add this event listener
+qrTextInput.addEventListener('input', updateDownloadOptions);
+
+// Call this function initially to set the correct state
+updateDownloadOptions();
