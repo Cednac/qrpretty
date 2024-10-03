@@ -274,8 +274,8 @@ document.getElementById('removeLogo').addEventListener('click', () => {
     currentLogo = null;
     document.getElementById('qrLogo').value = '';
     document.getElementById('removeLogo').style.display = 'none';
-    logoMarginContainer.style.display = 'none';
-    logoSizeContainer.style.display = 'none';
+    document.getElementById('logoMarginContainer').style.display = 'none';
+    document.getElementById('logoSizeContainer').style.display = 'none';
     updateQRCode();
 });
 
@@ -287,16 +287,20 @@ document.getElementById('qrLogo').addEventListener('change', (event) => {
             currentLogo = event.target.result;
             updateQRCode();
             document.getElementById('removeLogo').style.display = 'inline-block';
-            logoMarginContainer.style.display = 'block';
-            logoSizeContainer.style.display = 'block';
+            document.getElementById('logoMarginContainer').style.display = 'block';
+            document.getElementById('logoSizeContainer').style.display = 'block';
+            
+            // Force reflow of the collapsible content
+            const content = event.target.closest('.collapsible-content');
+            forceReflow(content);
         };
         reader.readAsDataURL(logoFile);
     } else {
         currentLogo = null;
         updateQRCode();
         document.getElementById('removeLogo').style.display = 'none';
-        logoMarginContainer.style.display = 'none';
-        logoSizeContainer.style.display = 'none';
+        document.getElementById('logoMarginContainer').style.display = 'none';
+        document.getElementById('logoSizeContainer').style.display = 'none';
     }
 });
 
