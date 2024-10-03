@@ -505,13 +505,13 @@ document.getElementById('backgroundGradientRotation').addEventListener('input', 
 // Add these new functions
 function updateDotsGradientType(event) {
     dotsGradientType = event.target.value;
-    document.getElementById('dotsLinearGradientRotation').style.display = dotsGradientType === 'linear' ? 'block' : 'none';
+    document.getElementById('dotsLinearGradientRotation').style.display = dotsGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
 function updateBackgroundGradientType(event) {
     backgroundGradientType = event.target.value;
-    document.getElementById('backgroundLinearGradientRotation').style.display = backgroundGradientType === 'linear' ? 'block' : 'none';
+    document.getElementById('backgroundLinearGradientRotation').style.display = backgroundGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
@@ -535,7 +535,7 @@ function updateCornersSquareColorType(event) {
 
 function updateCornersSquareGradientType(event) {
     cornersSquareGradientType = event.target.value;
-    document.getElementById('cornersSquareLinearGradientRotation').style.display = cornersSquareGradientType === 'linear' ? 'block' : 'none';
+    document.getElementById('cornersSquareLinearGradientRotation').style.display = cornersSquareGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
@@ -559,7 +559,7 @@ function updateCornersDotColorType(event) {
 
 function updateCornersDotGradientType(event) {
     cornersDotGradientType = event.target.value;
-    document.getElementById('cornersDotLinearGradientRotation').style.display = cornersDotGradientType === 'linear' ? 'block' : 'none';
+    document.getElementById('cornersDotLinearGradientRotation').style.display = cornersDotGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
