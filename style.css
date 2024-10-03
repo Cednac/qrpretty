@@ -324,3 +324,23 @@ input[type="range"] {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.download-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.download-options select {
+    margin-top: 0;
+    width: auto;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.download-options button {
+    margin-top: 0;
+    white-space: nowrap;
+}
