@@ -196,6 +196,7 @@ button:active {
 
 #qr-code {
     margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -521,4 +522,55 @@ input[type="range"] {
 #errorCorrectionLevel {
     width: 100%;
     margin-bottom: 10px;
+}
+
+/* Add these new styles */
+#bulkQRCodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-container p {
+    margin-top: 10px;
+    text-align: center;
+    word-break: break-all;
+    max-width: 200px;
+}
+
+/* Add these new styles at the end of your CSS file */
+.bulk-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bulk-controls input[type="file"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.bulk-controls button {
+    white-space: nowrap;
+}
+
+/* Update this existing style to remove the margin-top */
+#bulkQRCodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
