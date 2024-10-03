@@ -727,3 +727,123 @@ footer {
 .back-link:hover {
     text-decoration: underline;
 }
+
+/* Add these new styles at the end of the file */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .controls, #qr-code {
+        padding: 15px;
+    }
+
+    .picker {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .picker div img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .picker div p {
+        font-size: 0.7rem;
+    }
+
+    .download-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .download-options button,
+    .download-options select {
+        width: 100%;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .bulk-controls {
+        flex-direction: column;
+    }
+
+    .bulk-controls input[type="file"] {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .bulk-controls button {
+        width: 100%;
+    }
+
+    #qr-code {
+        min-height: 200px;
+        min-width: 200px;
+    }
+
+    .collapsible-header {
+        font-size: 0.9rem;
+    }
+
+    input, select, button {
+        font-size: 0.9rem;
+    }
+
+    .gradient-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gradient-controls select,
+    .gradient-controls input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #dotsGradient,
+    #backgroundGradient,
+    #cornersSquareGradient,
+    #cornersDotGradient {
+        flex-direction: column;
+    }
+
+    #dotsGradient input[type="color"],
+    #backgroundGradient input[type="color"],
+    #cornersSquareGradient input[type="color"],
+    #cornersDotGradient input[type="color"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .logo-upload-container {
+        flex-direction: column;
+    }
+
+    #removeLogo {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .about-content,
+    .privacy-content,
+    .contact-content,
+    .sitemap-content {
+        padding: 15px;
+    }
+}
+
+/* Add styles for larger screens */
+@media (min-width: 769px) {
+    .controls {
+        max-width: 600px;
+    }
+}
