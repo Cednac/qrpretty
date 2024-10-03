@@ -339,7 +339,7 @@ input[type="range"] {
 #dotsGradient input[type="color"], 
 #backgroundGradient input[type="color"], 
 #cornersSquareGradient input[type="color"],
-#cornersDotGradient input[type="color"],
+#cornersDotGradient input[type="color"], 
 #dotsSingleColor input[type="color"], 
 #backgroundSingleColor input[type="color"], 
 #cornersSquareSingleColor input[type="color"],
@@ -504,11 +504,10 @@ input[type="range"] {
     padding: 0 10px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.3s ease-out;
     background-color: var(--card-background);
 }
 
 .collapsible-content.active {
-    max-height: 500px; /* Adjust this value as needed */
     padding: 10px;
 }

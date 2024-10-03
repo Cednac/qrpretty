@@ -485,6 +485,14 @@ function updateDotsColorType(event) {
     document.getElementById('dotsGradientType').style.display = dotsColorType === 'gradient' ? 'inline-block' : 'none';
     updateDotsGradientType(); // Call this to update rotation visibility
     updateQRCode();
+    
+    if (dotsColorType === 'gradient') {
+        const content = event.target.closest('.collapsible-content');
+        content.style.maxHeight = 'none';
+        setTimeout(() => {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }, 0);
+    }
 }
 
 function updateBackgroundColorType(event) {
@@ -588,8 +596,11 @@ function initCollapsibles() {
                 content.style.maxHeight = null;
                 content.classList.remove('active');
             } else {
-                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.maxHeight = 'none';
                 content.classList.add('active');
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 0);
             }
         });
     });
@@ -597,3 +608,10 @@ function initCollapsibles() {
 
 // Call this function when the page loads
 document.addEventListener('DOMContentLoaded', initCollapsibles);
+
+// Add this new function
+function forceReflow(element) {
+    element.style.display = 'none';
+    element.offsetHeight; // This line forces a reflow
+    element.style.display = '';
+}
