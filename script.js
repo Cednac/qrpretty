@@ -154,20 +154,13 @@ document.getElementById('qrLogo').addEventListener('change', (event) => {
     }
 });
 
-// Update these event listeners to use updateQRCode:
-logoMarginSlider.addEventListener('change', updateQRCode);
-document.getElementById('qrColor').addEventListener('change', updateQRCode);
-document.getElementById('qrBackground').addEventListener('change', updateQRCode);
-document.getElementById('sharpOption').addEventListener('click', () => {
-    selectedCornerType = "square";
-    selectOption('sharpOption');
-    updateQRCode();
-});
-document.getElementById('roundedOption').addEventListener('click', () => {
-    selectedCornerType = "extra-rounded";
-    selectOption('roundedOption');
-    updateQRCode();
-});
+// Update these event listeners to use 'input' instead of 'change'
+logoMarginSlider.addEventListener('input', updateQRCode);
+logoSizeSlider.addEventListener('input', updateQRCode);
+
+// Remove or comment out these lines as they're now redundant
+// logoMarginSlider.addEventListener('change', updateQRCode);
+// logoSizeSlider.addEventListener('change', updateQRCode);
 
 // Add this to update QR code when slider changes
 logoMarginSlider.addEventListener('change', updateQRCode);
