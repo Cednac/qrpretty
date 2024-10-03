@@ -85,7 +85,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 label {
@@ -357,14 +357,14 @@ input[type="range"] {
 #cornersDotLinearGradientRotation {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 #dotsLinearGradientRotation label,
 #backgroundLinearGradientRotation label,
 #cornersSquareLinearGradientRotation label,
 #cornersDotLinearGradientRotation label {
-    margin-right: 5px;
+    margin-right: 10px;
     white-space: nowrap;
 }
 
@@ -372,8 +372,7 @@ input[type="range"] {
 #backgroundLinearGradientRotation input,
 #cornersSquareLinearGradientRotation input,
 #cornersDotLinearGradientRotation input {
-    width: auto;
-    margin-right: 10px;
+    width: 60px;
 }
 
 .download-options {
