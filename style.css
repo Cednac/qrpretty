@@ -522,3 +522,29 @@ input[type="range"] {
     width: 100%;
     margin-bottom: 10px;
 }
+
+/* Add these new styles */
+#bulkQRCodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-container p {
+    margin-top: 10px;
+    text-align: center;
+    word-break: break-all;
+    max-width: 200px;
+}

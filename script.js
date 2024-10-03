@@ -643,3 +643,74 @@ function updateCollapsibleContentSize(content) {
         content.style.maxHeight = scrollHeight + 'px';
     }
 }
+
+// Add these new functions and event listeners
+
+document.getElementById('csvFile').addEventListener('change', handleFileSelect);
+document.getElementById('generateBulkQR').addEventListener('click', generateBulkQRCodes);
+
+let csvData = [];
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        csvData = parseCSV(e.target.result);
+        console.log("CSV data loaded:", csvData); // Add this line for debugging
+    };
+    reader.readAsText(file);
+}
+
+function parseCSV(csvContent) {
+    const lines = csvContent.split('\n');
+    return lines.map(line => line.trim()).filter(line => line);
+}
+
+function generateBulkQRCodes() {
+    const bulkQRCodesContainer = document.getElementById('bulkQRCodes');
+    bulkQRCodesContainer.innerHTML = '';
+
+    console.log("Generating bulk QR codes for", csvData.length, "records"); // Add this line for debugging
+
+    csvData.forEach((text, index) => {
+        const qrContainer = document.createElement('div');
+        qrContainer.className = 'qr-container';
+        
+        const qrCode = new QRCodeStyling({
+            width: 200,
+            height: 200,
+            data: text,
+            dotsOptions: {
+                color: dotsColor,
+                type: selectedDotsType
+            },
+            backgroundOptions: {
+                color: qrBackground,
+            },
+            imageOptions: {
+                crossOrigin: "anonymous",
+                margin: logoMargin,
+                imageSize: logoSize,
+                hideBackgroundDots: true,
+            },
+            image: currentLogo,
+            qrOptions: {
+                errorCorrectionLevel: errorCorrectionLevel
+            }
+        });
+
+        const qrElement = document.createElement('div');
+        qrCode.append(qrElement);
+
+        const textElement = document.createElement('p');
+        textElement.textContent = text;
+
+        qrContainer.appendChild(qrElement);
+        qrContainer.appendChild(textElement);
+        bulkQRCodesContainer.appendChild(qrContainer);
+
+        console.log("Generated QR code for:", text); // Add this line for debugging
+    });
+
+    updateCollapsibleContentSize(document.getElementById('bulkQRCodes').closest('.collapsible-content'));
+}

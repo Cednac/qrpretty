@@ -224,6 +224,16 @@
                 <option value="tiff">TIFF</option>
             </select>
         </div>
+
+        <!-- Add this new section for CSV upload -->
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Bulk QR Code Generation</button>
+            <div class="collapsible-content">
+                <input type="file" id="csvFile" accept=".csv">
+                <button id="generateBulkQR">Generate Bulk QR Codes</button>
+                <div id="bulkQRCodes"></div>
+            </div>
+        </div>
     </div>
 
 
