@@ -250,8 +250,14 @@ function downloadTIFF(fileName) {
     getQRCodeCanvas().then(canvas => {
         const ctx = canvas.getContext('2d');
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const tiffData = UTIF.encodeImage(imageData.data, canvas.width, canvas.height);
-        const tiffBlob = new Blob([tiffData.buffer], { type: 'image/tiff' });
+        
+        // Create a TIFF file
+        const tiffArr = new Uint8Array(UTIF.encodeImage(imageData.data, canvas.width, canvas.height));
+        
+        // Create a Blob from the TIFF array
+        const tiffBlob = new Blob([tiffArr], { type: 'image/tiff' });
+        
+        // Download the TIFF file
         downloadBlob(tiffBlob, `${fileName}.tiff`);
     });
 }
