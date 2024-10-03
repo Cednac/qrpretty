@@ -17,13 +17,37 @@ let qrBackground = "#FFFFFF"; // Default background is white
 document.getElementById('sharpOption').addEventListener('click', () => {
     selectedDotsType = "square";
     selectOption('sharpOption');
-    updateQRCode(); // Add this line
+    updateQRCode();
+});
+
+document.getElementById('roundedOption').addEventListener('click', () => {
+    selectedDotsType = "rounded";
+    selectOption('roundedOption');
+    updateQRCode();
+});
+
+document.getElementById('dotsOption').addEventListener('click', () => {
+    selectedDotsType = "dots";
+    selectOption('dotsOption');
+    updateQRCode();
+});
+
+document.getElementById('classyOption').addEventListener('click', () => {
+    selectedDotsType = "classy";
+    selectOption('classyOption');
+    updateQRCode();
+});
+
+document.getElementById('classy-roundedOption').addEventListener('click', () => {
+    selectedDotsType = "classy-rounded";
+    selectOption('classy-roundedOption');
+    updateQRCode();
 });
 
 document.getElementById('extra-roundedOption').addEventListener('click', () => {
     selectedDotsType = "extra-rounded";
     selectOption('extra-roundedOption');
-    updateQRCode(); // Add this line
+    updateQRCode();
 });
 
 // Add event listener for color selection
@@ -38,6 +62,10 @@ document.getElementById('qrBackground').addEventListener('input', (event) => {
 
 function selectOption(selectedId) {
     document.getElementById('sharpOption').classList.remove('selected');
+    document.getElementById('roundedOption').classList.remove('selected');
+    document.getElementById('dotsOption').classList.remove('selected');
+    document.getElementById('classyOption').classList.remove('selected');
+    document.getElementById('classy-roundedOption').classList.remove('selected');
     document.getElementById('extra-roundedOption').classList.remove('selected');
     document.getElementById(selectedId).classList.add('selected');
 }
@@ -87,7 +115,16 @@ function updateQRCode() {
         data: text,
         dotsOptions: {
             color: qrColor,
-            type: selectedDotsType
+            type: selectedDotsType === 'classy-rounded' ? 'rounded' : selectedDotsType
+        },
+        cornersSquareOptions: {
+            type: selectedDotsType === 'classy' || selectedDotsType === 'classy-rounded' ? 'extra-rounded' : 
+                  selectedDotsType === 'dots' ? 'dot' : selectedDotsType
+        },
+        cornersDotOptions: {
+            type: selectedDotsType === 'classy' ? 'dot' : 
+                  selectedDotsType === 'classy-rounded' ? 'rounded' : 
+                  selectedDotsType === 'dots' ? 'dot' : selectedDotsType
         },
         backgroundOptions: {
             color: qrBackground,
