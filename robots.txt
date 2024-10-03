@@ -1,0 +1,10 @@
+User-agent: *
+Disallow:
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://qrpretty.com/sitemap.xml
