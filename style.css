@@ -141,7 +141,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
@@ -310,49 +309,46 @@ input[type="range"] {
 }
 
 .color-selector {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     width: 100%;
-    margin-bottom: 15px; /* Add some space between the selectors */
-}
-
-.color-selector label {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.color-selector select,
-.color-selector input[type="color"] {
-    width: 100%;
-    margin-bottom: 10px;
 }
 
 .gradient-controls {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
 .gradient-controls select {
-    width: 48%;
-    margin-bottom: 0;
+    width: auto;
+    margin-right: 10px;
 }
 
+#dotsSingleColor,
+#backgroundSingleColor,
+#cornersSquareSingleColor,
+#cornersDotSingleColor,
 #dotsGradient,
 #backgroundGradient,
 #cornersSquareGradient,
 #cornersDotGradient {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 #dotsGradient input[type="color"], 
 #backgroundGradient input[type="color"], 
 #cornersSquareGradient input[type="color"],
-#cornersDotGradient input[type="color"] {
-    width: 48%;
+#cornersDotGradient input[type="color"],
+#dotsSingleColor input[type="color"], 
+#backgroundSingleColor input[type="color"], 
+#cornersSquareSingleColor input[type="color"],
+#cornersDotSingleColor input[type="color"] {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    margin-right: 10px;
 }
 
 #dotsLinearGradientRotation,
@@ -361,15 +357,14 @@ input[type="range"] {
 #cornersDotLinearGradientRotation {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    width: 100%;
+    margin-right: 10px;
 }
 
 #dotsLinearGradientRotation label,
 #backgroundLinearGradientRotation label,
 #cornersSquareLinearGradientRotation label,
 #cornersDotLinearGradientRotation label {
-    margin-right: 10px;
+    margin-right: 5px;
     white-space: nowrap;
 }
 
@@ -378,6 +373,7 @@ input[type="range"] {
 #cornersSquareLinearGradientRotation input,
 #cornersDotLinearGradientRotation input {
     width: 60px;
+    margin-right: 10px;
 }
 
 .download-options {
