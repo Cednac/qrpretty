@@ -372,7 +372,7 @@ input[type="range"] {
 #backgroundLinearGradientRotation input,
 #cornersSquareLinearGradientRotation input,
 #cornersDotLinearGradientRotation input {
-    width: 60px;
+    width: auto;
     margin-right: 10px;
 }
 
@@ -437,7 +437,7 @@ input[type="range"] {
 #backgroundGradient input[type="color"], 
 #cornersSquareGradient input[type="color"],
 #cornersDotGradient input[type="color"] {
-    width: 48%;
+    width: 100%;
 }
 
 /* Ensure single color inputs are full width */
