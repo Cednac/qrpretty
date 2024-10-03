@@ -196,6 +196,7 @@ button:active {
 
 #qr-code {
     margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -529,7 +530,6 @@ input[type="range"] {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
 }
 
 .qr-container {
@@ -547,4 +547,30 @@ input[type="range"] {
     text-align: center;
     word-break: break-all;
     max-width: 200px;
+}
+
+/* Add these new styles at the end of your CSS file */
+.bulk-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bulk-controls input[type="file"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.bulk-controls button {
+    white-space: nowrap;
+}
+
+/* Update this existing style to remove the margin-top */
+#bulkQRCodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
