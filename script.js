@@ -483,7 +483,7 @@ function updateDotsColorType(event) {
     document.getElementById('dotsSingleColor').style.display = dotsColorType === 'single' ? 'block' : 'none';
     document.getElementById('dotsGradient').style.display = dotsColorType === 'gradient' ? 'block' : 'none';
     document.getElementById('dotsGradientType').style.display = dotsColorType === 'gradient' ? 'inline-block' : 'none';
-    updateDotsGradientType({ target: { value: dotsGradientType } });
+    updateDotsGradientType(); // Call this to update rotation visibility
     updateQRCode();
 }
 
@@ -492,7 +492,7 @@ function updateBackgroundColorType(event) {
     document.getElementById('backgroundSingleColor').style.display = backgroundColorType === 'single' ? 'block' : 'none';
     document.getElementById('backgroundGradient').style.display = backgroundColorType === 'gradient' ? 'block' : 'none';
     document.getElementById('backgroundGradientType').style.display = backgroundColorType === 'gradient' ? 'inline-block' : 'none';
-    updateBackgroundGradientType({ target: { value: backgroundGradientType } });
+    updateBackgroundGradientType(); // Call this to update rotation visibility
     updateQRCode();
 }
 
@@ -504,14 +504,20 @@ document.getElementById('backgroundGradientRotation').addEventListener('input', 
 
 // Add these new functions
 function updateDotsGradientType(event) {
-    dotsGradientType = event.target.value;
-    document.getElementById('dotsLinearGradientRotation').style.display = dotsGradientType === 'linear' ? 'flex' : 'none';
+    if (event) {
+        dotsGradientType = event.target.value;
+    }
+    document.getElementById('dotsLinearGradientRotation').style.display = 
+        dotsColorType === 'gradient' && dotsGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
 function updateBackgroundGradientType(event) {
-    backgroundGradientType = event.target.value;
-    document.getElementById('backgroundLinearGradientRotation').style.display = backgroundGradientType === 'linear' ? 'flex' : 'none';
+    if (event) {
+        backgroundGradientType = event.target.value;
+    }
+    document.getElementById('backgroundLinearGradientRotation').style.display = 
+        backgroundColorType === 'gradient' && backgroundGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
@@ -529,13 +535,16 @@ function updateCornersSquareColorType(event) {
     document.getElementById('cornersSquareSingleColor').style.display = cornersSquareColorType === 'single' ? 'block' : 'none';
     document.getElementById('cornersSquareGradient').style.display = cornersSquareColorType === 'gradient' ? 'block' : 'none';
     document.getElementById('cornersSquareGradientType').style.display = cornersSquareColorType === 'gradient' ? 'inline-block' : 'none';
-    updateCornersSquareGradientType({ target: { value: cornersSquareGradientType } });
+    updateCornersSquareGradientType(); // Call this to update rotation visibility
     updateQRCode();
 }
 
 function updateCornersSquareGradientType(event) {
-    cornersSquareGradientType = event.target.value;
-    document.getElementById('cornersSquareLinearGradientRotation').style.display = cornersSquareGradientType === 'linear' ? 'flex' : 'none';
+    if (event) {
+        cornersSquareGradientType = event.target.value;
+    }
+    document.getElementById('cornersSquareLinearGradientRotation').style.display = 
+        cornersSquareColorType === 'gradient' && cornersSquareGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
@@ -553,13 +562,16 @@ function updateCornersDotColorType(event) {
     document.getElementById('cornersDotSingleColor').style.display = cornersDotColorType === 'single' ? 'block' : 'none';
     document.getElementById('cornersDotGradient').style.display = cornersDotColorType === 'gradient' ? 'block' : 'none';
     document.getElementById('cornersDotGradientType').style.display = cornersDotColorType === 'gradient' ? 'inline-block' : 'none';
-    updateCornersDotGradientType({ target: { value: cornersDotGradientType } });
+    updateCornersDotGradientType(); // Call this to update rotation visibility
     updateQRCode();
 }
 
 function updateCornersDotGradientType(event) {
-    cornersDotGradientType = event.target.value;
-    document.getElementById('cornersDotLinearGradientRotation').style.display = cornersDotGradientType === 'linear' ? 'flex' : 'none';
+    if (event) {
+        cornersDotGradientType = event.target.value;
+    }
+    document.getElementById('cornersDotLinearGradientRotation').style.display = 
+        cornersDotColorType === 'gradient' && cornersDotGradientType === 'linear' ? 'flex' : 'none';
     updateQRCode();
 }
 
