@@ -401,52 +401,51 @@ input[type="range"] {
     cursor: pointer;
 }
 
-#dotsGradient, #backgroundGradient {
+#dotsGradient, #backgroundGradient, #cornersSquareGradient {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-#dotsGradient input[type="color"], #backgroundGradient input[type="color"] {
+#dotsGradient input[type="color"], #backgroundGradient input[type="color"], #cornersSquareGradient input[type="color"] {
     width: 48%;
 }
 
 /* Ensure single color inputs are full width */
-#dotsSingleColor, #backgroundSingleColor {
+#dotsSingleColor, #backgroundSingleColor, #cornersSquareSingleColor {
     width: 100%;
 }
 
-#dotsSingleColor input[type="color"], #backgroundSingleColor input[type="color"] {
+#dotsSingleColor input[type="color"], #backgroundSingleColor input[type="color"], #cornersSquareSingleColor input[type="color"] {
     width: 100%;
 }
 
-/* Add these new styles */
-.color-selector select,
-.color-selector input[type="number"] {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
+/* Update these styles */
 #dotsLinearGradientRotation,
-#backgroundLinearGradientRotation {
+#backgroundLinearGradientRotation,
+#cornersSquareLinearGradientRotation {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #dotsLinearGradientRotation label,
-#backgroundLinearGradientRotation label {
+#backgroundLinearGradientRotation label,
+#cornersSquareLinearGradientRotation label {
     margin-right: 10px;
     white-space: nowrap;
 }
 
 #dotsLinearGradientRotation input,
-#backgroundLinearGradientRotation input {
+#backgroundLinearGradientRotation input,
+#cornersSquareLinearGradientRotation input {
     width: 60px;
 }
 
 #dotsGradient,
-#backgroundGradient {
+#backgroundGradient,
+#cornersSquareGradient {
     display: flex;
     flex-direction: column;
 }
