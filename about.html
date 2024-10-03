@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+        .library-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .library-list li {
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>About QR Code Generator</h1>
+    <div class="about-content">
+        <p>This QR Code Generator is a free, open-source tool that allows you to create customized QR codes quickly and easily. With a wide range of styling options and no limitations, you can create QR codes for various purposes without any paywalls or registration requirements.</p>
+        
+        <h2>Features</h2>
+        <ul>
+            <li>Customizable QR code styles and colors</li>
+            <li>Logo integration</li>
+            <li>Multiple download formats (PNG, JPEG, SVG, PDF, TIFF)</li>
+            <li>Bulk QR code generation</li>
+            <li>Adjustable error correction levels</li>
+        </ul>
+
+        <h2>Libraries Used</h2>
+        <p>This project wouldn't be possible without the following open-source libraries:</p>
+        <ul class="library-list">
+            <li>
+                <strong>QR Code Styling</strong><br>
+                Version: 1.5.0<br>
+                License: MIT<br>
+                <a href="https://github.com/kozakdenys/qr-code-styling" target="_blank">https://github.com/kozakdenys/qr-code-styling</a>
+            </li>
+            <li>
+                <strong>UTIF.js</strong><br>
+                Version: 3.1.0<br>
+                License: MIT<br>
+                <a href="https://github.com/photopea/UTIF.js" target="_blank">https://github.com/photopea/UTIF.js</a>
+            </li>
+            <li>
+                <strong>jsPDF</strong><br>
+                Version: 2.5.1<br>
+                License: MIT<br>
+                <a href="https://github.com/MrRio/jsPDF" target="_blank">https://github.com/MrRio/jsPDF</a>
+            </li>
+            <li>
+                <strong>JSZip</strong><br>
+                Version: 3.7.1<br>
+                License: MIT<br>
+                <a href="https://github.com/Stuk/jszip" target="_blank">https://github.com/Stuk/jszip</a>
+            </li>
+        </ul>
+
+        <p>We are grateful to the developers and contributors of these libraries for their excellent work.</p>
+
+        <a href="../index.html" class="back-link">← Back to QR Code Generator</a>
+    </div>
+</body>
+</html>

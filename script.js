@@ -339,6 +339,12 @@ document.getElementById('qrBackground').addEventListener('change', updateQRCode)
 // Add this new function to handle different file type downloads
 function downloadQRCode(fileType) {
     const fileName = "qr-code";
+    const text = document.getElementById('qrText').value.trim();
+    
+    if (!text) {
+        alert("Please enter some text or URL for the QR code.");
+        return;
+    }
     
     switch (fileType) {
         case 'png':
@@ -350,9 +356,6 @@ function downloadQRCode(fileType) {
             break;
         case 'pdf':
             downloadPDF(fileName);
-            break;
-        case 'tiff':
-            downloadTIFF(fileName);
             break;
     }
 }
@@ -714,3 +717,63 @@ function generateBulkQRCodes() {
 
     updateCollapsibleContentSize(document.getElementById('bulkQRCodes').closest('.collapsible-content'));
 }
+
+// Add these new functions
+function downloadBulkQRCodes() {
+    const fileType = document.getElementById('bulkFileType').value;
+    const zip = new JSZip();
+    const promises = [];
+
+    csvData.forEach((text, index) => {
+        const fileName = `qr-code-${index + 1}`;
+        const promise = new Promise((resolve) => {
+            const tempQrCode = new QRCodeStyling({
+                width: 200,
+                height: 200,
+                data: text,
+                dotsOptions: {
+                    color: dotsColor,
+                    type: selectedDotsType
+                },
+                backgroundOptions: {
+                    color: qrBackground,
+                },
+                imageOptions: {
+                    crossOrigin: "anonymous",
+                    margin: logoMargin,
+                    imageSize: logoSize,
+                    hideBackgroundDots: true,
+                },
+                image: currentLogo,
+                qrOptions: {
+                    errorCorrectionLevel: errorCorrectionLevel
+                }
+            });
+
+            tempQrCode.getRawData(fileType).then(blob => {
+                zip.file(`${fileName}.${fileType}`, blob);
+                resolve();
+            });
+        });
+        promises.push(promise);
+    });
+
+    Promise.all(promises).then(() => {
+        zip.generateAsync({type:"blob"}).then(function(content) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = `bulk-qr-codes.zip`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        });
+    });
+}
+
+// Add these event listeners
+document.getElementById('downloadBulkQR').addEventListener('click', downloadBulkQRCodes);
+
+// Update the existing event listener for the single QR code download
+downloadButton.addEventListener('click', () => {
+    const fileType = document.getElementById('fileType').value;
+    downloadQRCode(fileType);
+});

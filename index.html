@@ -14,31 +14,37 @@
         <label for="qrText">Text/URL:</label>
         <input type="text" id="qrText" placeholder="Enter text or URL">
 
-        <label>QR Code Dots Style:</label>
-        <div class="picker" id="dotsPicker">
-            <div id="sharpOption" class="selected">
-                <img src="./images/qr_square.png" alt="Square Dots">
-                <p>Square</p>
-            </div>
-            <div id="roundedOption">
-                <img src="./images/qr_rounded.png" alt="Rounded Dots">
-                <p>Rounded</p>
-            </div>
-            <div id="extra-roundedOption">
-                <img src="./images/qr_extra_rounded.png" alt="Extra Rounded Dots">
-                <p>Extra Rounded</p>
-            </div>
-            <div id="classyOption">
-                <img src="./images/qr_classy.png" alt="Classy Dots">
-                <p>Classy</p>
-            </div>
-            <div id="classy-roundedOption">
-                <img src="./images/qr_classy_rounded.png" alt="Classy-Rounded Dots">
-                <p>Classy Rounded</p>
-            </div>
-            <div id="dotsOption">
-                <img src="./images/qr_dots.png" alt="Dots">
-                <p>Dots</p>
+        <br/>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">QR Code Dots Style</button>
+            <div class="collapsible-content">
+                <div class="picker" id="dotsPicker">
+                    <div id="sharpOption" class="selected">
+                        <img src="./images/qr_square.png" alt="Square Dots">
+                        <p>Square</p>
+                    </div>
+                    <div id="roundedOption">
+                        <img src="./images/qr_rounded.png" alt="Rounded Dots">
+                        <p>Rounded</p>
+                    </div>
+                    <div id="extra-roundedOption">
+                        <img src="./images/qr_extra_rounded.png" alt="Extra Rounded Dots">
+                        <p>Extra Rounded</p>
+                    </div>
+                    <div id="classyOption">
+                        <img src="./images/qr_classy.png" alt="Classy Dots">
+                        <p>Classy</p>
+                    </div>
+                    <div id="classy-roundedOption">
+                        <img src="./images/qr_classy_rounded.png" alt="Classy-Rounded Dots">
+                        <p>Classy Rounded</p>
+                    </div>
+                    <div id="dotsOption">
+                        <img src="./images/qr_dots.png" alt="Dots">
+                        <p>Dots</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -225,6 +231,7 @@
             </select>
         </div>
 
+        <br/>
         <!-- Update this section for CSV upload -->
         <div class="color-selector collapsible">
             <button type="button" class="collapsible-header">Bulk QR Code Generation</button>
@@ -233,16 +240,30 @@
                     <input type="file" id="csvFile" accept=".csv">
                     <button id="generateBulkQR">Generate Bulk QR Codes</button>
                 </div>
+                <div class="download-options">
+                    <button id="downloadBulkQR">Download All QR Codes</button>
+                    <select id="bulkFileType">
+                        <option value="png">PNG</option>
+                        <option value="jpeg">JPEG</option>
+                        <option value="svg">SVG</option>
+                    </select>
+                </div>
                 <div id="bulkQRCodes"></div>
             </div>
         </div>
     </div>
 
+    <footer>
+        <a href="about.html" class="about-link">About</a>
+        <a href="privacy.html" class="about-link">Privacy Policy</a>
+        <a href="contact.html" class="about-link">Contact</a>
+     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
