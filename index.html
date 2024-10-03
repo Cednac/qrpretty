@@ -42,34 +42,49 @@
             </div>
         </div>
 
-        <div class="color-selectors">
-            <div class="color-selector">
-                <label for="dotsColorType">Dots Color:</label>
-                <select id="dotsColorType">
-                    <option value="single">Single Color</option>
-                    <option value="gradient">Gradient</option>
-                </select>
-                <div id="dotsSingleColor">
-                    <input type="color" id="qrColor" value="#000000">
-                </div>
-                <div id="dotsGradient" style="display: none;">
-                    <input type="color" id="dotsGradientStart" value="#000000">
-                    <input type="color" id="dotsGradientEnd" value="#000000">
-                </div>
+        <!-- Replace the existing color selector divs with these updated versions -->
+        <div class="color-selector">
+            <label for="dotsColorType">Dots Color:</label>
+            <select id="dotsColorType">
+                <option value="single">Single Color</option>
+                <option value="gradient">Gradient</option>
+            </select>
+            <div id="dotsSingleColor">
+                <input type="color" id="qrColor" value="#000000">
             </div>
-            <div class="color-selector">
-                <label for="backgroundColorType">Background:</label>
-                <select id="backgroundColorType">
-                    <option value="single">Single Color</option>
-                    <option value="gradient">Gradient</option>
+            <div id="dotsGradient" style="display: none;">
+                <select id="dotsGradientType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
                 </select>
-                <div id="backgroundSingleColor">
-                    <input type="color" id="qrBackground" value="#FFFFFF">
+                <div id="dotsLinearGradientRotation" style="display: none;">
+                    <label for="dotsGradientRotation">Rotation:</label>
+                    <input type="number" id="dotsGradientRotation" min="0" max="359" value="0">
                 </div>
-                <div id="backgroundGradient" style="display: none;">
-                    <input type="color" id="backgroundGradientStart" value="#FFFFFF">
-                    <input type="color" id="backgroundGradientEnd" value="#FFFFFF">
+                <input type="color" id="dotsGradientStart" value="#000000">
+                <input type="color" id="dotsGradientEnd" value="#000000">
+            </div>
+        </div>
+        <div class="color-selector">
+            <label for="backgroundColorType">Background:</label>
+            <select id="backgroundColorType">
+                <option value="single">Single Color</option>
+                <option value="gradient">Gradient</option>
+            </select>
+            <div id="backgroundSingleColor">
+                <input type="color" id="qrBackground" value="#FFFFFF">
+            </div>
+            <div id="backgroundGradient" style="display: none;">
+                <select id="backgroundGradientType">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+                <div id="backgroundLinearGradientRotation" style="display: none;">
+                    <label for="backgroundGradientRotation">Rotation:</label>
+                    <input type="number" id="backgroundGradientRotation" min="0" max="359" value="0">
                 </div>
+                <input type="color" id="backgroundGradientStart" value="#FFFFFF">
+                <input type="color" id="backgroundGradientEnd" value="#FFFFFF">
             </div>
         </div>
 

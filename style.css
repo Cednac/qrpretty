@@ -419,3 +419,34 @@ input[type="range"] {
 #dotsSingleColor input[type="color"], #backgroundSingleColor input[type="color"] {
     width: 100%;
 }
+
+/* Add these new styles */
+.color-selector select,
+.color-selector input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#dotsLinearGradientRotation,
+#backgroundLinearGradientRotation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#dotsLinearGradientRotation label,
+#backgroundLinearGradientRotation label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#dotsLinearGradientRotation input,
+#backgroundLinearGradientRotation input {
+    width: 60px;
+}
+
+#dotsGradient,
+#backgroundGradient {
+    display: flex;
+    flex-direction: column;
+}

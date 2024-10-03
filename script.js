@@ -20,6 +20,12 @@ let dotsGradientEnd = '#000000';
 let backgroundGradientStart = '#FFFFFF';
 let backgroundGradientEnd = '#FFFFFF';
 
+// Add these new variables
+let dotsGradientType = 'linear';
+let backgroundGradientType = 'linear';
+let dotsGradientRotation = 0;
+let backgroundGradientRotation = 0;
+
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
     selectedDotsType = "square";
@@ -125,8 +131,8 @@ function updateQRCode() {
         dotsOptions.color = dotsColor;
     } else {
         dotsOptions.gradient = {
-            type: 'linear',
-            rotation: 0,
+            type: dotsGradientType,
+            rotation: dotsGradientType === 'linear' ? parseInt(document.getElementById('dotsGradientRotation').value) : 0,
             colorStops: [
                 { offset: 0, color: document.getElementById('dotsGradientStart').value },
                 { offset: 1, color: document.getElementById('dotsGradientEnd').value }
@@ -140,8 +146,8 @@ function updateQRCode() {
         backgroundOptions.color = qrBackground;
     } else {
         backgroundOptions.gradient = {
-            type: 'linear',
-            rotation: 0,
+            type: backgroundGradientType,
+            rotation: backgroundGradientType === 'linear' ? parseInt(document.getElementById('backgroundGradientRotation').value) : 0,
             colorStops: [
                 { offset: 0, color: document.getElementById('backgroundGradientStart').value },
                 { offset: 1, color: document.getElementById('backgroundGradientEnd').value }
@@ -430,6 +436,7 @@ function updateDotsColorType(event) {
     dotsColorType = event.target.value;
     document.getElementById('dotsSingleColor').style.display = dotsColorType === 'single' ? 'block' : 'none';
     document.getElementById('dotsGradient').style.display = dotsColorType === 'gradient' ? 'block' : 'none';
+    updateDotsGradientType({ target: { value: dotsGradientType } });
     updateQRCode();
 }
 
@@ -437,5 +444,25 @@ function updateBackgroundColorType(event) {
     backgroundColorType = event.target.value;
     document.getElementById('backgroundSingleColor').style.display = backgroundColorType === 'single' ? 'block' : 'none';
     document.getElementById('backgroundGradient').style.display = backgroundColorType === 'gradient' ? 'block' : 'none';
+    updateBackgroundGradientType({ target: { value: backgroundGradientType } });
+    updateQRCode();
+}
+
+// Add these new event listeners
+document.getElementById('dotsGradientType').addEventListener('change', updateDotsGradientType);
+document.getElementById('backgroundGradientType').addEventListener('change', updateBackgroundGradientType);
+document.getElementById('dotsGradientRotation').addEventListener('input', updateQRCode);
+document.getElementById('backgroundGradientRotation').addEventListener('input', updateQRCode);
+
+// Add these new functions
+function updateDotsGradientType(event) {
+    dotsGradientType = event.target.value;
+    document.getElementById('dotsLinearGradientRotation').style.display = dotsGradientType === 'linear' ? 'block' : 'none';
+    updateQRCode();
+}
+
+function updateBackgroundGradientType(event) {
+    backgroundGradientType = event.target.value;
+    document.getElementById('backgroundLinearGradientRotation').style.display = backgroundGradientType === 'linear' ? 'block' : 'none';
     updateQRCode();
 }
