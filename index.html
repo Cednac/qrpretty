@@ -190,6 +190,19 @@
             </div>
         </div>
 
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Error Correction Level</button>
+            <div class="collapsible-content">
+                <select id="errorCorrectionLevel">
+                    <option value="L">Low (7%)</option>
+                    <option value="M" selected>Medium (15%)</option>
+                    <option value="Q">Quartile (25%)</option>
+                    <option value="H">High (30%)</option>
+                </select>
+                <p class="error-correction-info">Higher levels allow for more data recovery if the QR code is damaged, but increase code complexity.</p>
+            </div>
+        </div>
+
         <div id="qrSizeContainer">
             <div class="slider-container">
                 <label for="qrSize">QR Code Size:</label>

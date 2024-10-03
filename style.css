@@ -511,3 +511,14 @@ input[type="range"] {
 .collapsible-content.active {
     padding: 10px;
 }
+
+.error-correction-info {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+#errorCorrectionLevel {
+    width: 100%;
+    margin-bottom: 10px;
+}

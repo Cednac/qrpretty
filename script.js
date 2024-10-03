@@ -222,7 +222,10 @@ function updateQRCode() {
             imageSize: logoSize,
             hideBackgroundDots: true,
         },
-        image: currentLogo
+        image: currentLogo,
+        qrOptions: {
+            errorCorrectionLevel: errorCorrectionLevel
+        }
     });
 
     logoMarginContainer.style.display = currentLogo ? 'block' : 'none';
@@ -619,3 +622,12 @@ function forceReflow(element) {
     element.offsetHeight; // This line forces a reflow
     element.style.display = '';
 }
+
+// Add this variable at the top of your script
+let errorCorrectionLevel = 'M'; // Default to Medium
+
+// Add this event listener after your other event listeners
+document.getElementById('errorCorrectionLevel').addEventListener('change', (event) => {
+    errorCorrectionLevel = event.target.value;
+    updateQRCode();
+});
