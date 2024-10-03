@@ -482,6 +482,7 @@ function updateDotsColorType(event) {
     dotsColorType = event.target.value;
     document.getElementById('dotsSingleColor').style.display = dotsColorType === 'single' ? 'block' : 'none';
     document.getElementById('dotsGradient').style.display = dotsColorType === 'gradient' ? 'block' : 'none';
+    document.getElementById('dotsGradientType').style.display = dotsColorType === 'gradient' ? 'inline-block' : 'none';
     updateDotsGradientType({ target: { value: dotsGradientType } });
     updateQRCode();
 }
@@ -490,6 +491,7 @@ function updateBackgroundColorType(event) {
     backgroundColorType = event.target.value;
     document.getElementById('backgroundSingleColor').style.display = backgroundColorType === 'single' ? 'block' : 'none';
     document.getElementById('backgroundGradient').style.display = backgroundColorType === 'gradient' ? 'block' : 'none';
+    document.getElementById('backgroundGradientType').style.display = backgroundColorType === 'gradient' ? 'inline-block' : 'none';
     updateBackgroundGradientType({ target: { value: backgroundGradientType } });
     updateQRCode();
 }
@@ -526,6 +528,7 @@ function updateCornersSquareColorType(event) {
     cornersSquareColorType = event.target.value;
     document.getElementById('cornersSquareSingleColor').style.display = cornersSquareColorType === 'single' ? 'block' : 'none';
     document.getElementById('cornersSquareGradient').style.display = cornersSquareColorType === 'gradient' ? 'block' : 'none';
+    document.getElementById('cornersSquareGradientType').style.display = cornersSquareColorType === 'gradient' ? 'inline-block' : 'none';
     updateCornersSquareGradientType({ target: { value: cornersSquareGradientType } });
     updateQRCode();
 }
@@ -549,6 +552,7 @@ function updateCornersDotColorType(event) {
     cornersDotColorType = event.target.value;
     document.getElementById('cornersDotSingleColor').style.display = cornersDotColorType === 'single' ? 'block' : 'none';
     document.getElementById('cornersDotGradient').style.display = cornersDotColorType === 'gradient' ? 'block' : 'none';
+    document.getElementById('cornersDotGradientType').style.display = cornersDotColorType === 'gradient' ? 'inline-block' : 'none';
     updateCornersDotGradientType({ target: { value: cornersDotGradientType } });
     updateQRCode();
 }
@@ -558,3 +562,26 @@ function updateCornersDotGradientType(event) {
     document.getElementById('cornersDotLinearGradientRotation').style.display = cornersDotGradientType === 'linear' ? 'block' : 'none';
     updateQRCode();
 }
+
+// Add this at the beginning of your script
+const collapsibles = document.querySelectorAll('.collapsible-header');
+
+// Add this function to your script
+function initCollapsibles() {
+    collapsibles.forEach(collapsible => {
+        collapsible.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.classList.remove('active');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('active');
+            }
+        });
+    });
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', initCollapsibles);
