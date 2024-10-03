@@ -8,58 +8,229 @@
 </head>
 <body>
     <h1>QR Code Generator</h1>
-    <p class="subtitle">Free QR code styling generator - No paywall, no limits!</p>
+    <p class="subtitle">Free QR code styling generator - No paywall, no registration, no limits!</p>
 
     <div class="controls">
         <label for="qrText">Text/URL:</label>
         <input type="text" id="qrText" placeholder="Enter text or URL">
 
-        <label>QR Code Style:</label>
-        <div class="picker" id="cornerPicker">
+        <label>QR Code Dots Style:</label>
+        <div class="picker" id="dotsPicker">
             <div id="sharpOption" class="selected">
-                <img src="./images/qr_sharp.png" alt="Sharp Corners">
-                <p>Sharp</p>
+                <img src="./images/qr_square.png" alt="Square Dots">
+                <p>Square</p>
             </div>
             <div id="roundedOption">
-                <img src="./images/qr_rounded.png" alt="Rounded Corners">
+                <img src="./images/qr_rounded.png" alt="Rounded Dots">
                 <p>Rounded</p>
             </div>
-        </div>
-
-        <div class="color-selectors">
-            <div class="color-selector">
-                <label for="qrColor">QR Code Color:</label>
-                <input type="color" id="qrColor" value="#000000">
+            <div id="extra-roundedOption">
+                <img src="./images/qr_extra_rounded.png" alt="Extra Rounded Dots">
+                <p>Extra Rounded</p>
             </div>
-            <div class="color-selector">
-                <label for="qrBackground">Background:</label>
-                <input type="color" id="qrBackground" value="#FFFFFF">
+            <div id="classyOption">
+                <img src="./images/qr_classy.png" alt="Classy Dots">
+                <p>Classy</p>
+            </div>
+            <div id="classy-roundedOption">
+                <img src="./images/qr_classy_rounded.png" alt="Classy-Rounded Dots">
+                <p>Classy Rounded</p>
+            </div>
+            <div id="dotsOption">
+                <img src="./images/qr_dots.png" alt="Dots">
+                <p>Dots</p>
             </div>
         </div>
 
-        <div class="logo-upload-container">
-                <label for="qrLogo">Logo:</label>
-                <input type="file" id="qrLogo" accept="image/*">
-            <button id="removeLogo" style="display: none;">Remove Logo</button>
-        </div>
-
-        <div id="logoMarginContainer" style="display: none;">
-            <div class="slider-container">
-                <label for="logoMargin">Logo Margin:</label>
-                <div class="slider-wrapper">
-                    <input type="range" id="logoMargin" min="0" max="20" value="5">
-                    <span id="logoMarginValue">5</span>
+        <!-- Replace the existing color selector divs with these updated versions -->
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Dots Color</button>
+            <div class="collapsible-content">
+                <div class="gradient-controls">
+                    <select id="dotsColorType">
+                        <option value="single">Single Color</option>
+                        <option value="gradient">Gradient</option>
+                    </select>
+                    <div id="dotsGradientType" style="display: none;">
+                        <select id="dotsGradientTypeSelect">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                    </div>
+                    <div id="dotsLinearGradientRotation" style="display: none;">
+                        <label for="dotsGradientRotation">Rotation:</label>
+                        <input type="number" id="dotsGradientRotation" min="0" max="359" value="0">
+                    </div>
+                </div>
+                <div id="dotsSingleColor">
+                    <input type="color" id="qrColor" value="#000000">
+                </div>
+                <div id="dotsGradient" style="display: none;">
+                    <input type="color" id="dotsGradientStart" value="#000000">
+                    <input type="color" id="dotsGradientEnd" value="#000000">
                 </div>
             </div>
         </div>
 
-        <button id="generateQR">Generate QR Code</button>
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Background Color</button>
+            <div class="collapsible-content">
+                <div class="gradient-controls">
+                    <select id="backgroundColorType">
+                        <option value="single">Single Color</option>
+                        <option value="gradient">Gradient</option>
+                    </select>
+                    <div id="backgroundGradientType" style="display: none;">
+                        <select id="backgroundGradientTypeSelect">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                    </div>
+                    <div id="backgroundLinearGradientRotation" style="display: none;">
+                        <label for="backgroundGradientRotation">Rotation:</label>
+                        <input type="number" id="backgroundGradientRotation" min="0" max="359" value="0">
+                    </div>
+                </div>
+                <div id="backgroundSingleColor">
+                    <input type="color" id="qrBackground" value="#FFFFFF">
+                </div>
+                <div id="backgroundGradient" style="display: none;">
+                    <input type="color" id="backgroundGradientStart" value="#FFFFFF">
+                    <input type="color" id="backgroundGradientEnd" value="#FFFFFF">
+                </div>
+            </div>
+        </div>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Corners Square Color</button>
+            <div class="collapsible-content">
+                <div class="gradient-controls">
+                    <select id="cornersSquareColorType">
+                        <option value="single">Single Color</option>
+                        <option value="gradient">Gradient</option>
+                    </select>
+                    <div id="cornersSquareGradientType" style="display: none;">
+                        <select id="cornersSquareGradientTypeSelect">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                    </div>
+                    <div id="cornersSquareLinearGradientRotation" style="display: none;">
+                        <label for="cornersSquareGradientRotation">Rotation:</label>
+                        <input type="number" id="cornersSquareGradientRotation" min="0" max="359" value="0">
+                    </div>
+                </div>
+                <div id="cornersSquareSingleColor">
+                    <input type="color" id="cornersSquareColor" value="#000000">
+                </div>
+                <div id="cornersSquareGradient" style="display: none;">
+                    <input type="color" id="cornersSquareGradientStart" value="#000000">
+                    <input type="color" id="cornersSquareGradientEnd" value="#000000">
+                </div>
+            </div>
+        </div>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Corners Dot Color</button>
+            <div class="collapsible-content">
+                <div class="gradient-controls">
+                    <select id="cornersDotColorType">
+                        <option value="single">Single Color</option>
+                        <option value="gradient">Gradient</option>
+                    </select>
+                    <div id="cornersDotGradientType" style="display: none;">
+                        <select id="cornersDotGradientTypeSelect">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                    </div>
+                    <div id="cornersDotLinearGradientRotation" style="display: none;">
+                        <label for="cornersDotGradientRotation">Rotation:</label>
+                        <input type="number" id="cornersDotGradientRotation" min="0" max="359" value="0">
+                    </div>
+                </div>
+                <div id="cornersDotSingleColor">
+                    <input type="color" id="cornersDotColor" value="#000000">
+                </div>
+                <div id="cornersDotGradient" style="display: none;">
+                    <input type="color" id="cornersDotGradientStart" value="#000000">
+                    <input type="color" id="cornersDotGradientEnd" value="#000000">
+                </div>
+            </div>
+        </div>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Logo Settings</button>
+            <div class="collapsible-content">
+                <div class="logo-upload-container">
+                    <label for="qrLogo">Logo:</label>
+                    <input type="file" id="qrLogo" accept="image/*">
+                    <button id="removeLogo" style="display: none;">Remove Logo</button>
+                </div>
+
+                <div id="logoMarginContainer" style="display: none;">
+                    <div class="slider-container">
+                        <label for="logoMargin">Logo Margin:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="logoMargin" min="5" max="20" value="5">
+                            <span id="logoMarginValue">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="logoSizeContainer" style="display: none;">
+                    <div class="slider-container">
+                        <label for="logoSize">Logo Size:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="logoSize" min="1" max="50" value="25">
+                            <span id="logoSizeValue">40</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">Error Correction Level</button>
+            <div class="collapsible-content">
+                <select id="errorCorrectionLevel">
+                    <option value="L">Low (7%)</option>
+                    <option value="M" selected>Medium (15%)</option>
+                    <option value="Q">Quartile (25%)</option>
+                    <option value="H">High (30%)</option>
+                </select>
+                <p class="error-correction-info">Higher levels allow for more data recovery if the QR code is damaged, but increase code complexity.</p>
+            </div>
+        </div>
+
+        <div id="qrSizeContainer">
+            <div class="slider-container">
+                <label for="qrSize">QR Code Size:</label>
+                <div class="slider-wrapper">
+                    <input type="range" id="qrSize" min="100" max="1000" value="300" step="10">
+                    <span id="qrSizeValue">300</span>
+                </div>
+            </div>
+        </div>
+
         <div id="qr-code"></div>
-        <button id="downloadQR" style="display: none;">Download QR Code</button>
+        <div id="downloadOptions" class="download-options">
+            <button id="downloadQR">Download QR Code</button>
+            <select id="fileType">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="svg">SVG</option>
+                <option value="pdf">PDF</option>
+                <option value="tiff">TIFF</option>
+            </select>
+        </div>
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

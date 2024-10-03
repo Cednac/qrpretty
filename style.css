@@ -85,7 +85,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 label {
@@ -141,7 +141,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
@@ -156,9 +155,11 @@ button:active {
 }
 
 .picker {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     margin-top: 15px;
+    width: 100%;
 }
 
 .picker div {
@@ -170,18 +171,21 @@ button:active {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
 }
 
 .picker div img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin-bottom: 5px;
     filter: invert(1); /* Invert colors for dark mode */
 }
 
 .picker div p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-align: center;
 }
 
 .selected {
@@ -191,7 +195,7 @@ button:active {
 }
 
 #qr-code {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -263,25 +267,26 @@ input[type="range"]::-moz-range-thumb {
     margin-right: 10px;
 }
 
-#logoMarginContainer {
+#logoMarginContainer, #logoSizeContainer {
     width: 100%;
     margin-top: 15px;
 }
 
 .slider-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
 }
 
 .slider-container label {
     margin-top: 0;
-    margin-right: 10px;
+    margin-bottom: 10px;
     white-space: nowrap;
 }
 
 .slider-wrapper {
-    flex-grow: 1;
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -291,35 +296,229 @@ input[type="range"] {
     margin-right: 10px;
 }
 
-#logoMarginValue {
-    min-width: 20px;
+#logoMarginValue, #logoSizeValue {
+    min-width: 30px;
     text-align: right;
 }
 
 .color-selectors {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     margin-top: 15px;
 }
 
 .color-selector {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 48%; /* Adjust as needed */
-}
-
-.color-selector label {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.color-selector input[type="color"] {
     width: 100%;
+}
+
+.gradient-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.gradient-controls select {
+    width: auto;
+    margin-right: 10px;
+}
+
+#dotsSingleColor,
+#backgroundSingleColor,
+#cornersSquareSingleColor,
+#cornersDotSingleColor,
+#dotsGradient,
+#backgroundGradient,
+#cornersSquareGradient,
+#cornersDotGradient {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#dotsGradient input[type="color"], 
+#backgroundGradient input[type="color"], 
+#cornersSquareGradient input[type="color"],
+#cornersDotGradient input[type="color"], 
+#dotsSingleColor input[type="color"], 
+#backgroundSingleColor input[type="color"], 
+#cornersSquareSingleColor input[type="color"],
+#cornersDotSingleColor input[type="color"] {
+    width: 40px;
     height: 40px;
     padding: 0;
     border: none;
+    margin-right: 10px;
+}
+
+#dotsLinearGradientRotation,
+#backgroundLinearGradientRotation,
+#cornersSquareLinearGradientRotation,
+#cornersDotLinearGradientRotation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#dotsLinearGradientRotation label,
+#backgroundLinearGradientRotation label,
+#cornersSquareLinearGradientRotation label,
+#cornersDotLinearGradientRotation label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#dotsLinearGradientRotation input,
+#backgroundLinearGradientRotation input,
+#cornersSquareLinearGradientRotation input,
+#cornersDotLinearGradientRotation input {
+    width: 60px;
+}
+
+.download-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.download-options select {
+    margin-top: 0;
+    width: auto;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.download-options button {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+.size-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.size-selector label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.size-selector input[type="number"] {
+    width: 70px;
+    text-align: center;
+}
+
+.size-selector span {
+    margin-left: 5px;
+}
+
+#qrSizeContainer {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#qrSizeValue {
+    min-width: 30px;
+    text-align: right;
+}
+
+#dotsGradient, #backgroundGradient, #cornersSquareGradient, #cornersDotGradient {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#dotsGradient input[type="color"], 
+#backgroundGradient input[type="color"], 
+#cornersSquareGradient input[type="color"],
+#cornersDotGradient input[type="color"] {
+    width: 100%;
+}
+
+/* Ensure single color inputs are full width */
+#dotsSingleColor, #backgroundSingleColor, #cornersSquareSingleColor, #cornersDotSingleColor {
+    width: 100%;
+}
+
+#dotsSingleColor input[type="color"], 
+#backgroundSingleColor input[type="color"], 
+#cornersSquareSingleColor input[type="color"],
+#cornersDotSingleColor input[type="color"] {
+    width: 100%;
+}
+
+/* Update these styles */
+#dotsLinearGradientRotation,
+#backgroundLinearGradientRotation,
+#cornersSquareLinearGradientRotation,
+#cornersDotLinearGradientRotation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#dotsLinearGradientRotation label,
+#backgroundLinearGradientRotation label,
+#cornersSquareLinearGradientRotation label,
+#cornersDotLinearGradientRotation label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#dotsLinearGradientRotation input,
+#backgroundLinearGradientRotation input,
+#cornersSquareLinearGradientRotation input,
+#cornersDotLinearGradientRotation input {
+    width: 60px;
+}
+
+.collapsible {
+    border: 1px solid var(--input-border);
     border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    background-color: var(--input-background);
+    color: var(--text-color);
     cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.collapsible-header:hover {
+    background-color: var(--primary-color);
+}
+
+.collapsible-content {
+    padding: 0 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--card-background);
+}
+
+.collapsible-content.active {
+    padding: 10px;
+}
+
+.error-correction-info {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+#errorCorrectionLevel {
+    width: 100%;
+    margin-bottom: 10px;
 }
