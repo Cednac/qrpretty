@@ -50,80 +50,103 @@ logoMarginSlider.addEventListener('input', (event) => {
     logoMarginValue.textContent = logoMargin;
 });
 
+// Define downloadButton at the top of your script
 const downloadButton = document.getElementById('downloadQR');
 
-document.getElementById('generateQR').addEventListener('click', () => {
+// Remove the 'generateQR' button event listener and add this:
+document.getElementById('qrText').addEventListener('input', debounce(updateQRCode, 300));
+
+// Add these new functions:
+function updateQRCode() {
     const text = document.getElementById('qrText').value.trim();
     
     if (!text) {
-        alert('Please enter some text or URL before generating the QR code.');
+        document.getElementById("qr-code").innerHTML = '';
+        downloadButton.style.display = 'none';
+        logoMarginContainer.style.display = 'none';
         return;
     }
 
-    const logoFile = document.getElementById('qrLogo').files[0];
+    generateQRCode(text);
+    downloadButton.style.display = 'inline-block';
+    logoMarginContainer.style.display = currentLogo ? 'block' : 'none';
+}
 
-    if (logoFile) {
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            currentLogo = event.target.result;
-            generateQRCode(text, currentLogo);
-            document.getElementById('removeLogo').style.display = 'inline-block'; // Changed from 'inline' to 'inline-block'
-            logoMarginContainer.style.display = 'block';
-            downloadButton.style.display = 'inline-block'; // Show download button
-        };
-        reader.readAsDataURL(logoFile);
-    } else {
-        generateQRCode(text, currentLogo);
-        downloadButton.style.display = 'inline-block'; // Show download button
-    }
-});
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
 
+function generateQRCode(text) {
+    qrCode.update({
+        data: text,
+        dotsOptions: {
+            color: qrColor,
+            type: selectedCornerType
+        },
+        backgroundOptions: {
+            color: qrBackground,
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+            margin: logoMargin,
+            imageSize: 0.4,
+            hideBackgroundDots: true,
+        },
+        image: currentLogo
+    });
+
+    qrCode.append(document.getElementById("qr-code"));
+}
+
+// Modify these existing event listeners:
 document.getElementById('removeLogo').addEventListener('click', () => {
     currentLogo = null;
     document.getElementById('qrLogo').value = '';
     document.getElementById('removeLogo').style.display = 'none';
     logoMarginContainer.style.display = 'none';
-    const text = document.getElementById('qrText').value;
-    generateQRCode(text, null);
+    updateQRCode();
 });
 
-function generateQRCode(text, logo) {
-    qrCode.update({
-        data: text,
-        qrOptions: {
-            errorCorrectionLevel: "H"
-        },
-        dotsOptions: {
-            color: qrColor,
-            type: selectedCornerType // Apply the selected type to both dots and corners
-        },
-        cornersSquareOptions: {
-            type: selectedCornerType, // Sharp or rounded for corners
-            color: qrColor
-        },
-        cornersDotOptions: {
-            type: selectedCornerType, // Sharp or rounded for corner dots
-            color: qrColor
-        },
-        backgroundOptions: {
-            color: qrBackground,
-        },
-        image: logo,
-        imageOptions: {
-            crossOrigin: "anonymous",
-            margin: logoMargin, // Use the user-defined margin
-            imageSize: 0.3 // This sets the logo size to 30% of the QR code size
-        }
-    });
-    qrCode.append(document.getElementById("qr-code"));
-    downloadButton.style.display = 'inline-block'; // Show download button
-}
+document.getElementById('qrLogo').addEventListener('change', (event) => {
+    const logoFile = event.target.files[0];
+    if (logoFile) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            currentLogo = event.target.result;
+            updateQRCode();
+            document.getElementById('removeLogo').style.display = 'inline-block';
+            logoMarginContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(logoFile);
+    } else {
+        currentLogo = null;
+        updateQRCode();
+        document.getElementById('removeLogo').style.display = 'none';
+        logoMarginContainer.style.display = 'none';
+    }
+});
+
+// Update these event listeners to use updateQRCode:
+logoMarginSlider.addEventListener('change', updateQRCode);
+document.getElementById('qrColor').addEventListener('change', updateQRCode);
+document.getElementById('qrBackground').addEventListener('change', updateQRCode);
+document.getElementById('sharpOption').addEventListener('click', () => {
+    selectedCornerType = "square";
+    selectOption('sharpOption');
+    updateQRCode();
+});
+document.getElementById('roundedOption').addEventListener('click', () => {
+    selectedCornerType = "extra-rounded";
+    selectOption('roundedOption');
+    updateQRCode();
+});
 
 // Add this to update QR code when slider changes
-logoMarginSlider.addEventListener('change', () => {
-    const text = document.getElementById('qrText').value;
-    generateQRCode(text, currentLogo);
-});
+logoMarginSlider.addEventListener('change', updateQRCode);
 
 // Add this new event listener for the download button
 downloadButton.addEventListener('click', () => {
@@ -131,13 +154,7 @@ downloadButton.addEventListener('click', () => {
 });
 
 // Add this to update QR code when color changes
-document.getElementById('qrColor').addEventListener('change', () => {
-    const text = document.getElementById('qrText').value;
-    generateQRCode(text, currentLogo);
-});
+document.getElementById('qrColor').addEventListener('change', updateQRCode);
 
 // Add this to update QR code when background color changes
-document.getElementById('qrBackground').addEventListener('change', () => {
-    const text = document.getElementById('qrText').value;
-    generateQRCode(text, currentLogo);
-});
+document.getElementById('qrBackground').addEventListener('change', updateQRCode);
