@@ -344,3 +344,34 @@ input[type="range"] {
     margin-top: 0;
     white-space: nowrap;
 }
+
+.size-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.size-selector label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.size-selector input[type="number"] {
+    width: 70px;
+    text-align: center;
+}
+
+.size-selector span {
+    margin-left: 5px;
+}
+
+#qrSizeContainer {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#qrSizeValue {
+    min-width: 30px;
+    text-align: right;
+}

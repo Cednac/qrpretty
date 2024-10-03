@@ -1,6 +1,6 @@
 const qrCode = new QRCodeStyling({
-    width: 280, // Increased from 250 to 280
-    height: 280, // Increased from 250 to 280
+    width: qrSize,
+    height: qrSize,
     imageOptions: {
         crossOrigin: "anonymous",
         margin: 10
@@ -77,9 +77,29 @@ function updateQRCode() {
         return;
     }
 
-    generateQRCode(text);
+    qrCode.update({
+        width: qrSize,
+        height: qrSize,
+        data: text,
+        dotsOptions: {
+            color: qrColor,
+            type: selectedCornerType
+        },
+        backgroundOptions: {
+            color: qrBackground,
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+            margin: logoMargin,
+            imageSize: logoSize,
+            hideBackgroundDots: true,
+        },
+        image: currentLogo
+    });
+
     logoMarginContainer.style.display = currentLogo ? 'block' : 'none';
     logoSizeContainer.style.display = currentLogo ? 'block' : 'none';
+    document.getElementById('qrSizeValue').textContent = qrSize;
 }
 
 function debounce(func, delay) {
@@ -307,3 +327,18 @@ qrTextInput.addEventListener('input', updateDownloadOptions);
 
 // Call this function initially to set the correct state
 updateDownloadOptions();
+
+// Add this new function to update QR code size
+function updateQRSize() {
+    const newSize = parseInt(document.getElementById('qrSize').value);
+    document.getElementById('qrSizeValue').textContent = newSize;
+    qrSize = newSize;
+    qrCode.update({
+        width: qrSize,
+        height: qrSize
+    });
+    updateQRCode();
+}
+
+// Add event listener for size input
+document.getElementById('qrSize').addEventListener('input', updateQRSize);
