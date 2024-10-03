@@ -40,14 +40,24 @@ function selectOption(selectedId) {
 
 let currentLogo = null;
 let logoMargin = 5; // Default value
+let logoSize = 0.4; // Default value (40% of QR code size)
 
 const logoMarginSlider = document.getElementById('logoMargin');
 const logoMarginValue = document.getElementById('logoMarginValue');
 const logoMarginContainer = document.getElementById('logoMarginContainer');
+const logoSizeSlider = document.getElementById('logoSize');
+const logoSizeValue = document.getElementById('logoSizeValue');
+const logoSizeContainer = document.getElementById('logoSizeContainer');
 
 logoMarginSlider.addEventListener('input', (event) => {
     logoMargin = parseInt(event.target.value);
     logoMarginValue.textContent = logoMargin;
+});
+
+logoSizeSlider.addEventListener('input', (event) => {
+    logoSize = parseInt(event.target.value) / 100;
+    logoSizeValue.textContent = event.target.value;
+    updateQRCode(); // Add this line to update QR code in real-time
 });
 
 // Define downloadButton at the top of your script
@@ -64,12 +74,14 @@ function updateQRCode() {
         document.getElementById("qr-code").innerHTML = '';
         downloadButton.style.display = 'none';
         logoMarginContainer.style.display = 'none';
+        logoSizeContainer.style.display = 'none';
         return;
     }
 
     generateQRCode(text);
     downloadButton.style.display = 'inline-block';
     logoMarginContainer.style.display = currentLogo ? 'block' : 'none';
+    logoSizeContainer.style.display = currentLogo ? 'block' : 'none';
 }
 
 function debounce(func, delay) {
@@ -93,14 +105,23 @@ function generateQRCode(text) {
         imageOptions: {
             crossOrigin: "anonymous",
             margin: logoMargin,
-            imageSize: 0.4,
+            imageSize: logoSize,
             hideBackgroundDots: true,
         },
         image: currentLogo
     });
 
+    // Remove this line to prevent duplicate QR codes
+    // qrCode.append(document.getElementById("qr-code"));
+}
+
+// Add this function to initialize the QR code
+function initQRCode() {
     qrCode.append(document.getElementById("qr-code"));
 }
+
+// Call this function once when the page loads
+initQRCode();
 
 // Modify these existing event listeners:
 document.getElementById('removeLogo').addEventListener('click', () => {
@@ -108,6 +129,7 @@ document.getElementById('removeLogo').addEventListener('click', () => {
     document.getElementById('qrLogo').value = '';
     document.getElementById('removeLogo').style.display = 'none';
     logoMarginContainer.style.display = 'none';
+    logoSizeContainer.style.display = 'none';
     updateQRCode();
 });
 
@@ -120,6 +142,7 @@ document.getElementById('qrLogo').addEventListener('change', (event) => {
             updateQRCode();
             document.getElementById('removeLogo').style.display = 'inline-block';
             logoMarginContainer.style.display = 'block';
+            logoSizeContainer.style.display = 'block';
         };
         reader.readAsDataURL(logoFile);
     } else {
@@ -127,6 +150,7 @@ document.getElementById('qrLogo').addEventListener('change', (event) => {
         updateQRCode();
         document.getElementById('removeLogo').style.display = 'none';
         logoMarginContainer.style.display = 'none';
+        logoSizeContainer.style.display = 'none';
     }
 });
 
