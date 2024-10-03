@@ -577,3 +577,43 @@ input[type="range"] {
     justify-content: center;
     gap: 20px;
 }
+
+/* ... existing styles ... */
+
+.bulk-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bulk-controls input[type="file"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.bulk-controls button {
+    white-space: nowrap;
+}
+
+/* Update the existing .download-options style */
+.download-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.download-options button {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.download-options select {
+    width: auto;
+}
+
+/* ... existing styles ... */

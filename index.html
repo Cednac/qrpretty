@@ -240,6 +240,15 @@
                     <input type="file" id="csvFile" accept=".csv">
                     <button id="generateBulkQR">Generate Bulk QR Codes</button>
                 </div>
+                <div class="download-options">
+                    <button id="downloadBulkQR">Download All QR Codes</button>
+                    <select id="bulkFileType">
+                        <option value="png">PNG</option>
+                        <option value="jpeg">JPEG</option>
+                        <option value="svg">SVG</option>
+                        <option value="pdf">PDF</option>
+                    </select>
+                </div>
                 <div id="bulkQRCodes"></div>
             </div>
         </div>
@@ -249,7 +258,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
