@@ -13,6 +13,13 @@ let selectedDotsType = "square"; // Default is square dots
 let dotsColor = "#000000"; // Changed from qrColor to dotsColor
 let qrBackground = "#FFFFFF"; // Default background is white
 
+let dotsColorType = 'single';
+let backgroundColorType = 'single';
+let dotsGradientStart = '#000000';
+let dotsGradientEnd = '#000000';
+let backgroundGradientStart = '#FFFFFF';
+let backgroundGradientEnd = '#FFFFFF';
+
 // Add event listeners for corner selection
 document.getElementById('sharpOption').addEventListener('click', () => {
     selectedDotsType = "square";
@@ -110,14 +117,43 @@ function updateQRCode() {
         return;
     }
 
+    let dotsOptions = {
+        type: selectedDotsType === 'classy-rounded' ? 'rounded' : selectedDotsType
+    };
+
+    if (dotsColorType === 'single') {
+        dotsOptions.color = dotsColor;
+    } else {
+        dotsOptions.gradient = {
+            type: 'linear',
+            rotation: 0,
+            colorStops: [
+                { offset: 0, color: document.getElementById('dotsGradientStart').value },
+                { offset: 1, color: document.getElementById('dotsGradientEnd').value }
+            ]
+        };
+    }
+
+    let backgroundOptions = {};
+
+    if (backgroundColorType === 'single') {
+        backgroundOptions.color = qrBackground;
+    } else {
+        backgroundOptions.gradient = {
+            type: 'linear',
+            rotation: 0,
+            colorStops: [
+                { offset: 0, color: document.getElementById('backgroundGradientStart').value },
+                { offset: 1, color: document.getElementById('backgroundGradientEnd').value }
+            ]
+        };
+    }
+
     qrCode.update({
         width: qrSize,
         height: qrSize,
         data: text,
-        dotsOptions: {
-            color: dotsColor, // Changed from qrColor to dotsColor
-            type: selectedDotsType === 'classy-rounded' ? 'rounded' : selectedDotsType
-        },
+        dotsOptions: dotsOptions,
         cornersSquareOptions: {
             type: selectedDotsType === 'classy' || selectedDotsType === 'classy-rounded' ? 'extra-rounded' : 
                   selectedDotsType === 'dots' ? 'dot' : selectedDotsType
@@ -127,9 +163,7 @@ function updateQRCode() {
                   selectedDotsType === 'classy-rounded' ? 'rounded' : 
                   selectedDotsType === 'dots' ? 'dot' : selectedDotsType
         },
-        backgroundOptions: {
-            color: qrBackground,
-        },
+        backgroundOptions: backgroundOptions,
         imageOptions: {
             crossOrigin: "anonymous",
             margin: logoMargin,
@@ -383,3 +417,25 @@ function updateQRSize() {
 
 // Add event listener for size input
 document.getElementById('qrSize').addEventListener('input', updateQRSize);
+
+// Add these new event listeners
+document.getElementById('dotsColorType').addEventListener('change', updateDotsColorType);
+document.getElementById('backgroundColorType').addEventListener('change', updateBackgroundColorType);
+document.getElementById('dotsGradientStart').addEventListener('input', updateQRCode);
+document.getElementById('dotsGradientEnd').addEventListener('input', updateQRCode);
+document.getElementById('backgroundGradientStart').addEventListener('input', updateQRCode);
+document.getElementById('backgroundGradientEnd').addEventListener('input', updateQRCode);
+
+function updateDotsColorType(event) {
+    dotsColorType = event.target.value;
+    document.getElementById('dotsSingleColor').style.display = dotsColorType === 'single' ? 'block' : 'none';
+    document.getElementById('dotsGradient').style.display = dotsColorType === 'gradient' ? 'block' : 'none';
+    updateQRCode();
+}
+
+function updateBackgroundColorType(event) {
+    backgroundColorType = event.target.value;
+    document.getElementById('backgroundSingleColor').style.display = backgroundColorType === 'single' ? 'block' : 'none';
+    document.getElementById('backgroundGradient').style.display = backgroundColorType === 'gradient' ? 'block' : 'none';
+    updateQRCode();
+}

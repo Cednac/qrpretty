@@ -44,12 +44,32 @@
 
         <div class="color-selectors">
             <div class="color-selector">
-                <label for="qrColor">Dots Color:</label>
-                <input type="color" id="qrColor" value="#000000">
+                <label for="dotsColorType">Dots Color:</label>
+                <select id="dotsColorType">
+                    <option value="single">Single Color</option>
+                    <option value="gradient">Gradient</option>
+                </select>
+                <div id="dotsSingleColor">
+                    <input type="color" id="qrColor" value="#000000">
+                </div>
+                <div id="dotsGradient" style="display: none;">
+                    <input type="color" id="dotsGradientStart" value="#000000">
+                    <input type="color" id="dotsGradientEnd" value="#000000">
+                </div>
             </div>
             <div class="color-selector">
-                <label for="qrBackground">Background:</label>
-                <input type="color" id="qrBackground" value="#FFFFFF">
+                <label for="backgroundColorType">Background:</label>
+                <select id="backgroundColorType">
+                    <option value="single">Single Color</option>
+                    <option value="gradient">Gradient</option>
+                </select>
+                <div id="backgroundSingleColor">
+                    <input type="color" id="qrBackground" value="#FFFFFF">
+                </div>
+                <div id="backgroundGradient" style="display: none;">
+                    <input type="color" id="backgroundGradientStart" value="#FFFFFF">
+                    <input type="color" id="backgroundGradientEnd" value="#FFFFFF">
+                </div>
             </div>
         </div>
 
