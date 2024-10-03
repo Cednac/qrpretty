@@ -158,8 +158,11 @@ button:active {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-top: 15px;
     width: 100%;
+}
+
+.collapsible-content .picker {
+    margin-top: 15px;
 }
 
 .picker div {
@@ -189,9 +192,9 @@ button:active {
 }
 
 .selected {
-    border-color: var(--primary-color);
-    background-color: rgba(76, 175, 80, 0.2);
-    transform: scale(1.05);
+    border-color: var(--primary-color) !important;
+    background-color: rgba(76, 175, 80, 0.2) !important;
+    transform: scale(1.05) !important;
 }
 
 #qr-code {

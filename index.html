@@ -14,31 +14,37 @@
         <label for="qrText">Text/URL:</label>
         <input type="text" id="qrText" placeholder="Enter text or URL">
 
-        <label>QR Code Dots Style:</label>
-        <div class="picker" id="dotsPicker">
-            <div id="sharpOption" class="selected">
-                <img src="./images/qr_square.png" alt="Square Dots">
-                <p>Square</p>
-            </div>
-            <div id="roundedOption">
-                <img src="./images/qr_rounded.png" alt="Rounded Dots">
-                <p>Rounded</p>
-            </div>
-            <div id="extra-roundedOption">
-                <img src="./images/qr_extra_rounded.png" alt="Extra Rounded Dots">
-                <p>Extra Rounded</p>
-            </div>
-            <div id="classyOption">
-                <img src="./images/qr_classy.png" alt="Classy Dots">
-                <p>Classy</p>
-            </div>
-            <div id="classy-roundedOption">
-                <img src="./images/qr_classy_rounded.png" alt="Classy-Rounded Dots">
-                <p>Classy Rounded</p>
-            </div>
-            <div id="dotsOption">
-                <img src="./images/qr_dots.png" alt="Dots">
-                <p>Dots</p>
+        <br/>
+
+        <div class="color-selector collapsible">
+            <button type="button" class="collapsible-header">QR Code Dots Style</button>
+            <div class="collapsible-content">
+                <div class="picker" id="dotsPicker">
+                    <div id="sharpOption" class="selected">
+                        <img src="./images/qr_square.png" alt="Square Dots">
+                        <p>Square</p>
+                    </div>
+                    <div id="roundedOption">
+                        <img src="./images/qr_rounded.png" alt="Rounded Dots">
+                        <p>Rounded</p>
+                    </div>
+                    <div id="extra-roundedOption">
+                        <img src="./images/qr_extra_rounded.png" alt="Extra Rounded Dots">
+                        <p>Extra Rounded</p>
+                    </div>
+                    <div id="classyOption">
+                        <img src="./images/qr_classy.png" alt="Classy Dots">
+                        <p>Classy</p>
+                    </div>
+                    <div id="classy-roundedOption">
+                        <img src="./images/qr_classy_rounded.png" alt="Classy-Rounded Dots">
+                        <p>Classy Rounded</p>
+                    </div>
+                    <div id="dotsOption">
+                        <img src="./images/qr_dots.png" alt="Dots">
+                        <p>Dots</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -225,6 +231,7 @@
             </select>
         </div>
 
+        <br/>
         <!-- Update this section for CSV upload -->
         <div class="color-selector collapsible">
             <button type="button" class="collapsible-header">Bulk QR Code Generation</button>
