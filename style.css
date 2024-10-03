@@ -401,29 +401,36 @@ input[type="range"] {
     cursor: pointer;
 }
 
-#dotsGradient, #backgroundGradient, #cornersSquareGradient {
+#dotsGradient, #backgroundGradient, #cornersSquareGradient, #cornersDotGradient {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-#dotsGradient input[type="color"], #backgroundGradient input[type="color"], #cornersSquareGradient input[type="color"] {
+#dotsGradient input[type="color"], 
+#backgroundGradient input[type="color"], 
+#cornersSquareGradient input[type="color"],
+#cornersDotGradient input[type="color"] {
     width: 48%;
 }
 
 /* Ensure single color inputs are full width */
-#dotsSingleColor, #backgroundSingleColor, #cornersSquareSingleColor {
+#dotsSingleColor, #backgroundSingleColor, #cornersSquareSingleColor, #cornersDotSingleColor {
     width: 100%;
 }
 
-#dotsSingleColor input[type="color"], #backgroundSingleColor input[type="color"], #cornersSquareSingleColor input[type="color"] {
+#dotsSingleColor input[type="color"], 
+#backgroundSingleColor input[type="color"], 
+#cornersSquareSingleColor input[type="color"],
+#cornersDotSingleColor input[type="color"] {
     width: 100%;
 }
 
 /* Update these styles */
 #dotsLinearGradientRotation,
 #backgroundLinearGradientRotation,
-#cornersSquareLinearGradientRotation {
+#cornersSquareLinearGradientRotation,
+#cornersDotLinearGradientRotation {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -432,20 +439,23 @@ input[type="range"] {
 
 #dotsLinearGradientRotation label,
 #backgroundLinearGradientRotation label,
-#cornersSquareLinearGradientRotation label {
+#cornersSquareLinearGradientRotation label,
+#cornersDotLinearGradientRotation label {
     margin-right: 10px;
     white-space: nowrap;
 }
 
 #dotsLinearGradientRotation input,
 #backgroundLinearGradientRotation input,
-#cornersSquareLinearGradientRotation input {
+#cornersSquareLinearGradientRotation input,
+#cornersDotLinearGradientRotation input {
     width: 60px;
 }
 
 #dotsGradient,
 #backgroundGradient,
-#cornersSquareGradient {
+#cornersSquareGradient,
+#cornersDotGradient {
     display: flex;
     flex-direction: column;
 }
