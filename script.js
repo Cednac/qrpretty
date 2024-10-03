@@ -273,29 +273,32 @@ function initQRCode() {
 initQRCode();
 
 // Modify these existing event listeners:
-document.getElementById('removeLogo').addEventListener('click', () => {
+document.getElementById('removeLogo').addEventListener('click', (event) => {
     currentLogo = null;
     document.getElementById('qrLogo').value = '';
     document.getElementById('removeLogo').style.display = 'none';
     document.getElementById('logoMarginContainer').style.display = 'none';
     document.getElementById('logoSizeContainer').style.display = 'none';
     updateQRCode();
+    
+    // Update the collapsible content size
+    updateCollapsibleContentSize(event.target.closest('.collapsible-content'));
 });
 
 document.getElementById('qrLogo').addEventListener('change', (event) => {
     const logoFile = event.target.files[0];
+    const logoSection = event.target.closest('.collapsible-content');
     if (logoFile) {
         const reader = new FileReader();
-        reader.onload = function (event) {
-            currentLogo = event.target.result;
+        reader.onload = function (e) {
+            currentLogo = e.target.result;
             updateQRCode();
             document.getElementById('removeLogo').style.display = 'inline-block';
             document.getElementById('logoMarginContainer').style.display = 'block';
             document.getElementById('logoSizeContainer').style.display = 'block';
             
-            // Force reflow of the collapsible content
-            const content = event.target.closest('.collapsible-content');
-            forceReflow(content);
+            // Update the collapsible content size
+            updateCollapsibleContentSize(logoSection);
         };
         reader.readAsDataURL(logoFile);
     } else {
@@ -304,6 +307,9 @@ document.getElementById('qrLogo').addEventListener('change', (event) => {
         document.getElementById('removeLogo').style.display = 'none';
         document.getElementById('logoMarginContainer').style.display = 'none';
         document.getElementById('logoSizeContainer').style.display = 'none';
+        
+        // Update the collapsible content size
+        updateCollapsibleContentSize(logoSection);
     }
 });
 
@@ -603,11 +609,8 @@ function initCollapsibles() {
                 content.style.maxHeight = null;
                 content.classList.remove('active');
             } else {
-                content.style.maxHeight = 'none';
                 content.classList.add('active');
-                setTimeout(() => {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }, 0);
+                updateCollapsibleContentSize(content);
             }
         });
     });
@@ -631,3 +634,12 @@ document.getElementById('errorCorrectionLevel').addEventListener('change', (even
     errorCorrectionLevel = event.target.value;
     updateQRCode();
 });
+
+// Add this new function
+function updateCollapsibleContentSize(content) {
+    if (content && content.classList.contains('active')) {
+        content.style.maxHeight = 'none';
+        const scrollHeight = content.scrollHeight;
+        content.style.maxHeight = scrollHeight + 'px';
+    }
+}
