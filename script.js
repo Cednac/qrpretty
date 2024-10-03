@@ -1,3 +1,5 @@
+let qrSize = 300; // Default size
+
 const qrCode = new QRCodeStyling({
     width: qrSize,
     height: qrSize,
@@ -328,11 +330,10 @@ qrTextInput.addEventListener('input', updateDownloadOptions);
 // Call this function initially to set the correct state
 updateDownloadOptions();
 
-// Add this new function to update QR code size
+// Update the updateQRSize function
 function updateQRSize() {
-    const newSize = parseInt(document.getElementById('qrSize').value);
-    document.getElementById('qrSizeValue').textContent = newSize;
-    qrSize = newSize;
+    qrSize = parseInt(document.getElementById('qrSize').value);
+    document.getElementById('qrSizeValue').textContent = qrSize;
     qrCode.update({
         width: qrSize,
         height: qrSize
