@@ -17,11 +17,13 @@ let qrBackground = "#FFFFFF"; // Default background is white
 document.getElementById('sharpOption').addEventListener('click', () => {
     selectedCornerType = "square";
     selectOption('sharpOption');
+    updateQRCode(); // Add this line
 });
 
 document.getElementById('roundedOption').addEventListener('click', () => {
     selectedCornerType = "extra-rounded";
     selectOption('roundedOption');
+    updateQRCode(); // Add this line
 });
 
 // Add event listener for color selection
