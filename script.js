@@ -167,7 +167,8 @@ logoMarginSlider.addEventListener('change', updateQRCode);
 
 // Add this new event listener for the download button
 downloadButton.addEventListener('click', () => {
-    qrCode.download({ name: "qr-code", extension: "png" });
+    const fileType = document.getElementById('fileType').value;
+    downloadQRCode(fileType);
 });
 
 // Add this to update QR code when color changes
@@ -175,3 +176,111 @@ document.getElementById('qrColor').addEventListener('change', updateQRCode);
 
 // Add this to update QR code when background color changes
 document.getElementById('qrBackground').addEventListener('change', updateQRCode);
+
+// Add this new function to handle different file type downloads
+function downloadQRCode(fileType) {
+    const fileName = "qr-code";
+    
+    switch (fileType) {
+        case 'png':
+        case 'jpeg':
+            qrCode.download({ name: fileName, extension: fileType });
+            break;
+        case 'svg':
+            downloadSVG(fileName);
+            break;
+        case 'pdf':
+            downloadPDF(fileName);
+            break;
+        case 'tiff':
+            downloadTIFF(fileName);
+            break;
+    }
+}
+
+function getQRCodeCanvas() {
+    return new Promise((resolve) => {
+        qrCode.getRawData('png').then(blob => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                resolve(canvas);
+            };
+            img.src = URL.createObjectURL(blob);
+        });
+    });
+}
+
+function downloadSVG(fileName) {
+    getQRCodeCanvas().then(canvas => {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+        
+        svg.setAttribute("width", canvas.width);
+        svg.setAttribute("height", canvas.height);
+        svg.setAttribute("viewBox", `0 0 ${canvas.width} ${canvas.height}`);
+        
+        image.setAttribute("width", canvas.width);
+        image.setAttribute("height", canvas.height);
+        image.setAttribute("href", canvas.toDataURL("image/png"));
+        
+        svg.appendChild(image);
+        
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+        downloadBlob(svgBlob, `${fileName}.svg`);
+    });
+}
+
+function downloadPDF(fileName) {
+    getQRCodeCanvas().then(canvas => {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        const imgData = canvas.toDataURL('image/jpeg', 1.0);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 210);
+        pdf.save(`${fileName}.pdf`);
+    });
+}
+
+function downloadTIFF(fileName) {
+    getQRCodeCanvas().then(canvas => {
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const tiffData = UTIF.encodeImage(imageData.data, canvas.width, canvas.height);
+        const tiffBlob = new Blob([tiffData.buffer], { type: 'image/tiff' });
+        downloadBlob(tiffBlob, `${fileName}.tiff`);
+    });
+}
+
+function downloadBlob(blob, fileName) {
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+// Function to convert PNG to TIFF (you'll need to implement this)
+function convertToTIFF(pngBlob) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            const tiffData = UTIF.encodeImage(imageData.data, canvas.width, canvas.height);
+            const tiffBlob = new Blob([tiffData.buffer], { type: 'image/tiff' });
+            resolve(tiffBlob);
+        };
+        img.onerror = reject;
+        img.src = URL.createObjectURL(pngBlob);
+    });
+}
