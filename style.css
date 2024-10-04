@@ -203,9 +203,14 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 300px;
-    min-width: 300px;
+    height: 300px;
+    width: 300px;
     border: 1px solid var(--primary-color);
+}
+
+#qr-code canvas {
+    height: 100%;
+    width: 100%;
 }
 
 @keyframes fadeIn {
