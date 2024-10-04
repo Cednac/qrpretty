@@ -83,13 +83,10 @@ h1 {
 }
 
 .controls {
-    margin: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
     max-width: 450px;
-    padding: 0px 30px 30px 30px;
 }
 
 label {
@@ -651,6 +648,11 @@ footer {
 
 .about-link:hover {
     opacity: 1;
+}
+
+.index-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Styles for privacy.html */
