@@ -12,9 +12,16 @@ APP.uiControls = (function() {
     }
 
     function updateQRSize() {
-        APP.main.setQRSize(parseInt(document.getElementById('qrSize').value));
-        document.getElementById('qrSizeValue').textContent = APP.main.getQRSize();
-        APP.qrCodeGenerator.updateQRCode();
+        const qrSizeSlider = document.getElementById('qrSize');
+        const qrSizeInput = document.getElementById('qrSizeInput');
+        const newSize = parseInt(qrSizeInput.value);
+
+        if (newSize >= 50 && newSize <= 1000) {
+            APP.main.setQRSize(newSize);
+            qrSizeSlider.value = newSize;
+            document.getElementById('qrSizeValue').textContent = newSize;
+            APP.qrCodeGenerator.updateQRCode();
+        }
     }
 
     function updateDotsColorType() {

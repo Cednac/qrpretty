@@ -215,7 +215,8 @@
                 <label for="qrSize">QR Code Size:</label>
                 <div class="slider-wrapper">
                     <input type="range" id="qrSize" min="50" max="1000" value="300" step="1">
-                    <span id="qrSizeValue">300</span> px
+                    <input type="number" id="qrSizeInput" min="50" max="1000" value="300" step="1">px
+                    <span hidden id="qrSizeValue">300</span>
                 </div>
             </div>
         </div>

@@ -7,7 +7,11 @@ APP.eventHandlers = (function() {
         document.getElementById('qrText').addEventListener('input', APP.uiControls.updateDownloadOptions);
 
         // QR Code size
-        document.getElementById('qrSize').addEventListener('input', APP.uiControls.updateQRSize);
+        document.getElementById('qrSize').addEventListener('input', function() {
+            document.getElementById('qrSizeInput').value = this.value;
+            APP.uiControls.updateQRSize();
+        });
+        document.getElementById('qrSizeInput').addEventListener('input', APP.uiControls.updateQRSize);
 
         // Dots style
         document.getElementById('sharpOption').addEventListener('click', () => updateDotsStyle('square'));
