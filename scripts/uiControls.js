@@ -27,40 +27,40 @@ APP.uiControls = (function() {
     function updateDotsColorType() {
         const colorType = document.getElementById('dotsColorType').value;
         APP.main.setDotsColorType(colorType);
-        document.getElementById('dotsSingleColor').style.display = colorType === 'single' ? 'block' : 'none';
-        document.getElementById('dotsGradient').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('dotsGradientType').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('dotsLinearGradientRotation').style.display = colorType === 'gradient' && APP.main.getDotsGradientType() === 'linear' ? 'block' : 'none';
+        document.getElementById('dotsSingleColor').style.display = colorType === 'single' ? 'flex' : 'none';
+        document.getElementById('dotsGradient').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('dotsGradientType').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('dotsLinearGradientRotation').style.display = colorType === 'gradient' && APP.main.getDotsGradientType() === 'linear' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
     function updateBackgroundColorType() {
         const colorType = document.getElementById('backgroundColorType').value;
         APP.main.setBackgroundColorType(colorType);
-        document.getElementById('backgroundSingleColor').style.display = colorType === 'single' ? 'block' : 'none';
-        document.getElementById('backgroundGradient').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('backgroundGradientType').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('backgroundLinearGradientRotation').style.display = colorType === 'gradient' && APP.main.getBackgroundGradientType() === 'linear' ? 'block' : 'none';
+        document.getElementById('backgroundSingleColor').style.display = colorType === 'single' ? 'flex' : 'none';
+        document.getElementById('backgroundGradient').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('backgroundGradientType').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('backgroundLinearGradientRotation').style.display = colorType === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
     function updateCornersSquareColorType() {
         const colorType = document.getElementById('cornersSquareColorType').value;
         APP.main.setCornersSquareColorType(colorType);
-        document.getElementById('cornersSquareSingleColor').style.display = colorType === 'single' ? 'block' : 'none';
-        document.getElementById('cornersSquareGradient').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('cornersSquareGradientType').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('cornersSquareLinearGradientRotation').style.display = colorType === 'gradient' && APP.main.getCornersSquareGradientType() === 'linear' ? 'block' : 'none';
+        document.getElementById('cornersSquareSingleColor').style.display = colorType === 'single' ? 'flex' : 'none';
+        document.getElementById('cornersSquareGradient').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('cornersSquareGradientType').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('cornersSquareLinearGradientRotation').style.display = colorType === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
     function updateCornersDotColorType() {
         const colorType = document.getElementById('cornersDotColorType').value;
         APP.main.setCornersDotColorType(colorType);
-        document.getElementById('cornersDotSingleColor').style.display = colorType === 'single' ? 'block' : 'none';
-        document.getElementById('cornersDotGradient').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('cornersDotGradientType').style.display = colorType === 'gradient' ? 'block' : 'none';
-        document.getElementById('cornersDotLinearGradientRotation').style.display = colorType === 'gradient' && APP.main.getCornersDotGradientType() === 'linear' ? 'block' : 'none';
+        document.getElementById('cornersDotSingleColor').style.display = colorType === 'single' ? 'flex' : 'none';
+        document.getElementById('cornersDotGradient').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('cornersDotGradientType').style.display = colorType === 'gradient' ? 'flex' : 'none';
+        document.getElementById('cornersDotLinearGradientRotation').style.display = colorType === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
@@ -69,7 +69,7 @@ APP.uiControls = (function() {
             APP.main.setDotsGradientType(event.target.value);
         }
         document.getElementById('dotsLinearGradientRotation').style.display = 
-            APP.main.getDotsColorType() === 'gradient' && APP.main.getDotsGradientType() === 'linear' ? 'flex' : 'none';
+            APP.main.getDotsColorType() === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
@@ -78,7 +78,7 @@ APP.uiControls = (function() {
             APP.main.setBackgroundGradientType(event.target.value);
         }
         document.getElementById('backgroundLinearGradientRotation').style.display = 
-            APP.main.getBackgroundColorType() === 'gradient' && APP.main.getBackgroundGradientType() === 'linear' ? 'flex' : 'none';
+            APP.main.getBackgroundColorType() === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
@@ -87,7 +87,7 @@ APP.uiControls = (function() {
             APP.main.setCornersSquareGradientType(event.target.value);
         }
         document.getElementById('cornersSquareLinearGradientRotation').style.display = 
-            APP.main.getCornersSquareColorType() === 'gradient' && APP.main.getCornersSquareGradientType() === 'linear' ? 'flex' : 'none';
+            APP.main.getCornersSquareColorType() === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 
@@ -96,7 +96,7 @@ APP.uiControls = (function() {
             APP.main.setCornersDotGradientType(event.target.value);
         }
         document.getElementById('cornersDotLinearGradientRotation').style.display = 
-            APP.main.getCornersDotColorType() === 'gradient' && APP.main.getCornersDotGradientType() === 'linear' ? 'flex' : 'none';
+            APP.main.getCornersDotColorType() === 'gradient' ? 'flex' : 'none';
         APP.qrCodeGenerator.updateQRCode();
     }
 

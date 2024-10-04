@@ -333,13 +333,28 @@ input[type="range"] {
 
 .gradient-controls {
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
+.gradient-controls > * {
+    flex: 0 1 auto;
+}
+
+/* Style for the rotation input */
+#dotsGradientRotation,
+#backgroundGradientRotation,
+#cornersSquareGradientRotation,
+#cornersDotGradientRotation {
+    width: 60px;
+}
+
+/* Adjust select elements in gradient controls */
 .gradient-controls select {
     width: auto;
-    /* margin-right: 10px; */
 }
 
 #dotsSingleColor,
@@ -911,4 +926,16 @@ footer {
 .fa-linkedin {
     background: #007bb5;
     color: white;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .gradient-controls {
+        flex-wrap: wrap;
+    }
+
+    .gradient-controls > * {
+        flex: 1 1 auto;
+        margin-bottom: 5px;
+    }
 }
