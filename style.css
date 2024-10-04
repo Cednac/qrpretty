@@ -1,13 +1,13 @@
 :root {
     --primary-color: #4CAF50;
     --secondary-color: #45a049;
-    --background-gradient: linear-gradient(135deg, #2c2c2c 0%, #3c3c3c 100%);
-    --card-background: rgba(60, 60, 60, 0.8);
+    --background-gradient: linear-gradient(180deg, #1a191b 0%, #1d192d 100%);
+    --card-background: rgba(38, 27, 55, 0.8);
     --shadow-color: rgba(0, 0, 0, 0.3);
-    --text-color: #f0f0f0;
+    --text-color: #eae8e8;
     --input-background: #4a4a4a;
     --input-border: #666;
-    --input-text: #f0f0f0;
+    --input-text: #dedbdb;
     --border-radius: 20px;
     --transition: 0.3s ease;
     --box-shadow: 0 10px 20px var(--shadow-color);
