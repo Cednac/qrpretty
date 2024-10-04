@@ -205,6 +205,7 @@ button:active {
     align-items: center;
     min-height: 300px;
     min-width: 300px;
+    border: 1px solid var(--primary-color);
 }
 
 @keyframes fadeIn {
@@ -786,8 +787,14 @@ footer {
     }
 
     #qr-code {
-        min-height: 200px;
-        min-width: 200px;
+        height: 100%;
+        width: 100%;
+
+    }
+
+    #qr-code canvas {
+        max-width: 300px !important;
+        width: 100%;
     }
 
     .collapsible-header {

@@ -70,6 +70,9 @@ APP.qrCodeGenerator = (function() {
             cornersDotOptions
         });
 
+        const logoMargin = parseInt(document.getElementById('logoMargin').value);
+        const logoSize = parseFloat(document.getElementById('logoSize').value) / 100;
+
         qrCode.update({
             width: APP.main.getQRSize(),
             height: APP.main.getQRSize(),
@@ -80,8 +83,8 @@ APP.qrCodeGenerator = (function() {
             backgroundOptions: backgroundOptions,
             imageOptions: {
                 crossOrigin: "anonymous",
-                margin: APP.main.getLogoMargin(),
-                imageSize: APP.main.getLogoSize(),
+                margin: logoMargin,
+                imageSize: logoSize,
                 hideBackgroundDots: true,
             },
             image: APP.main.getCurrentLogo(),
