@@ -29,70 +29,46 @@ APP.qrCodeGenerator = (function() {
             type: APP.main.getSelectedDotsType() === 'classy-rounded' ? 'rounded' : APP.main.getSelectedDotsType()
         };
 
-        if (APP.main.getDotsColorType() === 'single') {
-            dotsOptions.color = APP.main.getDotsColor();
-        } else {
-            dotsOptions.gradient = {
-                type: APP.main.getDotsGradientType(),
-                rotation: APP.main.getDotsGradientType() === 'linear' ? parseInt(document.getElementById('dotsGradientRotation').value) : 0,
-                colorStops: [
-                    { offset: 0, color: document.getElementById('dotsGradientStart').value },
-                    { offset: 1, color: document.getElementById('dotsGradientEnd').value }
-                ]
-            };
-        }
-
         let backgroundOptions = {};
-
-        if (APP.main.getBackgroundColorType() === 'single') {
-            backgroundOptions.color = APP.main.getQRBackground();
-        } else {
-            backgroundOptions.gradient = {
-                type: APP.main.getBackgroundGradientType(),
-                rotation: APP.main.getBackgroundGradientType() === 'linear' ? parseInt(document.getElementById('backgroundGradientRotation').value) : 0,
-                colorStops: [
-                    { offset: 0, color: document.getElementById('backgroundGradientStart').value },
-                    { offset: 1, color: document.getElementById('backgroundGradientEnd').value }
-                ]
-            };
-        }
-
         let cornersSquareOptions = {
             type: APP.main.getSelectedDotsType() === 'classy' || APP.main.getSelectedDotsType() === 'classy-rounded' ? 'extra-rounded' : 
                   APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
         };
-
-        if (APP.main.getCornersSquareColorType() === 'single') {
-            cornersSquareOptions.color = document.getElementById('cornersSquareColor').value;
-        } else {
-            cornersSquareOptions.gradient = {
-                type: APP.main.getCornersSquareGradientType(),
-                rotation: APP.main.getCornersSquareGradientType() === 'linear' ? parseInt(document.getElementById('cornersSquareGradientRotation').value) : 0,
-                colorStops: [
-                    { offset: 0, color: document.getElementById('cornersSquareGradientStart').value },
-                    { offset: 1, color: document.getElementById('cornersSquareGradientEnd').value }
-                ]
-            };
-        }
-
         let cornersDotOptions = {
             type: APP.main.getSelectedDotsType() === 'classy' ? 'dot' : 
                   APP.main.getSelectedDotsType() === 'classy-rounded' ? 'rounded' : 
                   APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
         };
 
-        if (APP.main.getCornersDotColorType() === 'single') {
-            cornersDotOptions.color = document.getElementById('cornersDotColor').value;
-        } else {
-            cornersDotOptions.gradient = {
-                type: APP.main.getCornersDotGradientType(),
-                rotation: APP.main.getCornersDotGradientType() === 'linear' ? parseInt(document.getElementById('cornersDotGradientRotation').value) : 0,
-                colorStops: [
-                    { offset: 0, color: document.getElementById('cornersDotGradientStart').value },
-                    { offset: 1, color: document.getElementById('cornersDotGradientEnd').value }
-                ]
-            };
-        }
+        const updateColorOptions = (options, colorType, singleColorId, gradientStartId, gradientEndId, gradientTypeId, gradientRotationId) => {
+            options.color = undefined;
+            options.gradient = undefined;
+
+            if (colorType === 'single') {
+                options.color = document.getElementById(singleColorId).value;
+            } else {
+                options.gradient = {
+                    type: document.getElementById(gradientTypeId).value,
+                    rotation: document.getElementById(gradientTypeId).value === 'linear' ? parseInt(document.getElementById(gradientRotationId).value) : 0,
+                    colorStops: [
+                        { offset: 0, color: document.getElementById(gradientStartId).value },
+                        { offset: 1, color: document.getElementById(gradientEndId).value }
+                    ]
+                };
+            }
+        };
+
+        updateColorOptions(dotsOptions, APP.main.getDotsColorType(), 'qrColor', 'dotsGradientStart', 'dotsGradientEnd', 'dotsGradientTypeSelect', 'dotsGradientRotation');
+        updateColorOptions(backgroundOptions, APP.main.getBackgroundColorType(), 'qrBackground', 'backgroundGradientStart', 'backgroundGradientEnd', 'backgroundGradientTypeSelect', 'backgroundGradientRotation');
+        updateColorOptions(cornersSquareOptions, APP.main.getCornersSquareColorType(), 'cornersSquareColor', 'cornersSquareGradientStart', 'cornersSquareGradientEnd', 'cornersSquareGradientTypeSelect', 'cornersSquareGradientRotation');
+        updateColorOptions(cornersDotOptions, APP.main.getCornersDotColorType(), 'cornersDotColor', 'cornersDotGradientStart', 'cornersDotGradientEnd', 'cornersDotGradientTypeSelect', 'cornersDotGradientRotation');
+
+        console.log('Updating QR Code with options:', {
+            dotsOptions,
+            backgroundOptions,
+            cornersSquareOptions,
+            cornersDotOptions
+        });
 
         qrCode.update({
             width: APP.main.getQRSize(),

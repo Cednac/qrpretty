@@ -18,7 +18,10 @@ APP.eventHandlers = (function() {
         document.getElementById('extra-roundedOption').addEventListener('click', () => updateDotsStyle('extra-rounded'));
 
         // Color types and gradients
-        document.getElementById('dotsColorType').addEventListener('change', APP.uiControls.updateDotsColorType);
+        document.getElementById('dotsColorType').addEventListener('change', function(event) {
+            APP.main.setDotsColorType(event.target.value);
+            APP.qrCodeGenerator.updateQRCode();
+        });
         document.getElementById('backgroundColorType').addEventListener('change', APP.uiControls.updateBackgroundColorType);
         document.getElementById('cornersSquareColorType').addEventListener('change', APP.uiControls.updateCornersSquareColorType);
         document.getElementById('cornersDotColorType').addEventListener('change', APP.uiControls.updateCornersDotColorType);
