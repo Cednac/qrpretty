@@ -15,13 +15,10 @@ APP.bulkOperations = (function() {
                 width: 200,
                 height: 200,
                 data: text,
-                dotsOptions: {
-                    color: APP.main.getDotsColor(),
-                    type: APP.main.getSelectedDotsType()
-                },
-                backgroundOptions: {
-                    color: APP.main.getQRBackground(),
-                },
+                dotsOptions: getDotsOptions(),
+                cornersSquareOptions: getCornersSquareOptions(),
+                cornersDotOptions: getCornersDotOptions(),
+                backgroundOptions: getBackgroundOptions(),
                 imageOptions: {
                     crossOrigin: "anonymous",
                     margin: APP.main.getLogoMargin(),
@@ -50,6 +47,51 @@ APP.bulkOperations = (function() {
         APP.uiControls.updateCollapsibleContentSize(document.getElementById('bulkQRCodes').closest('.collapsible-content'));
     }
 
+    function getDotsOptions() {
+        const options = {
+            type: APP.main.getSelectedDotsType() === 'classy-rounded' ? 'rounded' : APP.main.getSelectedDotsType()
+        };
+        return addColorOptions(options, APP.main.getDotsColorType(), 'qrColor', 'dotsGradientStart', 'dotsGradientEnd', 'dotsGradientTypeSelect', 'dotsGradientRotation');
+    }
+
+    function getBackgroundOptions() {
+        const options = {};
+        return addColorOptions(options, APP.main.getBackgroundColorType(), 'qrBackground', 'backgroundGradientStart', 'backgroundGradientEnd', 'backgroundGradientTypeSelect', 'backgroundGradientRotation');
+    }
+
+    function getCornersSquareOptions() {
+        const options = {
+            type: APP.main.getSelectedDotsType() === 'classy' || APP.main.getSelectedDotsType() === 'classy-rounded' ? 'extra-rounded' : 
+              APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
+        };
+        return addColorOptions(options, APP.main.getCornersSquareColorType(), 'cornersSquareColor', 'cornersSquareGradientStart', 'cornersSquareGradientEnd', 'cornersSquareGradientTypeSelect', 'cornersSquareGradientRotation');
+    }
+
+    function getCornersDotOptions() {
+        const options = {
+            type: APP.main.getSelectedDotsType() === 'classy' ? 'dot' : 
+              APP.main.getSelectedDotsType() === 'classy-rounded' ? 'rounded' : 
+              APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
+        };
+        return addColorOptions(options, APP.main.getCornersDotColorType(), 'cornersDotColor', 'cornersDotGradientStart', 'cornersDotGradientEnd', 'cornersDotGradientTypeSelect', 'cornersDotGradientRotation');
+    }
+
+    function addColorOptions(options, colorType, singleColorId, gradientStartId, gradientEndId, gradientTypeId, gradientRotationId) {
+        if (colorType === 'single') {
+            options.color = document.getElementById(singleColorId).value;
+        } else {
+            options.gradient = {
+                type: document.getElementById(gradientTypeId).value,
+                rotation: document.getElementById(gradientTypeId).value === 'linear' ? parseInt(document.getElementById(gradientRotationId).value) : 0,
+                colorStops: [
+                    { offset: 0, color: document.getElementById(gradientStartId).value },
+                    { offset: 1, color: document.getElementById(gradientEndId).value }
+                ]
+            };
+        }
+        return options;
+    }
+
     function downloadBulkQRCodes() {
         const fileType = document.getElementById('bulkFileType').value;
         const zip = new JSZip();
@@ -62,13 +104,10 @@ APP.bulkOperations = (function() {
                     width: 200,
                     height: 200,
                     data: text,
-                    dotsOptions: {
-                        color: APP.main.getDotsColor(),
-                        type: APP.main.getSelectedDotsType()
-                    },
-                    backgroundOptions: {
-                        color: APP.main.getQRBackground(),
-                    },
+                    dotsOptions: getDotsOptions(),
+                    cornersSquareOptions: getCornersSquareOptions(),
+                    cornersDotOptions: getCornersDotOptions(),
+                    backgroundOptions: getBackgroundOptions(),
                     imageOptions: {
                         crossOrigin: "anonymous",
                         margin: APP.main.getLogoMargin(),
