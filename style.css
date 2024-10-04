@@ -170,7 +170,9 @@ button.collapsible-header {
     border-radius: 0%;
 }
 
-
+a {
+    color: var(--primary-color);
+}
 
 .picker div {
     cursor: pointer;
