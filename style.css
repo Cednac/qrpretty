@@ -538,6 +538,7 @@ input[type="color"] {
     border-radius: var(--border-radius);
     margin-bottom: 10px;
     overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .collapsible-header {
