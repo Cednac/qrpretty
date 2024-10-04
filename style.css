@@ -333,13 +333,28 @@ input[type="range"] {
 
 .gradient-controls {
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
+.gradient-controls > * {
+    flex: 0 1 auto;
+}
+
+/* Style for the rotation input */
+#dotsGradientRotation,
+#backgroundGradientRotation,
+#cornersSquareGradientRotation,
+#cornersDotGradientRotation {
+    width: 60px;
+}
+
+/* Adjust select elements in gradient controls */
 .gradient-controls select {
     width: auto;
-    /* margin-right: 10px; */
 }
 
 #dotsSingleColor,
@@ -368,6 +383,28 @@ input[type="range"] {
     padding: 0;
     border: none;
     margin-right: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border: none;
+}
+
+/* For Firefox */
+input[type="color"] {
+    -moz-appearance: none;
+    padding: 0;
 }
 
 #dotsLinearGradientRotation,
@@ -501,6 +538,7 @@ input[type="range"] {
     border-radius: var(--border-radius);
     margin-bottom: 10px;
     overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .collapsible-header {
@@ -911,4 +949,16 @@ footer {
 .fa-linkedin {
     background: #007bb5;
     color: white;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .gradient-controls {
+        flex-wrap: wrap;
+    }
+
+    .gradient-controls > * {
+        flex: 1 1 auto;
+        margin-bottom: 5px;
+    }
 }
