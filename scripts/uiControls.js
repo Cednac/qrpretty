@@ -16,7 +16,7 @@ APP.uiControls = (function() {
         const qrSizeInput = document.getElementById('qrSizeInput');
         const newSize = parseInt(qrSizeInput.value);
 
-        if (newSize >= 50 && newSize <= 1000) {
+        if (newSize >= 50 && newSize <= 3000) {
             APP.main.setQRSize(newSize);
             qrSizeSlider.value = newSize;
             document.getElementById('qrSizeValue').textContent = newSize;
