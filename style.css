@@ -4,7 +4,7 @@
     --background-gradient: linear-gradient(180deg, #1a191b 0%, #1d192d 100%);
     --card-background: rgba(38, 27, 55, 0.8);
     --shadow-color: rgba(0, 0, 0, 0.3);
-    --text-color: #eae8e8;
+    --text-color: #f5f5f5;
     --input-background: #4a4a4a;
     --input-border: #666;
     --input-text: #dedbdb;
@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'FontAwesome', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,7 +72,7 @@ h1 {
 .controls, #qr-code {
     background: var(--card-background);
     border-radius: var(--border-radius);
-    padding: 30px;
+    padding: 0px 30px 30px 30px;
     box-shadow: 0 10px 20px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

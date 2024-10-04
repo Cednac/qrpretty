@@ -14,11 +14,9 @@
     <p class="subtitle">Free QR code styling generator - No paywall, no registration, no limits!</p>
 
     <div class="controls">
-        <label for="qrText">Text/URL:</label>
+        <h4>Text/URL</h4>
         <input type="text" id="qrText" placeholder="Enter text or URL">
-
-        <br/>
-
+        <h4>Style</h4>
         <div class="color-selector collapsible">
             <button type="button" class="collapsible-header">QR Code Dots Style</button>
             <div class="collapsible-content">
@@ -212,9 +210,9 @@
 
         <div id="qrSizeContainer">
             <div class="slider-container">
-                <label for="qrSize">QR Code Size:</label>
                 <div class="slider-wrapper">
-                    <input type="range" id="qrSize" min="50" max="3000" value="300" step="1">
+                <label for="qrSize">Image Size:</label>
+                <input type="range" id="qrSize" min="50" max="3000" value="300" step="1">
                     <input type="number" id="qrSizeInput" min="50" max="3000" value="300" step="1">px
                     <span hidden id="qrSizeValue">300</span>
                 </div>
