@@ -14,7 +14,7 @@ APP.eventHandlers = (function() {
         document.getElementById('qrSizeInput').addEventListener('input', APP.uiControls.updateQRSize);
 
         // Dots style
-        document.getElementById('sharpOption').addEventListener('click', () => updateDotsStyle('square'));
+        document.getElementById('squareOption').addEventListener('click', () => updateDotsStyle('square'));
         document.getElementById('roundedOption').addEventListener('click', () => updateDotsStyle('rounded'));
         document.getElementById('dotsOption').addEventListener('click', () => updateDotsStyle('dots'));
         document.getElementById('classyOption').addEventListener('click', () => updateDotsStyle('classy'));
