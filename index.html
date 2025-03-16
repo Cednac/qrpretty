@@ -35,11 +35,12 @@
     <div class="index-content">
         <div class="controls">
             <h4>Text/URL</h4>
-            <input type="text" id="qrText" placeholder="Enter text or URL">
+            <input type="text" id="qrText" placeholder="Enter text or URL" value="https://qrpretty.com">
 
             <div id="qr-code"></div>
             <div id="downloadOptions" class="download-options">
                 <button id="downloadQR">Download QR Code</button>
+                <button id="randomStyle">Random Style</button>
                 <select id="fileType">
                     <option value="png">PNG</option>
                     <option value="jpeg">JPEG</option>
@@ -304,6 +305,7 @@
     <script src="./scripts/uiControls.js"></script>
     <script src="./scripts/fileOperations.js"></script>
     <script src="./scripts/bulkOperations.js"></script>
+    <script src="./scripts/randomStyle.js"></script>
 </body>
 
 </html>

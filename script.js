@@ -777,3 +777,74 @@ downloadButton.addEventListener('click', () => {
     const fileType = document.getElementById('fileType').value;
     downloadQRCode(fileType);
 });
+
+// Add event listener for random style button
+document.getElementById('randomStyle').addEventListener('click', generateRandomStyle);
+
+// Add this function to generate random styles
+function generateRandomStyle() {
+    // Generate random dot style
+    const dotStyles = ['square', 'rounded', 'extra-rounded', 'classy', 'classy-rounded', 'dots'];
+    const randomDotStyle = dotStyles[Math.floor(Math.random() * dotStyles.length)];
+    selectedDotsType = randomDotStyle;
+    selectOption(randomDotStyle + 'Option');
+    
+    // Generate random colors
+    const randomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    
+    // Set random dot color
+    dotsColor = randomColor();
+    document.getElementById('qrColor').value = dotsColor;
+    
+    // Set random background color
+    qrBackground = randomColor();
+    document.getElementById('qrBackground').value = qrBackground;
+    
+    // Set random corners square color
+    cornersSquareColor = randomColor();
+    document.getElementById('cornersSquareColor').value = cornersSquareColor;
+    
+    // Set random corners dot color
+    cornersDotColor = randomColor();
+    document.getElementById('cornersDotColor').value = cornersDotColor;
+    
+    // Randomly choose between single color and gradient
+    const colorTypes = ['single', 'gradient'];
+    
+    // Dots color type
+    dotsColorType = colorTypes[Math.floor(Math.random() * colorTypes.length)];
+    document.getElementById('dotsColorType').value = dotsColorType;
+    
+    if (dotsColorType === 'gradient') {
+        dotsGradientStart = randomColor();
+        dotsGradientEnd = randomColor();
+        document.getElementById('dotsGradientStart').value = dotsGradientStart;
+        document.getElementById('dotsGradientEnd').value = dotsGradientEnd;
+        
+        // Show gradient controls
+        document.getElementById('dotsSingleColor').style.display = 'none';
+        document.getElementById('dotsGradient').style.display = 'block';
+        document.getElementById('dotsGradientType').style.display = 'block';
+        
+        // Random gradient type
+        dotsGradientType = Math.random() > 0.5 ? 'linear' : 'radial';
+        document.getElementById('dotsGradientTypeSelect').value = dotsGradientType;
+        
+        if (dotsGradientType === 'linear') {
+            document.getElementById('dotsLinearGradientRotation').style.display = 'block';
+            dotsGradientRotation = Math.floor(Math.random() * 360);
+            document.getElementById('dotsGradientRotation').value = dotsGradientRotation;
+        } else {
+            document.getElementById('dotsLinearGradientRotation').style.display = 'none';
+        }
+    } else {
+        // Show single color controls
+        document.getElementById('dotsSingleColor').style.display = 'block';
+        document.getElementById('dotsGradient').style.display = 'none';
+        document.getElementById('dotsGradientType').style.display = 'none';
+        document.getElementById('dotsLinearGradientRotation').style.display = 'none';
+    }
+    
+    // Update QR code with new random style
+    updateQRCode();
+}

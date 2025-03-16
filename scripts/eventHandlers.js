@@ -13,6 +13,9 @@ APP.eventHandlers = (function() {
         });
         document.getElementById('qrSizeInput').addEventListener('input', APP.uiControls.updateQRSize);
 
+        // Random Style button
+        document.getElementById('randomStyle').addEventListener('click', APP.randomStyle.generateRandomStyle);
+
         // Dots style
         document.getElementById('squareOption').addEventListener('click', () => updateDotsStyle('square'));
         document.getElementById('roundedOption').addEventListener('click', () => updateDotsStyle('rounded'));
