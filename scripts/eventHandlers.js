@@ -13,6 +13,48 @@ APP.eventHandlers = (function() {
         });
         document.getElementById('qrSizeInput').addEventListener('input', APP.uiControls.updateQRSize);
 
+        // QR Code margin
+        document.getElementById('qrMargin').addEventListener('input', function() {
+            document.getElementById('qrMarginInput').value = this.value;
+            APP.uiControls.updateQRMargin();
+        });
+        document.getElementById('qrMarginInput').addEventListener('input', APP.uiControls.updateQRMargin);
+
+        // QR Code shape radius
+        document.getElementById('shapeRadius').addEventListener('input', function() {
+            const radius = parseInt(this.value);
+            document.getElementById('shapeRadiusValue').textContent = radius;
+            APP.main.setShapeRadius(radius);
+            
+            // Apply border radius directly to the QR code container for immediate visual feedback
+            const qrCodeContainer = document.getElementById("qr-code");
+            if (radius > 0) {
+                const borderRadiusValue = `${radius}px`;
+                qrCodeContainer.style.borderRadius = borderRadiusValue;
+                
+                // Also apply to the canvas/svg inside
+                const qrCanvas = qrCodeContainer.querySelector('canvas, svg');
+                if (qrCanvas) {
+                    qrCanvas.style.borderRadius = borderRadiusValue;
+                }
+            } else {
+                qrCodeContainer.style.borderRadius = '0';
+                const qrCanvas = qrCodeContainer.querySelector('canvas, svg');
+                if (qrCanvas) {
+                    qrCanvas.style.borderRadius = '0';
+                }
+            }
+            
+            // Force immediate update of QR code
+            APP.qrCodeGenerator.updateQRCode();
+            
+            // Log the change for debugging
+            console.log("Shape radius updated to:", radius);
+        });
+
+        // Random Style button
+        document.getElementById('randomStyle').addEventListener('click', APP.randomStyle.generateRandomStyle);
+
         // Dots style
         document.getElementById('squareOption').addEventListener('click', () => updateDotsStyle('square'));
         document.getElementById('roundedOption').addEventListener('click', () => updateDotsStyle('rounded'));

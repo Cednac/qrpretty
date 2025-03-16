@@ -1,8 +1,10 @@
 let qrSize = 300; // Default size
+let qrMargin = 10; // Default margin
 
 const qrCode = new QRCodeStyling({
     width: qrSize,
     height: qrSize,
+    margin: qrMargin,
     imageOptions: {
         crossOrigin: "anonymous",
         margin: 10
@@ -211,6 +213,7 @@ function updateQRCode() {
     qrCode.update({
         width: qrSize,
         height: qrSize,
+        margin: qrMargin,
         data: text,
         dotsOptions: dotsOptions,
         cornersSquareOptions: cornersSquareOptions,
@@ -267,6 +270,32 @@ function generateQRCode(text) {
 // Add this function to initialize the QR code
 function initQRCode() {
     qrCode.append(document.getElementById("qr-code"));
+    
+    const text = document.getElementById('qrText').value.trim();
+    if (text) {
+        generateQRCode(text);
+    }
+
+    // Initialize QR size display
+    document.getElementById('qrSizeValue').textContent = qrSize;
+    document.getElementById('qrSizeInput').value = qrSize;
+    
+    // Initialize QR margin display
+    document.getElementById('qrMarginValue').textContent = qrMargin;
+    document.getElementById('qrMarginInput').value = qrMargin;
+
+    // Initialize color type selectors
+    document.getElementById('dotsColorType').addEventListener('change', updateDotsColorType);
+    document.getElementById('backgroundColorType').addEventListener('change', updateBackgroundColorType);
+    document.getElementById('dotsGradientTypeSelect').addEventListener('change', updateDotsGradientType);
+    document.getElementById('backgroundGradientTypeSelect').addEventListener('change', updateBackgroundGradientType);
+    document.getElementById('cornersSquareColorType').addEventListener('change', updateCornersSquareColorType);
+    document.getElementById('cornersSquareGradientTypeSelect').addEventListener('change', updateCornersSquareGradientType);
+    document.getElementById('cornersDotColorType').addEventListener('change', updateCornersDotColorType);
+    document.getElementById('cornersDotGradientTypeSelect').addEventListener('change', updateCornersDotGradientType);
+
+    // Initialize collapsible sections
+    initCollapsibles();
 }
 
 // Call this function once when the page loads
@@ -474,17 +503,28 @@ updateDownloadOptions();
 
 // Update the updateQRSize function
 function updateQRSize() {
-    qrSize = parseInt(document.getElementById('qrSize').value);
+    const sizeSlider = document.getElementById('qrSize');
+    const sizeInput = document.getElementById('qrSizeInput');
+    
+    // Sync the input with the slider
+    if (event.target.id === 'qrSize') {
+        sizeInput.value = sizeSlider.value;
+    } else {
+        sizeSlider.value = sizeInput.value;
+    }
+    
+    qrSize = parseInt(sizeSlider.value);
     document.getElementById('qrSizeValue').textContent = qrSize;
-    qrCode.update({
-        width: qrSize,
-        height: qrSize
-    });
     updateQRCode();
 }
 
 // Add event listener for size input
 document.getElementById('qrSize').addEventListener('input', updateQRSize);
+document.getElementById('qrSizeInput').addEventListener('input', updateQRSize);
+
+// Add event listener for QR margin
+document.getElementById('qrMargin').addEventListener('input', updateQRMargin);
+document.getElementById('qrMarginInput').addEventListener('input', updateQRMargin);
 
 // Add these new event listeners
 document.getElementById('dotsColorType').addEventListener('change', updateDotsColorType);
@@ -777,3 +817,90 @@ downloadButton.addEventListener('click', () => {
     const fileType = document.getElementById('fileType').value;
     downloadQRCode(fileType);
 });
+
+// Add event listener for random style button
+document.getElementById('randomStyle').addEventListener('click', generateRandomStyle);
+
+// Add this function to generate random styles
+function generateRandomStyle() {
+    // Generate random dot style
+    const dotStyles = ['square', 'rounded', 'extra-rounded', 'classy', 'classy-rounded', 'dots'];
+    const randomDotStyle = dotStyles[Math.floor(Math.random() * dotStyles.length)];
+    selectedDotsType = randomDotStyle;
+    selectOption(randomDotStyle + 'Option');
+    
+    // Generate random colors
+    const randomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    
+    // Set random dot color
+    dotsColor = randomColor();
+    document.getElementById('qrColor').value = dotsColor;
+    
+    // Set random background color
+    qrBackground = randomColor();
+    document.getElementById('qrBackground').value = qrBackground;
+    
+    // Set random corners square color
+    cornersSquareColor = randomColor();
+    document.getElementById('cornersSquareColor').value = cornersSquareColor;
+    
+    // Set random corners dot color
+    cornersDotColor = randomColor();
+    document.getElementById('cornersDotColor').value = cornersDotColor;
+    
+    // Randomly choose between single color and gradient
+    const colorTypes = ['single', 'gradient'];
+    
+    // Dots color type
+    dotsColorType = colorTypes[Math.floor(Math.random() * colorTypes.length)];
+    document.getElementById('dotsColorType').value = dotsColorType;
+    
+    if (dotsColorType === 'gradient') {
+        dotsGradientStart = randomColor();
+        dotsGradientEnd = randomColor();
+        document.getElementById('dotsGradientStart').value = dotsGradientStart;
+        document.getElementById('dotsGradientEnd').value = dotsGradientEnd;
+        
+        // Show gradient controls
+        document.getElementById('dotsSingleColor').style.display = 'none';
+        document.getElementById('dotsGradient').style.display = 'block';
+        document.getElementById('dotsGradientType').style.display = 'block';
+        
+        // Random gradient type
+        dotsGradientType = Math.random() > 0.5 ? 'linear' : 'radial';
+        document.getElementById('dotsGradientTypeSelect').value = dotsGradientType;
+        
+        if (dotsGradientType === 'linear') {
+            document.getElementById('dotsLinearGradientRotation').style.display = 'block';
+            dotsGradientRotation = Math.floor(Math.random() * 360);
+            document.getElementById('dotsGradientRotation').value = dotsGradientRotation;
+        } else {
+            document.getElementById('dotsLinearGradientRotation').style.display = 'none';
+        }
+    } else {
+        // Show single color controls
+        document.getElementById('dotsSingleColor').style.display = 'block';
+        document.getElementById('dotsGradient').style.display = 'none';
+        document.getElementById('dotsGradientType').style.display = 'none';
+        document.getElementById('dotsLinearGradientRotation').style.display = 'none';
+    }
+    
+    // Update QR code with new random style
+    updateQRCode();
+}
+
+function updateQRMargin() {
+    const marginSlider = document.getElementById('qrMargin');
+    const marginInput = document.getElementById('qrMarginInput');
+    
+    // Sync the input with the slider
+    if (event.target.id === 'qrMargin') {
+        marginInput.value = marginSlider.value;
+    } else {
+        marginSlider.value = marginInput.value;
+    }
+    
+    qrMargin = parseInt(marginSlider.value);
+    document.getElementById('qrMarginValue').textContent = qrMargin;
+    updateQRCode();
+}

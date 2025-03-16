@@ -22,10 +22,13 @@
     <meta name="twitter:description"
         content="Create custom QR codes for your business or personal use. Free QR code styling generator - No paywall, no registration, no limits!">
     <meta name="twitter:image" content="https://qrpretty.com/images/twitter-image.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/ico" href="favicon.ico">
     <link rel="canonical" href="https://qrpretty.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -35,11 +38,12 @@
     <div class="index-content">
         <div class="controls">
             <h4>Text/URL</h4>
-            <input type="text" id="qrText" placeholder="Enter text or URL">
+            <input type="text" id="qrText" placeholder="Enter text or URL" value="https://qrpretty.com">
 
             <div id="qr-code"></div>
             <div id="downloadOptions" class="download-options">
                 <button id="downloadQR">Download QR Code</button>
+                <button id="randomStyle">Random Style</button>
                 <select id="fileType">
                     <option value="png">PNG</option>
                     <option value="jpeg">JPEG</option>
@@ -63,6 +67,35 @@
             <br />
 
             <h4>Style</h4>
+            <div class="color-selector collapsible">
+                <button type="button" class="collapsible-header">QR Code Shape</button>
+                <div class="collapsible-content">
+                    <div class="slider-container">
+                        <label for="shapeRadius">Border Radius:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="shapeRadius" min="0" max="100" value="30">
+                            <span id="shapeRadiusValue">30</span>%
+                        </div>
+                    </div>
+                    <p class="error-correction-info">Adjust the border radius to create rounded corners for the QR code. Higher values create more rounded corners.</p>
+                </div>
+            </div>
+
+            <div class="color-selector collapsible">
+                <button type="button" class="collapsible-header">QR Code Margin</button>
+                <div class="collapsible-content">
+                    <div class="slider-container">
+                        <label for="qrMargin">Margin Size:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="qrMargin" min="0" max="50" value="10" step="1">
+                            <input type="number" id="qrMarginInput" min="0" max="50" value="10" step="1">px
+                            <span hidden id="qrMarginValue">10</span>
+                        </div>
+                    </div>
+                    <p class="error-correction-info">Adjust the margin around the QR code. This is the quiet zone that helps scanners identify the QR code.</p>
+                </div>
+            </div>
+
             <div class="color-selector collapsible">
                 <button type="button" class="collapsible-header">QR Code Dots Style</button>
                 <div class="collapsible-content">
@@ -286,11 +319,12 @@
         <a href="tutorial.html" class="about-link">Tutorial</a>
         <a href="sitemap.html" class="about-link">Sitemap</a>
         <div class="social-icons">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://qrpretty.com" class="fa fa-facebook"></a>
-            <a href="https://twitter.com/intent/tweet?url=https://qrpretty&text=Create custom QR codes for free!"
-                target="_blank" class="fa fa-twitter"></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://qrpretty.com" 
+                class="fa-brands fa-facebook"></a>
+            <a href="https://twitter.com/intent/tweet?url=https://qrpretty.com&text=Create custom QR codes for free!" 
+                class="fa-brands fa-x-twitter"></a>
             <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://qrpretty.com"
-                class="fa fa-linkedin"></a>
+                class="fa-brands fa-linkedin"></a>
         </div>
     </footer>
 
@@ -304,6 +338,7 @@
     <script src="./scripts/uiControls.js"></script>
     <script src="./scripts/fileOperations.js"></script>
     <script src="./scripts/bulkOperations.js"></script>
+    <script src="./scripts/randomStyle.js"></script>
 </body>
 
 </html>
