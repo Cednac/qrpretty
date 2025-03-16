@@ -92,6 +92,9 @@ h1 {
     flex-direction: column;
     align-items: center;
     max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 h4 {
@@ -270,6 +273,8 @@ a:hover {
     background-color: white;
     padding: 0;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #qr-code canvas {
@@ -800,6 +805,8 @@ input[type="color"]::-moz-color-swatch {
     margin-top: 20px;
     margin-bottom: 15px;
     gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .download-options button {
@@ -926,6 +933,9 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .privacy-content,
