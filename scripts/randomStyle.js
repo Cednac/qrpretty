@@ -11,6 +11,13 @@ APP.randomStyle = (function() {
         document.querySelectorAll('#dotsPicker div').forEach(el => el.classList.remove('selected'));
         document.getElementById(`${randomDotStyle}Option`).classList.add('selected');
         
+        // Generate random QR margin (between 0 and 30)
+        const randomMargin = Math.floor(Math.random() * 31);
+        APP.main.setQRMargin(randomMargin);
+        document.getElementById('qrMargin').value = randomMargin;
+        document.getElementById('qrMarginInput').value = randomMargin;
+        document.getElementById('qrMarginValue').textContent = randomMargin;
+        
         // Generate random colors
         const randomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
         

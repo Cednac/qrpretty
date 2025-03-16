@@ -3,6 +3,7 @@ var APP = APP || {};
 APP.main = (function() {
     // Global variables
     let qrSize = 300;
+    let qrMargin = 10;
     let selectedDotsType = "square";
     let dotsColor = "#000000";
     let qrBackground = "#FFFFFF";
@@ -47,6 +48,8 @@ APP.main = (function() {
     return {
         getQRSize: function() { return qrSize; },
         setQRSize: function(size) { qrSize = size; },
+        getQRMargin: function() { return qrMargin; },
+        setQRMargin: function(margin) { qrMargin = margin; },
         getSelectedDotsType: function() { return selectedDotsType; },
         setSelectedDotsType: function(type) { selectedDotsType = type; },
         getDotsColor: function() { return dotsColor; },

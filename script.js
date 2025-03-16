@@ -1,8 +1,10 @@
 let qrSize = 300; // Default size
+let qrMargin = 10; // Default margin
 
 const qrCode = new QRCodeStyling({
     width: qrSize,
     height: qrSize,
+    margin: qrMargin,
     imageOptions: {
         crossOrigin: "anonymous",
         margin: 10
@@ -211,6 +213,7 @@ function updateQRCode() {
     qrCode.update({
         width: qrSize,
         height: qrSize,
+        margin: qrMargin,
         data: text,
         dotsOptions: dotsOptions,
         cornersSquareOptions: cornersSquareOptions,
@@ -267,6 +270,32 @@ function generateQRCode(text) {
 // Add this function to initialize the QR code
 function initQRCode() {
     qrCode.append(document.getElementById("qr-code"));
+    
+    const text = document.getElementById('qrText').value.trim();
+    if (text) {
+        generateQRCode(text);
+    }
+
+    // Initialize QR size display
+    document.getElementById('qrSizeValue').textContent = qrSize;
+    document.getElementById('qrSizeInput').value = qrSize;
+    
+    // Initialize QR margin display
+    document.getElementById('qrMarginValue').textContent = qrMargin;
+    document.getElementById('qrMarginInput').value = qrMargin;
+
+    // Initialize color type selectors
+    document.getElementById('dotsColorType').addEventListener('change', updateDotsColorType);
+    document.getElementById('backgroundColorType').addEventListener('change', updateBackgroundColorType);
+    document.getElementById('dotsGradientTypeSelect').addEventListener('change', updateDotsGradientType);
+    document.getElementById('backgroundGradientTypeSelect').addEventListener('change', updateBackgroundGradientType);
+    document.getElementById('cornersSquareColorType').addEventListener('change', updateCornersSquareColorType);
+    document.getElementById('cornersSquareGradientTypeSelect').addEventListener('change', updateCornersSquareGradientType);
+    document.getElementById('cornersDotColorType').addEventListener('change', updateCornersDotColorType);
+    document.getElementById('cornersDotGradientTypeSelect').addEventListener('change', updateCornersDotGradientType);
+
+    // Initialize collapsible sections
+    initCollapsibles();
 }
 
 // Call this function once when the page loads
@@ -474,17 +503,28 @@ updateDownloadOptions();
 
 // Update the updateQRSize function
 function updateQRSize() {
-    qrSize = parseInt(document.getElementById('qrSize').value);
+    const sizeSlider = document.getElementById('qrSize');
+    const sizeInput = document.getElementById('qrSizeInput');
+    
+    // Sync the input with the slider
+    if (event.target.id === 'qrSize') {
+        sizeInput.value = sizeSlider.value;
+    } else {
+        sizeSlider.value = sizeInput.value;
+    }
+    
+    qrSize = parseInt(sizeSlider.value);
     document.getElementById('qrSizeValue').textContent = qrSize;
-    qrCode.update({
-        width: qrSize,
-        height: qrSize
-    });
     updateQRCode();
 }
 
 // Add event listener for size input
 document.getElementById('qrSize').addEventListener('input', updateQRSize);
+document.getElementById('qrSizeInput').addEventListener('input', updateQRSize);
+
+// Add event listener for QR margin
+document.getElementById('qrMargin').addEventListener('input', updateQRMargin);
+document.getElementById('qrMarginInput').addEventListener('input', updateQRMargin);
 
 // Add these new event listeners
 document.getElementById('dotsColorType').addEventListener('change', updateDotsColorType);
@@ -846,5 +886,21 @@ function generateRandomStyle() {
     }
     
     // Update QR code with new random style
+    updateQRCode();
+}
+
+function updateQRMargin() {
+    const marginSlider = document.getElementById('qrMargin');
+    const marginInput = document.getElementById('qrMarginInput');
+    
+    // Sync the input with the slider
+    if (event.target.id === 'qrMargin') {
+        marginInput.value = marginSlider.value;
+    } else {
+        marginSlider.value = marginInput.value;
+    }
+    
+    qrMargin = parseInt(marginSlider.value);
+    document.getElementById('qrMarginValue').textContent = qrMargin;
     updateQRCode();
 }

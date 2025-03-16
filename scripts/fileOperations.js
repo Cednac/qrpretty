@@ -44,6 +44,7 @@ APP.fileOperations = (function() {
         const tempQrCode = new QRCodeStyling({
             width: APP.main.getQRSize(),
             height: APP.main.getQRSize(),
+            margin: APP.main.getQRMargin(),
             data: text,
             dotsOptions: getDotsOptions(dotsType),
             cornersSquareOptions: getCornersSquareOptions(cornersSquareType),

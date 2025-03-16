@@ -7,6 +7,7 @@ APP.qrCodeGenerator = (function() {
         qrCode = new QRCodeStyling({
             width: APP.main.getQRSize(),
             height: APP.main.getQRSize(),
+            margin: APP.main.getQRMargin(),
             imageOptions: {
                 crossOrigin: "anonymous",
                 margin: 10
@@ -101,6 +102,7 @@ APP.qrCodeGenerator = (function() {
         const newQrCode = new QRCodeStyling({
             width: APP.main.getQRSize(),
             height: APP.main.getQRSize(),
+            margin: APP.main.getQRMargin(),
             data: text,
             dotsOptions: dotsOptions,
             cornersSquareOptions: cornersSquareOptions,
@@ -147,6 +149,7 @@ APP.qrCodeGenerator = (function() {
         document.getElementById('logoMarginContainer').style.display = APP.main.getCurrentLogo() ? 'block' : 'none';
         document.getElementById('logoSizeContainer').style.display = APP.main.getCurrentLogo() ? 'block' : 'none';
         document.getElementById('qrSizeValue').textContent = APP.main.getQRSize();
+        document.getElementById('qrMarginValue').textContent = APP.main.getQRMargin();
 
         // Update the collapsible content size
         APP.uiControls.updateCollapsibleContentSize(document.querySelector('.collapsible-content.active'));

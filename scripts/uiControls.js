@@ -24,6 +24,19 @@ APP.uiControls = (function() {
         }
     }
 
+    function updateQRMargin() {
+        const qrMarginSlider = document.getElementById('qrMargin');
+        const qrMarginInput = document.getElementById('qrMarginInput');
+        const newMargin = parseInt(qrMarginInput.value);
+
+        if (newMargin >= 0 && newMargin <= 50) {
+            APP.main.setQRMargin(newMargin);
+            qrMarginSlider.value = newMargin;
+            document.getElementById('qrMarginValue').textContent = newMargin;
+            APP.qrCodeGenerator.updateQRCode();
+        }
+    }
+
     function updateDotsColorType() {
         const colorType = document.getElementById('dotsColorType').value;
         APP.main.setDotsColorType(colorType);
@@ -134,6 +147,7 @@ APP.uiControls = (function() {
     return {
         updateDownloadOptions: updateDownloadOptions,
         updateQRSize: updateQRSize,
+        updateQRMargin: updateQRMargin,
         updateDotsColorType: updateDotsColorType,
         updateBackgroundColorType: updateBackgroundColorType,
         updateCornersSquareColorType: updateCornersSquareColorType,

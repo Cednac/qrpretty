@@ -44,6 +44,7 @@ APP.bulkOperations = (function() {
             const qrCode = new QRCodeStyling({
                 width: 200,
                 height: 200,
+                margin: APP.main.getQRMargin(),
                 data: text,
                 dotsOptions: APP.fileOperations.getDotsOptions(dotsType),
                 cornersSquareOptions: APP.fileOperations.getCornersSquareOptions(cornersSquareType),
@@ -130,6 +131,7 @@ APP.bulkOperations = (function() {
                 const tempQrCode = new QRCodeStyling({
                     width: 200,
                     height: 200,
+                    margin: APP.main.getQRMargin(),
                     data: text,
                     dotsOptions: APP.fileOperations.getDotsOptions(dotsType),
                     cornersSquareOptions: APP.fileOperations.getCornersSquareOptions(cornersSquareType),

@@ -13,6 +13,13 @@ APP.eventHandlers = (function() {
         });
         document.getElementById('qrSizeInput').addEventListener('input', APP.uiControls.updateQRSize);
 
+        // QR Code margin
+        document.getElementById('qrMargin').addEventListener('input', function() {
+            document.getElementById('qrMarginInput').value = this.value;
+            APP.uiControls.updateQRMargin();
+        });
+        document.getElementById('qrMarginInput').addEventListener('input', APP.uiControls.updateQRMargin);
+
         // QR Code shape radius
         document.getElementById('shapeRadius').addEventListener('input', function() {
             const radius = parseInt(this.value);
