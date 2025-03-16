@@ -14,6 +14,14 @@ APP.qrCodeGenerator = (function() {
             }
         });
         qrCode.append(document.getElementById("qr-code"));
+        
+        // Apply shape radius to QR code container on initialization
+        const shapeRadius = APP.main.getShapeRadius();
+        if (shapeRadius > 0) {
+            const borderRadiusValue = `${shapeRadius}px`;
+            const qrCodeContainer = document.getElementById("qr-code");
+            qrCodeContainer.style.borderRadius = borderRadiusValue;
+        }
     }
 
     function updateQRCode() {

@@ -34,7 +34,7 @@ APP.main = (function() {
     let logoSize = 0.4;
     let errorCorrectionLevel = 'M';
     let csvData = [];
-    let shapeRadius = 0;
+    let shapeRadius = 30;
 
     function init() {
         APP.qrCodeGenerator.initQRCode();

@@ -128,6 +128,11 @@ APP.uiControls = (function() {
                 }
             });
         });
+        
+        // Initialize shape radius value in UI
+        const shapeRadius = APP.main.getShapeRadius();
+        document.getElementById('shapeRadius').value = shapeRadius;
+        document.getElementById('shapeRadiusValue').textContent = shapeRadius;
     }
 
     function updateCollapsibleContentSize(content) {

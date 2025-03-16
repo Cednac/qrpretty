@@ -64,17 +64,6 @@
                 </div>
             </div>
 
-            <div id="qrMarginContainer">
-                <div class="slider-container">
-                    <div class="slider-wrapper">
-                        <label for="qrMargin">QR Margin:</label>
-                        <input type="range" id="qrMargin" min="0" max="50" value="10" step="1">
-                        <input type="number" id="qrMarginInput" min="0" max="50" value="10" step="1">px
-                        <span hidden id="qrMarginValue">10</span>
-                    </div>
-                </div>
-            </div>
-
             <br />
 
             <h4>Style</h4>
@@ -84,11 +73,26 @@
                     <div class="slider-container">
                         <label for="shapeRadius">Border Radius:</label>
                         <div class="slider-wrapper">
-                            <input type="range" id="shapeRadius" min="0" max="100" value="0">
-                            <span id="shapeRadiusValue">0</span>%
+                            <input type="range" id="shapeRadius" min="0" max="100" value="30">
+                            <span id="shapeRadiusValue">30</span>%
                         </div>
                     </div>
                     <p class="error-correction-info">Adjust the border radius to create rounded corners for the QR code. Higher values create more rounded corners.</p>
+                </div>
+            </div>
+
+            <div class="color-selector collapsible">
+                <button type="button" class="collapsible-header">QR Code Margin</button>
+                <div class="collapsible-content">
+                    <div class="slider-container">
+                        <label for="qrMargin">Margin Size:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="qrMargin" min="0" max="50" value="10" step="1">
+                            <input type="number" id="qrMarginInput" min="0" max="50" value="10" step="1">px
+                            <span hidden id="qrMarginValue">10</span>
+                        </div>
+                    </div>
+                    <p class="error-correction-info">Adjust the margin around the QR code. This is the quiet zone that helps scanners identify the QR code.</p>
                 </div>
             </div>
 
