@@ -76,6 +76,13 @@ APP.randomStyle = (function() {
             document.getElementById('dotsLinearGradientRotation').style.display = 'none';
         }
         
+        // Set random shape radius
+        const randomShapeRadius = Math.floor(Math.random() * 50);
+        APP.main.setShapeRadius(randomShapeRadius);
+        document.getElementById('shapeRadius').value = randomShapeRadius;
+        document.getElementById('shapeRadiusValue').textContent = randomShapeRadius;
+        console.log("Random shape radius set to:", randomShapeRadius);
+        
         // Update QR code with new random style
         APP.qrCodeGenerator.updateQRCode();
     }

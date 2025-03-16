@@ -33,6 +33,7 @@ APP.main = (function() {
     let logoSize = 0.4;
     let errorCorrectionLevel = 'M';
     let csvData = [];
+    let shapeRadius = 0;
 
     function init() {
         APP.qrCodeGenerator.initQRCode();
@@ -105,6 +106,8 @@ APP.main = (function() {
         getErrorCorrectionLevel: function() { return errorCorrectionLevel; },
         setErrorCorrectionLevel: function(level) { errorCorrectionLevel = level; },
         getCSVData: function() { return csvData; },
-        setCSVData: function(data) { csvData = data; }
+        setCSVData: function(data) { csvData = data; },
+        getShapeRadius: function() { return shapeRadius; },
+        setShapeRadius: function(radius) { shapeRadius = radius; }
     };
 })();

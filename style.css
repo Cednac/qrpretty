@@ -275,11 +275,16 @@ a:hover {
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 0;
+    transition: border-radius 0.3s ease;
 }
 
-#qr-code canvas {
+#qr-code canvas, 
+#qr-code svg {
     height: 100%;
     width: 100%;
+    border-radius: inherit;
+    transition: border-radius 0.3s ease;
 }
 
 @keyframes fadeIn {
@@ -870,10 +875,10 @@ input[type="color"]::-moz-color-swatch {
     flex-direction: column;
     align-items: center;
     background-color: var(--card-background);
-    border-radius: var(--border-radius);
+    border-radius: 0;
     padding: 15px;
     box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
 }
 
 .qr-container:hover {
@@ -886,6 +891,13 @@ input[type="color"]::-moz-color-swatch {
     word-break: break-all;
     max-width: 200px;
     font-size: 0.9rem;
+}
+
+.qr-container canvas,
+.qr-container svg,
+.qr-container div {
+    border-radius: inherit;
+    transition: border-radius 0.3s ease;
 }
 
 .bulk-controls {

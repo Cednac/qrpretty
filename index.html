@@ -68,6 +68,20 @@
 
             <h4>Style</h4>
             <div class="color-selector collapsible">
+                <button type="button" class="collapsible-header">QR Code Shape</button>
+                <div class="collapsible-content">
+                    <div class="slider-container">
+                        <label for="shapeRadius">Border Radius:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="shapeRadius" min="0" max="100" value="0">
+                            <span id="shapeRadiusValue">0</span>%
+                        </div>
+                    </div>
+                    <p class="error-correction-info">Adjust the border radius to create rounded corners for the QR code. Higher values create more rounded corners.</p>
+                </div>
+            </div>
+
+            <div class="color-selector collapsible">
                 <button type="button" class="collapsible-header">QR Code Dots Style</button>
                 <div class="collapsible-content">
                     <div class="picker" id="dotsPicker">
