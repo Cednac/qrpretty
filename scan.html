@@ -35,22 +35,22 @@
         <div class="controls">
             <div class="scanner-options">
                 <div class="scanner-option-buttons">
-                    <button id="startCameraBtn" class="scanner-option-btn active">
-                        <i class="fas fa-camera"></i>
-                        <span>Camera</span>
+                    <button id="pasteImageBtn" class="scanner-option-btn active">
+                        <i class="fas fa-paste"></i>
+                        <span>Paste Image</span>
                     </button>
                     <button id="uploadImageBtn" class="scanner-option-btn">
                         <i class="fas fa-upload"></i>
                         <span>Upload Image</span>
                     </button>
-                    <button id="pasteImageBtn" class="scanner-option-btn">
-                        <i class="fas fa-paste"></i>
-                        <span>Paste Image</span>
+                    <button id="startCameraBtn" class="scanner-option-btn">
+                        <i class="fas fa-camera"></i>
+                        <span>Camera</span>
                     </button>
                 </div>
             </div>
 
-            <div id="camera-container" class="scanner-container">
+            <div id="camera-container" class="scanner-container" style="display: none;">
                 <div id="video-container">
                     <video id="video" autoplay playsinline></video>
                     <div class="scan-region-highlight"></div>
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div id="paste-container" class="scanner-container" style="display: none;">
+            <div id="paste-container" class="scanner-container">
                 <div id="paste-area">
                     <i class="fas fa-paste"></i>
                     <p>Paste QR code image here (Ctrl+V or Command+V)</p>

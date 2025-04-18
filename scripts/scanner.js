@@ -11,7 +11,7 @@ APP.scanner = (function() {
     let cameraFacingMode = 'environment'; // Start with back camera
     let hasFlash = false;
     let flashOn = false;
-    let activeTab = 'camera';
+    let activeTab = 'paste';
     
     // Initialize the scanner functionality
     function init() {
@@ -71,8 +71,8 @@ APP.scanner = (function() {
         openBtn.addEventListener('click', openURL);
         generateQrBtn.addEventListener('click', generateQR);
         
-        // Start with camera scanner by default
-        switchTab('camera');
+        // Start with paste scanner by default
+        switchTab('paste');
     }
     
     // Switch between scanner tabs (camera, image upload, paste)
@@ -367,10 +367,55 @@ APP.scanner = (function() {
     
     // Copy scan result to clipboard
     function copyToClipboard() {
+        const scannedText = document.getElementById('scanned-text').value;
+        
+        // Try to use the modern Clipboard API first
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(scannedText)
+                .then(() => {
+                    showCopyAlert('Copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard();
+                });
+        } else {
+            fallbackCopyToClipboard();
+        }
+    }
+    
+    // Fallback copy method using document.execCommand
+    function fallbackCopyToClipboard() {
         const scannedText = document.getElementById('scanned-text');
         scannedText.select();
-        document.execCommand('copy');
-        alert('Copied to clipboard!');
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopyAlert('Copied to clipboard!');
+            } else {
+                showCopyAlert('Failed to copy. Please copy manually.');
+            }
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            showCopyAlert('Failed to copy. Please copy manually.');
+        }
+    }
+    
+    // Show alert message for copy
+    function showCopyAlert(message) {
+        // Create a temporary element to show the message
+        const alertElement = document.createElement('div');
+        alertElement.className = 'copy-alert';
+        alertElement.textContent = message;
+        document.body.appendChild(alertElement);
+        
+        // Remove after 2 seconds
+        setTimeout(() => {
+            alertElement.classList.add('fadeout');
+            setTimeout(() => {
+                document.body.removeChild(alertElement);
+            }, 300);
+        }, 1700);
     }
     
     // Open URL if scan result is a valid URL
