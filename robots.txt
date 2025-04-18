@@ -1,10 +1,11 @@
 User-agent: *
-Disallow:
-
-User-agent: Googlebot
 Allow: /
-
-User-agent: Mediapartners-Google
-Allow: /
+Allow: /index.html
+Allow: /scan.html
+Allow: /about.html
+Allow: /tutorial.html
+Allow: /contact.html
+Allow: /privacy.html
+Allow: /sitemap.html
 
 Sitemap: https://qrpretty.com/sitemap.xml

@@ -20,6 +20,9 @@ APP.eventHandlers = (function() {
         });
         document.getElementById('qrMarginInput').addEventListener('input', APP.uiControls.updateQRMargin);
 
+        // Check for URL parameters and apply them
+        parseUrlParameters();
+
         // QR Code shape radius
         document.getElementById('shapeRadius').addEventListener('input', function() {
             const radius = parseInt(this.value);
@@ -118,11 +121,28 @@ APP.eventHandlers = (function() {
         document.getElementById('downloadBulkQR').addEventListener('click', APP.bulkOperations.downloadBulkQRCodes);
     }
 
-    function debounce(func, delay) {
-        let timeoutId;
-        return function (...args) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => func.apply(this, args), delay);
+    // Parse URL parameters and apply them to the QR code generator
+    function parseUrlParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('text')) {
+            const text = urlParams.get('text');
+            const qrTextInput = document.getElementById('qrText');
+            if (qrTextInput) {
+                qrTextInput.value = text;
+                APP.qrCodeGenerator.updateQRCode();
+                APP.uiControls.updateDownloadOptions();
+            }
+        }
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                func.apply(context, args);
+            }, wait);
         };
     }
 
@@ -134,6 +154,7 @@ APP.eventHandlers = (function() {
     }
 
     return {
-        initEventListeners: initEventListeners
+        initEventListeners: initEventListeners,
+        debounce: debounce
     };
 })();
