@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scan QR codes using your camera or from an image. Free QR code scanner - No paywall, no registration, no limits!">
+    <title>QR Code Scanner - QR Pretty</title>
+    <meta name="keywords" content="QR code, QR code scanner, read QR codes, free QR scanner">
+    <meta name="author" content="Your Name or Company Name">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="QR Code Scanner - QR Pretty">
+    <meta property="og:description" content="Scan QR codes using your camera or from an image. Free QR code scanner - No paywall, no registration, no limits!">
+    <meta property="og:image" content="https://qrpretty.com/images/og-image.jpg">
+    <meta property="og:url" content="https://qrpretty.com/scan.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Scanner - QR Pretty">
+    <meta name="twitter:description" content="Scan QR codes using your camera or from an image. Free QR code scanner - No paywall, no registration, no limits!">
+    <meta name="twitter:image" content="https://qrpretty.com/images/twitter-image.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="canonical" href="https://qrpretty.com/scan.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <h1>QR Code Scanner</h1>
+    <p class="subtitle">Free QR code scanner - No paywall, no registration, no limits!</p>
+
+    <div class="index-content">
+        <div class="controls">
+            <div class="scanner-options">
+                <div class="scanner-option-buttons">
+                    <button id="startCameraBtn" class="scanner-option-btn active">
+                        <i class="fas fa-camera"></i>
+                        <span>Camera</span>
+                    </button>
+                    <button id="uploadImageBtn" class="scanner-option-btn">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Image</span>
+                    </button>
+                    <button id="pasteImageBtn" class="scanner-option-btn">
+                        <i class="fas fa-paste"></i>
+                        <span>Paste Image</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="camera-container" class="scanner-container">
+                <div id="video-container">
+                    <video id="video" autoplay playsinline></video>
+                    <div class="scan-region-highlight"></div>
+                    <div class="camera-controls">
+                        <button id="switchCameraBtn"><i class="fas fa-sync-alt"></i></button>
+                        <button id="toggleFlashBtn"><i class="fas fa-bolt"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="image-container" class="scanner-container" style="display: none;">
+                <div id="dropzone">
+                    <i class="fas fa-upload"></i>
+                    <p>Drop QR code image here or click to upload</p>
+                    <input type="file" id="qrImageUpload" accept="image/*" style="display: none;">
+                </div>
+                <div id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="QR Code Preview">
+                    <button id="scan-another-btn" class="secondary-btn">Scan Another</button>
+                </div>
+            </div>
+
+            <div id="paste-container" class="scanner-container" style="display: none;">
+                <div id="paste-area">
+                    <i class="fas fa-paste"></i>
+                    <p>Paste QR code image here (Ctrl+V or Command+V)</p>
+                </div>
+                <div id="paste-preview" style="display: none;">
+                    <img id="paste-preview-img" src="" alt="Pasted QR Code Preview">
+                    <button id="scan-another-paste-btn" class="secondary-btn">Scan Another</button>
+                </div>
+            </div>
+
+            <div id="result-container" style="display: none;">
+                <h3>Scan Result</h3>
+                <div id="result-content">
+                    <textarea id="scanned-text" readonly></textarea>
+                </div>
+                <div class="result-actions">
+                    <button id="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                    <button id="open-btn"><i class="fas fa-external-link-alt"></i> Open URL</button>
+                    <button id="generate-qr-btn"><i class="fas fa-qrcode"></i> Generate QR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html" class="about-link">Home</a>
+        <a href="about.html" class="about-link">About</a>
+        <a href="privacy.html" class="about-link">Privacy Policy</a>
+        <a href="contact.html" class="about-link">Contact</a>
+        <a href="tutorial.html" class="about-link">Tutorial</a>
+        <a href="sitemap.html" class="about-link">Sitemap</a>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://qrpretty.com" 
+                class="fa-brands fa-facebook"></a>
+            <a href="https://twitter.com/intent/tweet?url=https://qrpretty.com&text=Scan QR codes for free!" 
+                class="fa-brands fa-x-twitter"></a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://qrpretty.com"
+                class="fa-brands fa-linkedin"></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="./scripts/scanner.js"></script>
+</body>
+
+</html> 
