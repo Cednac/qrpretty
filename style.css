@@ -32,7 +32,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     background: var(--background-gradient);
     color: var(--text-color);
     line-height: 1.6;
@@ -146,15 +146,14 @@ h1::after {
 }
 
 .controls {
-    background: var(--card-background);
+    background: rgba(30, 30, 46, 0.5);
     border-radius: var(--border-radius);
     padding: 30px;
-    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(99, 102, 241, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 /* Basic Form Elements */
@@ -480,6 +479,14 @@ footer {
         width: 100%;
         margin-top: 5px;
     }
+
+    .scanner-option-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .scanner-option-btn {
+        width: 100%;
+    }
 }
 
 /* Slider Styles */
@@ -581,4 +588,135 @@ footer {
 
 #dotsColorType, #backgroundColorType, #cornersSquareColorType, #cornersDotColorType {
     margin-bottom: 15px;
+}
+
+/* Scanner Option Buttons */
+.scanner-option-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.scanner-option-btn {
+    background: rgba(30, 30, 46, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    min-width: 150px;
+}
+
+.scanner-option-btn i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.scanner-option-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.scanner-option-btn:hover {
+    transform: translateY(-2px);
+    background: var(--primary-color);
+}
+
+#paste-area {
+    border: 2px dashed rgba(99, 102, 241, 0.3);
+    border-radius: var(--border-radius);
+    padding: 100px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(30, 30, 46, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#paste-area i {
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+#paste-area p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+#dropzone {
+    border: 2px dashed rgba(99, 102, 241, 0.3);
+    border-radius: var(--border-radius);
+    padding: 100px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(30, 30, 46, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#dropzone i {
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#dropzone p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.dragover {
+    border-color: var(--primary-color) !important;
+    background: rgba(99, 102, 241, 0.1) !important;
+}
+
+#video-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+#video {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.camera-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.camera-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.camera-controls button:hover {
+    background: rgba(0, 0, 0, 0.7);
 }

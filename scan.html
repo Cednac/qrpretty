@@ -45,71 +45,65 @@
             </div>
         </header>
 
-        <div class="index-content center-fix">
-            <div class="controls-wrapper center-fix">
-                <div class="controls center-fix">
-                    <div class="scanner-options">
-                        <div class="scanner-option-buttons">
-                            <button id="pasteImageBtn" class="scanner-option-btn active">
-                                <i class="fas fa-paste"></i>
-                                <span>Paste Image</span>
-                            </button>
-                            <button id="uploadImageBtn" class="scanner-option-btn">
-                                <i class="fas fa-upload"></i>
-                                <span>Upload Image</span>
-                            </button>
-                            <button id="startCameraBtn" class="scanner-option-btn">
-                                <i class="fas fa-camera"></i>
-                                <span>Camera</span>
-                            </button>
-                        </div>
-                    </div>
+        <div class="controls">
+            <div class="scanner-option-buttons">
+                <button id="pasteImageBtn" class="scanner-option-btn active">
+                    <i class="fas fa-paste"></i>
+                    Paste Image
+                </button>
+                <button id="uploadImageBtn" class="scanner-option-btn">
+                    <i class="fas fa-upload"></i>
+                    Upload Image
+                </button>
+                <button id="startCameraBtn" class="scanner-option-btn">
+                    <i class="fas fa-camera"></i>
+                    Camera
+                </button>
+            </div>
 
-                    <div id="camera-container" class="scanner-container" style="display: none;">
-                        <div id="video-container">
-                            <video id="video" autoplay playsinline></video>
-                            <div class="scan-region-highlight"></div>
-                            <div class="camera-controls">
-                                <button id="switchCameraBtn"><i class="fas fa-sync-alt"></i></button>
-                                <button id="toggleFlashBtn"><i class="fas fa-bolt"></i></button>
-                            </div>
-                        </div>
+            <div id="camera-container" class="scanner-container" style="display: none;">
+                <div id="video-container">
+                    <video id="video" autoplay playsinline></video>
+                    <div class="scan-region-highlight"></div>
+                    <div class="camera-controls">
+                        <button id="switchCameraBtn"><i class="fas fa-sync-alt"></i></button>
+                        <button id="toggleFlashBtn"><i class="fas fa-bolt"></i></button>
                     </div>
+                </div>
+            </div>
 
-                    <div id="image-container" class="scanner-container" style="display: none;">
-                        <div id="dropzone">
-                            <i class="fas fa-upload"></i>
-                            <p>Drop QR code image here or click to upload</p>
-                            <input type="file" id="qrImageUpload" accept="image/*" style="display: none;">
-                        </div>
-                        <div id="image-preview" style="display: none;">
-                            <img id="preview-img" src="" alt="QR Code Preview">
-                            <button id="scan-another-btn" class="secondary-btn">Scan Another</button>
-                        </div>
-                    </div>
+            <div id="image-container" class="scanner-container" style="display: none;">
+                <div id="dropzone">
+                    <i class="fas fa-upload"></i>
+                    <p>Drop QR code image here or click to upload</p>
+                    <input type="file" id="qrImageUpload" accept="image/*" style="display: none;">
+                </div>
+                <div id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="QR Code Preview">
+                    <button id="scan-another-btn" class="secondary-btn">Scan Another</button>
+                </div>
+            </div>
 
-                    <div id="paste-container" class="scanner-container">
-                        <div id="paste-area">
-                            <i class="fas fa-paste"></i>
-                            <p>Paste QR code image here (Ctrl+V or Command+V)</p>
-                        </div>
-                        <div id="paste-preview" style="display: none;">
-                            <img id="paste-preview-img" src="" alt="Pasted QR Code Preview">
-                            <button id="scan-another-paste-btn" class="secondary-btn">Scan Another</button>
-                        </div>
-                    </div>
+            <div id="paste-container" class="scanner-container">
+                <div id="paste-area">
+                    <i class="fas fa-paste"></i>
+                    <p>Paste QR code image here (Ctrl+V or Command+V)</p>
+                </div>
+                <div id="paste-preview" style="display: none;">
+                    <img id="paste-preview-img" src="" alt="Pasted QR Code Preview">
+                    <button id="scan-another-paste-btn" class="secondary-btn">Scan Another</button>
+                </div>
+            </div>
 
-                    <div id="result-container" style="display: none;">
-                        <h3>Scan Result</h3>
-                        <div id="result-content">
-                            <textarea id="scanned-text" readonly></textarea>
-                        </div>
-                        <div class="result-actions">
-                            <button id="copy-btn"><i class="fas fa-copy"></i> Copy</button>
-                            <button id="open-btn"><i class="fas fa-external-link-alt"></i> Open URL</button>
-                            <button id="generate-qr-btn"><i class="fas fa-qrcode"></i> Generate QR</button>
-                        </div>
-                    </div>
+            <div id="result-container" style="display: none;">
+                <h3>Scan Result</h3>
+                <div id="result-content">
+                    <textarea id="scanned-text" readonly></textarea>
+                </div>
+                <div class="result-actions">
+                    <button id="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                    <button id="open-btn"><i class="fas fa-external-link-alt"></i> Open URL</button>
+                    <button id="generate-qr-btn"><i class="fas fa-qrcode"></i> Generate QR</button>
                 </div>
             </div>
         </div>
