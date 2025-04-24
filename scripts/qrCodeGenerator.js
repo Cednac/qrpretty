@@ -98,8 +98,8 @@ APP.qrCodeGenerator = (function() {
 
         // Create a new QR code instance with updated options
         const newQrCode = new QRCodeStyling({
-            width: APP.main.getQRSize(),
-            height: APP.main.getQRSize(),
+            width: 300, // Fixed display size
+            height: 300, // Fixed display size
             margin: APP.main.getQRMargin(),
             data: text,
             dotsOptions: dotsOptions,
