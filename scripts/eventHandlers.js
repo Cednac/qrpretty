@@ -119,6 +119,10 @@ APP.eventHandlers = (function() {
         document.getElementById('csvFile').addEventListener('change', APP.fileOperations.handleFileSelect);
         document.getElementById('generateBulkQR').addEventListener('click', APP.bulkOperations.generateBulkQRCodes);
         document.getElementById('downloadBulkQR').addEventListener('click', APP.bulkOperations.downloadBulkQRCodes);
+
+        // Initialize collapsibles and observe for dynamic content changes
+        APP.uiControls.initCollapsibles();
+        APP.uiControls.observeContentChanges();
     }
 
     // Parse URL parameters and apply them to the QR code generator
@@ -158,3 +162,15 @@ APP.eventHandlers = (function() {
         debounce: debounce
     };
 })();
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all event listeners
+    APP.eventHandlers.initEventListeners();
+    
+    // Ensure all initially active collapsibles have proper height
+    setTimeout(() => {
+        document.querySelectorAll('.collapsible-content.active').forEach(content => {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        });
+    }, 100);
+});

@@ -37,12 +37,9 @@ APP.qrCodeGenerator = (function() {
         // Get the shape radius value
         const shapeRadius = APP.main.getShapeRadius();
         
-        // Determine the dots type based on the shape radius
-        // If shape radius > 0, use rounded dots, otherwise use the selected type
+        // Get the selected dots type without overriding due to shape radius
         let dotsType = APP.main.getSelectedDotsType();
-        if (shapeRadius > 0) {
-            dotsType = "rounded";
-        } else if (dotsType === 'classy-rounded') {
+        if (dotsType === 'classy-rounded') {
             dotsType = 'rounded';
         }
 
@@ -56,21 +53,14 @@ APP.qrCodeGenerator = (function() {
                   APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
         };
         
-        // If shape radius > 0, use rounded corners
-        if (shapeRadius > 0) {
-            cornersSquareOptions.type = "extra-rounded";
-        }
-        
         let cornersDotOptions = {
             type: APP.main.getSelectedDotsType() === 'classy' ? 'dot' : 
                   APP.main.getSelectedDotsType() === 'classy-rounded' ? 'rounded' : 
                   APP.main.getSelectedDotsType() === 'dots' ? 'dot' : APP.main.getSelectedDotsType()
         };
         
-        // If shape radius > 0, use rounded corner dots
-        if (shapeRadius > 0) {
-            cornersDotOptions.type = "rounded";
-        }
+        // Only apply border radius to the container, not override the dot styles
+        const applyContainerRadius = shapeRadius > 0;
 
         const updateColorOptions = (options, colorType, singleColorId, gradientStartId, gradientEndId, gradientTypeId, gradientRotationId) => {
             options.color = undefined;
@@ -108,8 +98,8 @@ APP.qrCodeGenerator = (function() {
 
         // Create a new QR code instance with updated options
         const newQrCode = new QRCodeStyling({
-            width: APP.main.getQRSize(),
-            height: APP.main.getQRSize(),
+            width: 300, // Fixed display size
+            height: 300, // Fixed display size
             margin: APP.main.getQRMargin(),
             data: text,
             dotsOptions: dotsOptions,
@@ -134,7 +124,7 @@ APP.qrCodeGenerator = (function() {
         
         // Apply CSS border-radius to the QR code container if shape radius > 0
         const qrCodeContainer = document.getElementById("qr-code");
-        if (shapeRadius > 0) {
+        if (applyContainerRadius) {
             const borderRadiusValue = `${shapeRadius}px`;
             qrCodeContainer.style.borderRadius = borderRadiusValue;
             
@@ -166,11 +156,9 @@ APP.qrCodeGenerator = (function() {
     function generateQRCode(text) {
         const shapeRadius = APP.main.getShapeRadius();
         
-        // Determine the dots type based on the shape radius
+        // Get the selected dots type without modifying based on shape radius
         let dotsType = APP.main.getSelectedDotsType();
-        if (shapeRadius > 0) {
-            dotsType = "rounded";
-        } else if (dotsType === 'classy-rounded') {
+        if (dotsType === 'classy-rounded') {
             dotsType = 'rounded';
         }
         
