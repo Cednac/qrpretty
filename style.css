@@ -252,13 +252,29 @@ button:hover {
     background-color: rgba(99, 102, 241, 0.2);
     color: var(--text-color);
     padding: 15px 20px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.collapsible-header:after {
+    content: '\002B';
+    font-size: 1.5rem;
+    font-weight: 300;
+    position: absolute;
+    right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header.active:after {
+    content: '\2212';
 }
 
 .collapsible-content {
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: all 0.3s ease-out;
+    transition: max-height 0.3s ease-out;
     background-color: var(--card-background);
 }
 

@@ -113,34 +113,89 @@ APP.uiControls = (function() {
         APP.qrCodeGenerator.updateQRCode();
     }
 
+    function updateCollapsibleContentSize(content) {
+        if (!content) return;
+        
+        if (content.classList.contains('active')) {
+            // For expanded state, set to scrollHeight
+            const height = content.scrollHeight;
+            content.style.maxHeight = height + 'px';
+        } else {
+            // For collapsed state, set to 0
+            content.style.maxHeight = null;
+        }
+    }
+
+    function observeContentChanges() {
+        let isUpdating = false;
+        
+        // Create a mutation observer to watch for changes in collapsible content
+        const observer = new MutationObserver((mutations) => {
+            if (isUpdating) return; // Prevent recursive updates
+            
+            isUpdating = true;
+            setTimeout(() => {
+                // Find all active collapsibles and update their height
+                document.querySelectorAll('.collapsible-content.active').forEach(content => {
+                    const currentHeight = content.scrollHeight;
+                    content.style.maxHeight = currentHeight + 'px';
+                });
+                isUpdating = false;
+            }, 50);
+        });
+        
+        // Observe all collapsible content elements
+        document.querySelectorAll('.collapsible-content').forEach(content => {
+            observer.observe(content, { 
+                childList: true,
+                subtree: true,
+                attributes: false, // Only watch for content changes, not attribute changes
+                characterData: true
+            });
+        });
+        
+        return observer;
+    }
+
     function initCollapsibles() {
         const collapsibles = document.querySelectorAll('.collapsible-header');
-        collapsibles.forEach(collapsible => {
-            collapsible.addEventListener('click', function() {
+        
+        // Simple click handler without animation complexity
+        collapsibles.forEach(header => {
+            header.addEventListener('click', function() {
+                // Toggle the active class on the header
                 this.classList.toggle('active');
+                
+                // Get the content panel
                 const content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    content.classList.remove('active');
+                
+                // Toggle the active class on the content
+                const isActive = content.classList.toggle('active');
+                
+                // Update height based on state
+                if (isActive) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
                 } else {
-                    content.classList.add('active');
-                    updateCollapsibleContentSize(content);
+                    content.style.maxHeight = null;
                 }
             });
+        });
+        
+        // Add global resize event handler with debounce
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                document.querySelectorAll('.collapsible-content.active').forEach(content => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                });
+            }, 100);
         });
         
         // Initialize shape radius value in UI
         const shapeRadius = APP.main.getShapeRadius();
         document.getElementById('shapeRadius').value = shapeRadius;
         document.getElementById('shapeRadiusValue').textContent = shapeRadius;
-    }
-
-    function updateCollapsibleContentSize(content) {
-        if (content && content.classList.contains('active')) {
-            content.style.maxHeight = 'none';
-            const scrollHeight = content.scrollHeight;
-            content.style.maxHeight = scrollHeight + 'px';
-        }
     }
 
     function forceReflow(element) {
@@ -163,6 +218,7 @@ APP.uiControls = (function() {
         updateCornersDotGradientType: updateCornersDotGradientType,
         initCollapsibles: initCollapsibles,
         updateCollapsibleContentSize: updateCollapsibleContentSize,
+        observeContentChanges: observeContentChanges,
         forceReflow: forceReflow
     };
 })();
