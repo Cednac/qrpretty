@@ -184,6 +184,10 @@ input[type="color"] {
     width: 80px;
     height: 80px;
     padding: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background: none;
+    margin-right: 10px;
 }
 
 input[type="range"] {
@@ -456,6 +460,27 @@ footer {
     .picker {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .slider-wrapper input[type="range"] {
+        min-width: auto;
+        flex: 1;
+    }
+
+    #dotsGradient, #backgroundGradient, #cornersSquareGradient, #cornersDotGradient {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #dotsLinearGradientRotation, #backgroundLinearGradientRotation, 
+    #cornersSquareLinearGradientRotation, #cornersDotLinearGradientRotation {
+        flex-wrap: wrap;
+    }
+    
+    #dotsLinearGradientRotation input, #backgroundLinearGradientRotation input,
+    #cornersSquareLinearGradientRotation input, #cornersDotLinearGradientRotation input {
+        width: 100%;
+        margin-top: 5px;
+    }
 }
 
 /* Slider Styles */
@@ -479,5 +504,82 @@ footer {
 
 .slider-container {
     width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Add these new styles for the gradient controls */
+.gradient-controls {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.gradient-controls select {
+    margin-bottom: 10px;
+    max-width: 100%;
+    background-color: var(--input-background);
+    color: var(--input-text);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+#dotsGradientTypeSelect, #backgroundGradientTypeSelect, 
+#cornersSquareGradientTypeSelect, #cornersDotGradientTypeSelect {
+    width: 100%;
+}
+
+#dotsGradient, #backgroundGradient, #cornersSquareGradient, #cornersDotGradient {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#dotsGradient input, #backgroundGradient input, 
+#cornersSquareGradient input, #cornersDotGradient input {
+    margin: 0;
+}
+
+#dotsSingleColor, #backgroundSingleColor, #cornersSquareSingleColor, #cornersDotSingleColor {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+#dotsSingleColor input, #backgroundSingleColor input, 
+#cornersSquareSingleColor input, #cornersDotSingleColor input {
+    margin: 0;
+}
+
+#dotsGradientType, #backgroundGradientType, #cornersSquareGradientType, #cornersDotGradientType {
+    margin-top: 10px;
+}
+
+#dotsLinearGradientRotation, #backgroundLinearGradientRotation, 
+#cornersSquareLinearGradientRotation, #cornersDotLinearGradientRotation {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    padding: 8px;
+    background: rgba(30, 30, 46, 0.5);
+    border-radius: var(--border-radius);
+}
+
+#dotsLinearGradientRotation input, #backgroundLinearGradientRotation input,
+#cornersSquareLinearGradientRotation input, #cornersDotLinearGradientRotation input {
+    width: 80px;
+    margin-top: 0;
+}
+
+#dotsLinearGradientRotation label, #backgroundLinearGradientRotation label,
+#cornersSquareLinearGradientRotation label, #cornersDotLinearGradientRotation label {
+    flex-shrink: 0;
+    margin-right: 5px;
+}
+
+#dotsColorType, #backgroundColorType, #cornersSquareColorType, #cornersDotColorType {
     margin-bottom: 15px;
 }
