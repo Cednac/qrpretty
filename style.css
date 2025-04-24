@@ -43,7 +43,6 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +50,6 @@ body {
 
 .main-header {
     text-align: center;
-    margin: 20px auto;
     padding: 20px 0;
     width: 100%;
 }
@@ -164,7 +162,7 @@ h4 {
     margin-bottom: 15px;
     color: var(--primary-color);
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 input, select, button {
