@@ -426,6 +426,10 @@ footer {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+    .wrapper {
+        padding: 0 10px; /* Add horizontal padding for smaller screens */
+    }
+
     h1 {
         font-size: 2rem;
     }
@@ -451,15 +455,48 @@ footer {
     
     .action-button {
         width: 80%;
+        max-width: 300px; /* Add max-width for consistency */
+        padding: 10px 20px; /* Adjust padding */
     }
     
     .picker {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .picker div {
+        padding: 10px 5px; /* Adjust padding */
+        aspect-ratio: 1.5 / 1; /* Adjust aspect ratio slightly */
+    }
+
+    .download-options {
+        flex-direction: column; /* Stack download options */
+        align-items: stretch; /* Make children full width */
+        gap: 15px; /* Increase gap */
+    }
+
+    .download-options select {
+        max-width: none; /* Allow select to take full width */
+    }
+
+    .slider-wrapper {
+        flex-direction: column; /* Stack slider elements */
+        align-items: flex-start; /* Align items to the start */
+        gap: 5px; /* Reduce gap */
+    }
 
     .slider-wrapper input[type="range"] {
-        min-width: auto;
-        flex: 1;
+        min-width: auto; /* Already set, good */
+        width: 100%; /* Make range take full width */
+    }
+
+    .slider-wrapper input[type="number"] {
+        width: 80px; /* Adjust width */
+    }
+
+    /* Ensure labels are above inputs */
+    .slider-wrapper label {
+        margin-bottom: 5px;
+        width: 100%;
     }
 
     #dotsGradient, #backgroundGradient, #cornersSquareGradient, #cornersDotGradient {
@@ -470,12 +507,21 @@ footer {
     #dotsLinearGradientRotation, #backgroundLinearGradientRotation, 
     #cornersSquareLinearGradientRotation, #cornersDotLinearGradientRotation {
         flex-wrap: wrap;
+        flex-direction: column; /* Stack label and input */
+        align-items: flex-start;
+        padding: 10px;
     }
     
     #dotsLinearGradientRotation input, #backgroundLinearGradientRotation input,
     #cornersSquareLinearGradientRotation input, #cornersDotLinearGradientRotation input {
         width: 100%;
         margin-top: 5px;
+    }
+
+    #dotsLinearGradientRotation label, #backgroundLinearGradientRotation label,
+    #cornersSquareLinearGradientRotation label, #cornersDotLinearGradientRotation label {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 5px;
     }
 
     .scanner-option-buttons {
@@ -491,10 +537,57 @@ footer {
     }
 
     .floating-menu {
-        width: calc(100% - 40px);
+        width: calc(100% - 20px); /* Adjust width calculation */
         right: 10px;
         top: 70px;
         max-height: calc(100vh - 90px);
+        padding: 15px; /* Adjust padding */
+        padding-top: 40px; /* Adjust top padding for close button */
+    }
+
+    .floating-menu h3 {
+        font-size: 1.2rem; /* Adjust heading size */
+        margin-bottom: 15px;
+    }
+
+    .floating-menu .collapsible-header {
+        padding: 10px 15px; /* Adjust padding */
+        font-size: 0.95rem; /* Adjust font size */
+    }
+
+    .floating-menu .collapsible-header::after {
+        font-size: 1.3rem; /* Adjust icon size */
+        right: 10px; /* Adjust icon position */
+    }
+
+    .floating-menu .collapsible-content.active {
+        padding: 10px; /* Adjust content padding */
+    }
+
+    .floating-menu .picker {
+        gap: 5px; /* Reduce gap */
+    }
+
+    .floating-menu .picker div {
+        padding: 8px 4px; /* Adjust padding */
+        aspect-ratio: 1.4 / 1; /* Adjust aspect ratio */
+    }
+
+    .floating-menu .picker div img {
+        width: 25px; /* Adjust image size */
+        height: 25px;
+    }
+
+    .floating-menu .picker div p {
+        font-size: 0.8rem; /* Adjust text size */
+    }
+
+    .floating-menu .slider-wrapper {
+        /* Keep stacking from general slider rules */
+    }
+
+    .floating-menu .slider-wrapper input[type="number"] {
+        width: 70px; /* Adjust width */
     }
 
     .style-toggle-button {
@@ -508,15 +601,30 @@ footer {
         font-size: 1rem;
     }
 
-    /* Adjust CTA position for mobile */
     .style-cta {
-        top: 35px; /* Adjusted mobile position */
-        right: 35px; /* Adjusted mobile position */
+        top: 40px; /* Slightly lower */
+        right: 40px; /* Slightly more inset */
         font-size: 0.75rem;
         padding: 5px 10px;
     }
     .style-cta i {
         font-size: 0.7rem;
+    }
+
+    .social-icons {
+        gap: 15px; /* Reduce gap between social icons */
+    }
+
+    .fa-brands {
+        width: 50px; /* Reduce size */
+        height: 50px;
+        font-size: 20px; /* Adjust icon size */
+    }
+
+    footer .about-link {
+        margin: 0 10px; /* Reduce margin */
+        display: block; /* Stack footer links */
+        margin-bottom: 8px; /* Add spacing between stacked links */
     }
 }
 
@@ -948,13 +1056,13 @@ footer {
 /* Call to action for style menu */
 .style-cta {
     position: fixed;
-    top: 45px; /* Adjusted for diagonal placement */
-    right: 45px; /* Adjusted for diagonal placement */
+    top: 40px; /* Slightly lower */
+    right: 40px; /* Slightly more inset */
     background-color: var(--secondary-color);
     color: var(--text-color);
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
     z-index: 1001;
     pointer-events: none;
