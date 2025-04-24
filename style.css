@@ -43,7 +43,6 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +50,6 @@ body {
 
 .main-header {
     text-align: center;
-    margin: 20px auto;
     padding: 20px 0;
     width: 100%;
 }
@@ -164,7 +162,7 @@ h4 {
     margin-bottom: 15px;
     color: var(--primary-color);
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 input, select, button {
@@ -487,6 +485,10 @@ footer {
     .scanner-option-btn {
         width: 100%;
     }
+
+    .camera-controls button:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
 }
 
 /* Slider Styles */
@@ -719,4 +721,210 @@ footer {
 
 .camera-controls button:hover {
     background: rgba(0, 0, 0, 0.7);
+}
+
+/* Floating Style Menu Styles */
+.style-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    animation: pulseEffect 2s infinite ease-in-out;
+}
+
+.style-toggle-button i {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.style-toggle-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.floating-menu {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 350px;
+    max-height: calc(100vh - 100px);
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    padding-top: 45px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateX(0);
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.floating-menu.hidden {
+    transform: translateX(110%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.floating-menu h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+    padding-bottom: 10px;
+}
+
+.floating-menu .collapsible {
+    background-color: transparent;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    margin-bottom: 12px;
+}
+
+.floating-menu .collapsible-header {
+    font-size: 1rem;
+    padding: 12px 15px;
+    background-color: rgba(99, 102, 241, 0.15);
+    border-radius: 0;
+    border-bottom: none;
+    transition: background-color var(--transition);
+    position: relative;
+}
+
+.floating-menu .collapsible-header:hover {
+    background-color: rgba(99, 102, 241, 0.25);
+}
+
+.floating-menu .collapsible-header::after {
+    content: '\002B';
+    font-size: 1.5rem;
+    font-weight: 300;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.floating-menu .collapsible-header.active::after {
+    content: '\2212';
+}
+
+.floating-menu .collapsible-content {
+    padding: 0;
+    background-color: rgba(30, 30, 46, 0.8);
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.floating-menu .collapsible-content.active {
+    padding: 15px;
+}
+
+.floating-menu .slider-wrapper input[type="range"] {
+    min-width: auto;
+    flex: 1;
+}
+
+.floating-menu .picker {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.floating-menu .picker div {
+    padding: 10px 5px;
+    aspect-ratio: 1.5 / 1;
+}
+
+.floating-menu .picker div img {
+    width: 30px;
+    height: 30px;
+}
+
+.floating-menu label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.floating-menu .slider-container {
+    margin-bottom: 10px;
+}
+
+.floating-menu .error-correction-info {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.close-btn:hover {
+    opacity: 1;
+    transform: none;
+    background: none;
+}
+
+@media (max-width: 768px) {
+    .floating-menu {
+        width: calc(100% - 40px);
+        right: 10px;
+        top: 70px;
+        max-height: calc(100vh - 90px);
+    }
+
+    .style-toggle-button {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .style-toggle-button i {
+        font-size: 1rem;
+    }
+}
+
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Add spacing for icons inside buttons */
+.download-options button i {
+    margin-right: 8px;
 }
