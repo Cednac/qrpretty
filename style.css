@@ -739,6 +739,7 @@ footer {
     background-color: var(--primary-color);
     color: white;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    animation: pulseEffect 2s infinite ease-in-out;
 }
 
 .style-toggle-button i {
@@ -905,5 +906,20 @@ footer {
 
     .style-toggle-button i {
         font-size: 1rem;
+    }
+}
+
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     }
 }
