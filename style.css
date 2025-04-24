@@ -760,9 +760,9 @@ footer {
     max-height: calc(100vh - 100px);
     background: var(--card-background);
     border-radius: var(--border-radius);
-    padding: 25px;
-    padding-top: 50px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    padding-top: 45px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
     z-index: 1000;
     overflow-y: auto;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -780,26 +780,56 @@ footer {
 
 .floating-menu h3 {
     margin-top: 0;
-    margin-bottom: 20px;
     color: var(--primary-color);
     text-align: center;
-    font-size: 1.4rem;
-    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
     padding-bottom: 10px;
 }
 
 .floating-menu .collapsible {
-    background-color: rgba(45, 43, 66, 0.7);
+    background-color: transparent;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    margin-bottom: 12px;
 }
 
 .floating-menu .collapsible-header {
     font-size: 1rem;
     padding: 12px 15px;
+    background-color: rgba(99, 102, 241, 0.15);
+    border-radius: 0;
+    border-bottom: none;
+    transition: background-color var(--transition);
+    position: relative;
+}
+
+.floating-menu .collapsible-header:hover {
+    background-color: rgba(99, 102, 241, 0.25);
+}
+
+.floating-menu .collapsible-header::after {
+    content: '\002B';
+    font-size: 1.5rem;
+    font-weight: 300;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.floating-menu .collapsible-header.active::after {
+    content: '\2212';
 }
 
 .floating-menu .collapsible-content {
+    padding: 0;
+    background-color: rgba(30, 30, 46, 0.8);
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.floating-menu .collapsible-content.active {
     padding: 15px;
-    background-color: rgba(30, 30, 46, 0.9);
 }
 
 .floating-menu .slider-wrapper input[type="range"] {
@@ -809,6 +839,35 @@ footer {
 
 .floating-menu .picker {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.floating-menu .picker div {
+    padding: 10px 5px;
+    aspect-ratio: 1.5 / 1;
+}
+
+.floating-menu .picker div img {
+    width: 30px;
+    height: 30px;
+}
+
+.floating-menu label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.floating-menu .slider-container {
+    margin-bottom: 10px;
+}
+
+.floating-menu .error-correction-info {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 10px;
+    padding: 0 5px;
 }
 
 .close-btn {
