@@ -204,6 +204,23 @@ APP.uiControls = (function() {
         element.style.display = '';
     }
 
+    function toggleStyleMenu() {
+        const menu = document.getElementById('floating-style-menu');
+        menu.classList.toggle('hidden');
+        // Ensure collapsibles inside are correctly sized if menu is opened
+        if (!menu.classList.contains('hidden')) {
+            setTimeout(() => { 
+                menu.querySelectorAll('.collapsible-content.active').forEach(content => {
+                    updateCollapsibleContentSize(content);
+                });
+            }, 50); // Small delay to allow transition/display changes
+        }
+    }
+
+    function closeStyleMenu() {
+        document.getElementById('floating-style-menu').classList.add('hidden');
+    }
+
     return {
         updateDownloadOptions: updateDownloadOptions,
         updateQRSize: updateQRSize,
@@ -219,6 +236,8 @@ APP.uiControls = (function() {
         initCollapsibles: initCollapsibles,
         updateCollapsibleContentSize: updateCollapsibleContentSize,
         observeContentChanges: observeContentChanges,
-        forceReflow: forceReflow
+        forceReflow: forceReflow,
+        toggleStyleMenu: toggleStyleMenu,
+        closeStyleMenu: closeStyleMenu
     };
 })();
