@@ -487,6 +487,10 @@ footer {
     .scanner-option-btn {
         width: 100%;
     }
+
+    .camera-controls button:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
 }
 
 /* Slider Styles */
@@ -719,4 +723,130 @@ footer {
 
 .camera-controls button:hover {
     background: rgba(0, 0, 0, 0.7);
+}
+
+/* Floating Style Menu Styles */
+.style-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.style-toggle-button i {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.style-toggle-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.floating-menu {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 350px;
+    max-height: calc(100vh - 100px);
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    padding-top: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateX(0);
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.floating-menu.hidden {
+    transform: translateX(110%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.floating-menu h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.4rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    padding-bottom: 10px;
+}
+
+.floating-menu .collapsible {
+    background-color: rgba(45, 43, 66, 0.7);
+}
+
+.floating-menu .collapsible-header {
+    font-size: 1rem;
+    padding: 12px 15px;
+}
+
+.floating-menu .collapsible-content {
+    padding: 15px;
+    background-color: rgba(30, 30, 46, 0.9);
+}
+
+.floating-menu .slider-wrapper input[type="range"] {
+    min-width: auto;
+    flex: 1;
+}
+
+.floating-menu .picker {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.close-btn:hover {
+    opacity: 1;
+    transform: none;
+    background: none;
+}
+
+@media (max-width: 768px) {
+    .floating-menu {
+        width: calc(100% - 40px);
+        right: 10px;
+        top: 70px;
+        max-height: calc(100vh - 90px);
+    }
+
+    .style-toggle-button {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .style-toggle-button i {
+        font-size: 1rem;
+    }
 }

@@ -120,6 +120,10 @@ APP.eventHandlers = (function() {
         document.getElementById('generateBulkQR').addEventListener('click', APP.bulkOperations.generateBulkQRCodes);
         document.getElementById('downloadBulkQR').addEventListener('click', APP.bulkOperations.downloadBulkQRCodes);
 
+        // Floating Style Menu Toggle
+        document.getElementById('toggleStyleMenu').addEventListener('click', APP.uiControls.toggleStyleMenu);
+        document.getElementById('closeStyleMenu').addEventListener('click', APP.uiControls.closeStyleMenu);
+
         // Initialize collapsibles and observe for dynamic content changes
         APP.uiControls.initCollapsibles();
         APP.uiControls.observeContentChanges();
