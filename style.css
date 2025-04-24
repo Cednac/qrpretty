@@ -489,6 +489,35 @@ footer {
     .camera-controls button:hover {
         background: rgba(0, 0, 0, 0.7);
     }
+
+    .floating-menu {
+        width: calc(100% - 40px);
+        right: 10px;
+        top: 70px;
+        max-height: calc(100vh - 90px);
+    }
+
+    .style-toggle-button {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .style-toggle-button i {
+        font-size: 1rem;
+    }
+
+    /* Adjust CTA position for mobile */
+    .style-cta {
+        top: 35px; /* Adjusted mobile position */
+        right: 35px; /* Adjusted mobile position */
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+    .style-cta i {
+        font-size: 0.7rem;
+    }
 }
 
 /* Slider Styles */
@@ -889,26 +918,6 @@ footer {
     background: none;
 }
 
-@media (max-width: 768px) {
-    .floating-menu {
-        width: calc(100% - 40px);
-        right: 10px;
-        top: 70px;
-        max-height: calc(100vh - 90px);
-    }
-
-    .style-toggle-button {
-        top: 10px;
-        right: 10px;
-        width: 45px;
-        height: 45px;
-    }
-
-    .style-toggle-button i {
-        font-size: 1rem;
-    }
-}
-
 @keyframes pulseEffect {
     0% {
         transform: scale(1);
@@ -924,7 +933,54 @@ footer {
     }
 }
 
+/* Keyframes for CTA pulsing */
+@keyframes pulseCta {
+    0%, 100% {
+        transform: scale(1) rotate(-45deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05) rotate(-45deg);
+        opacity: 1;
+    }
+}
+
+/* Call to action for style menu */
+.style-cta {
+    position: fixed;
+    top: 45px; /* Adjusted for diagonal placement */
+    right: 45px; /* Adjusted for diagonal placement */
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1001;
+    pointer-events: none;
+    transform-origin: bottom right; /* Rotate around the corner pointing to the button */
+    transform: rotate(-45deg); /* Apply 45-degree rotation */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    border-left: 3px solid #ff4d4d; /* Keep red accent */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+    animation: pulseCta 1.5s infinite ease-in-out; /* Apply pulsing animation */
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 5px; /* Space between text and icon */
+}
+
+.style-cta i {
+    font-size: 0.8rem; /* Style arrow icon */
+}
+
+/* Class to hide the CTA */
+.style-cta.hidden {
+    display: none;
+}
+
 /* Add spacing for icons inside buttons */
 .download-options button i {
     margin-right: 8px;
 }
+
+/* @keyframes pulseEffect { */ /* Renamed to pulseCta */

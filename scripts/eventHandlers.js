@@ -122,6 +122,17 @@ APP.eventHandlers = (function() {
 
         // Floating Style Menu Toggle
         document.getElementById('toggleStyleMenu').addEventListener('click', APP.uiControls.toggleStyleMenu);
+
+        // Add a separate listener just for hiding the CTA on the first click
+        document.getElementById('toggleStyleMenu').addEventListener('click', function hideCtaOnClick() {
+            const cta = document.querySelector('.style-cta');
+            if (cta && !cta.classList.contains('hidden')) {
+                cta.classList.add('hidden');
+                // Ensure this listener only runs once by removing it
+                document.getElementById('toggleStyleMenu').removeEventListener('click', hideCtaOnClick);
+            }
+        });
+
         document.getElementById('closeStyleMenu').addEventListener('click', APP.uiControls.closeStyleMenu);
 
         // Initialize collapsibles and observe for dynamic content changes
