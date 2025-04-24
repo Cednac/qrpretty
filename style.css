@@ -923,3 +923,8 @@ footer {
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     }
 }
+
+/* Add spacing for icons inside buttons */
+.download-options button i {
+    margin-right: 8px;
+}
